@@ -1,6 +1,8 @@
 # Gorgeous GRUB
 
-> A curated collection of GRUB2 boot-menu themes for Linux, with a one-command interactive installer.
+> A curated collection of GRUB2 boot-menu themes for Linux, with a one-command interactive installer. 
+
+For Reference visit the web  ![grub-themes](https://kadhiravaneg.github.io/grub-themes/)
 
 **Preview every theme:** open the live gallery on GitHub Pages → _set this in `Settings → Pages → Branch: main / folder: /grub-themes`_, then drop the URL here.
 

@@ -1,0 +1,60 @@
+# Gorgeous GRUB — nimbus
+# Bottom dock layout. Soft sky background.
+
+title-text: ""
+desktop-image: "background.gif"
+desktop-color: "#1a2438"
+message-color: "#cfe1ff"
+message-bg-color: "#1a2438"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 8%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "boot · nimbus"
+    color = "#cfe1ff"
+    font = "Unifont Regular 18"
+}
+
++ boot_menu {
+    left = 10%
+    top = 70%
+    width = 80%
+    height = 22%
+    item_font = "Unifont Bold 20"
+    item_color = "#cfe1ff"
+    selected_item_color = "#ffffff"
+    item_height = 40
+    item_padding = 12
+    item_spacing = 12
+}
+
++ label {
+    top = 22%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "—  pick your boot  —"
+    color = "#9fbce6"
+    font = "Unifont Regular 14"
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 25%
+    bottom = 4%
+    width = 50%
+    height = 4
+    fg_color = "#cfe1ff"
+    bg_color = "#2a3548"
+    border_color = "#9fbce6"
+    text_color = "#cfe1ff"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

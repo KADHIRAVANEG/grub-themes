@@ -1,0 +1,72 @@
+# Gorgeous GRUB — miku
+# Centered hologram panel. Matches the website preview.
+
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#0a0a1a"
+message-color: "#cfefff"
+message-bg-color: "#0a0a1a"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 14%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "01 / MIKU.BOOT"
+    color = "#86f6ff"
+    font = "Unifont Bold 24"
+}
+
++ label {
+    top = 19%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "------------------------------"
+    color = "#00f0ff"
+    font = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left = 32%
+    top = 32%
+    width = 36%
+    height = 46%
+    item_font = "Unifont Regular 20"
+    item_color = "#cfefff"
+    selected_item_color = "#00f0ff"
+    item_height = 38
+    item_padding = 10
+    item_spacing = 6
+    item_icon_space = 0
+    selected_item_pixmap_style = ""
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 32%
+    top = 82%
+    width = 36%
+    height = 4
+    fg_color = "#00f0ff"
+    bg_color = "#1a2a3a"
+    border_color = "#86f6ff"
+    text_color = "#86f6ff"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}
+
++ label {
+    bottom = 5%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "SYS::OK   —   auto boot"
+    color = "#86f6ff"
+    font = "Unifont Regular 12"
+}

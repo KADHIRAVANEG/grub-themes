@@ -1,0 +1,66 @@
+# Gorgeous GRUB — nes
+# 8-bit cartridge select screen.
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#000000"
+message-color: "#fff200"
+message-bg-color: "#000000"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 10%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "G R U B - N E S"
+    color = "#ff2e2e"
+    font = "Unifont Bold 32"
+}
+
++ label {
+    top = 18%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "==============================="
+    color = "#fff200"
+    font = "Unifont Bold 16"
+}
+
++ label {
+    top = 23%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "v   SELECT GAME   v"
+    color = "#ffffff"
+    font = "Unifont Bold 20"
+}
+
++ boot_menu {
+    left = 30%
+    top = 34%
+    width = 40%
+    height = 40%
+    item_font = "Unifont Bold 22"
+    item_color = "#fff200"
+    selected_item_color = "#ffffff"
+    item_height = 44
+    item_padding = 8
+    item_spacing = 8
+}
+
++ label {
+    bottom = 8%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "P1   PRESS START"
+    color = "#ffffff"
+    font = "Unifont Bold 18"
+}

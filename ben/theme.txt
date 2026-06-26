@@ -1,0 +1,61 @@
+# Gorgeous GRUB — ben (omnitrix)
+# Circular dial feel. Centered green plasma core.
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#021320"
+message-color: "#caffaa"
+message-bg-color: "#021320"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 8%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "[ OMNITRIX // SELECT FORM ]"
+    color = "#7cff3a"
+    font = "Unifont Bold 22"
+}
+
++ label {
+    top = 14%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "<  ENERGY CORE ONLINE  >"
+    color = "#caffaa"
+    font = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left = 28%
+    top = 28%
+    width = 44%
+    height = 56%
+    item_font = "Unifont Bold 20"
+    item_color = "#caffaa"
+    selected_item_color = "#000000"
+    selected_item_pixmap_style = ""
+    item_height = 42
+    item_padding = 10
+    item_spacing = 8
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 28%
+    bottom = 6%
+    width = 44%
+    height = 6
+    fg_color = "#7cff3a"
+    bg_color = "#0a3a55"
+    border_color = "#7cff3a"
+    text_color = "#7cff3a"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Bold 12"
+}

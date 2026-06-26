@@ -1,0 +1,173 @@
+[
+  {
+    "slug": "miku",
+    "title": "Miku",
+    "tagline": "Holographic centered panel with vocaloid cyan glow.",
+    "background": "./miku/background.png",
+    "palette": ["#0a0a1a", "#86f6ff", "#00f0ff", "#cfefff"],
+    "layout": "miku",
+    "layoutLabel": "Centered hologram",
+    "font": "Major Mono Display",
+    "tags": ["anime", "neon", "illustration", "animated"],
+    "menu": {
+      "title": "01 / miku.boot",
+      "timeout": "auto · 5s",
+      "entries": ["Arch Linux", "Arch Linux (LTS)", "Windows 11", "UEFI Settings"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "penguin",
+    "title": "Penguin",
+    "tagline": "ASCII Tux terminal — classic GNU/Linux feel.",
+    "background": "./penguin/background.png",
+    "palette": ["#101418", "#ffb86b", "#ff7a18", "#dddddd"],
+    "layout": "penguin",
+    "layoutLabel": "ASCII terminal",
+    "font": "IBM Plex Mono",
+    "tags": ["tux", "classic", "terminal"],
+    "menu": {
+      "title": "tux@grub:~$",
+      "timeout": "10s",
+      "entries": ["GNU/Linux", "Advanced options", "Memtest86+", "System setup"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "nes",
+    "title": "NES",
+    "tagline": "8-bit cartridge select screen. PRESS START.",
+    "background": "./nes/background.jpg",
+    "palette": ["#000000", "#fff200", "#ff2e2e", "#ffffff"],
+    "layout": "nes",
+    "layoutLabel": "8-bit arcade",
+    "font": "Press Start 2P",
+    "tags": ["8bit", "retro", "pixel", "gaming"],
+    "menu": {
+      "title": "▼ SELECT GAME ▼",
+      "timeout": "P1 PRESS START",
+      "entries": ["LINUX-1", "LINUX-2", "OPTIONS", "RESET"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "nimbus",
+    "title": "Nimbus",
+    "tagline": "macOS-style horizontal dock under a soft sky.",
+    "background": "./nimbus/background.gif",
+    "palette": ["#1a2438", "#cfe1ff", "#ffffff", "#9fbce6"],
+    "layout": "nimbus",
+    "layoutLabel": "Bottom dock",
+    "font": "Space Grotesk",
+    "tags": ["ambient", "cozy", "minimal", "animated"],
+    "menu": {
+      "title": "boot · nimbus",
+      "timeout": "8s",
+      "entries": ["NixOS", "Rollback", "Win 11", "Firmware"],
+      "selected": 1
+    }
+  },
+  {
+    "slug": "street",
+    "title": "Street",
+    "tagline": "Cyberpunk right-rail terminal with magenta glitch.",
+    "background": "./street/background.gif",
+    "palette": ["#0b0218", "#ff3df0", "#00ffd5", "#f0d2ff"],
+    "layout": "street",
+    "layoutLabel": "Right rail · neon",
+    "font": "Share Tech Mono",
+    "tags": ["cyberpunk", "neon", "animated", "lofi"],
+    "menu": {
+      "title": "// runtime.select",
+      "timeout": "T-03",
+      "entries": ["./arch", "./arch-lts", "./win11", "./recovery"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "gas_station",
+    "title": "Gas Station",
+    "tagline": "Retro pump display — pick your fuel and roll.",
+    "background": "./gas_station/background.gif",
+    "palette": ["#2a1408", "#ffb86b", "#ff7a18", "#ffe2c2"],
+    "layout": "gas",
+    "layoutLabel": "Pump strip",
+    "font": "DotGothic16",
+    "tags": ["ambient", "lofi", "animated", "cozy"],
+    "menu": {
+      "title": "PUMP 04 · SELECT FUEL",
+      "timeout": "auto in 7s",
+      "entries": ["Arch", "Fedora", "Windows", "BIOS"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "bmw",
+    "title": "BMW",
+    "tagline": "Cinematic automotive HUD — telemetry strip with throttle bars.",
+    "background": "./bmw/background.jpg",
+    "video": "./bmw/background.mp4.asset.json",
+    "palette": ["#03060c", "#0095ff", "#ffffff", "#9fc6ff"],
+    "layout": "bmw",
+    "layoutLabel": "HUD telemetry",
+    "font": "Orbitron",
+    "tags": ["automotive", "cinematic", "hud", "animated"],
+    "menu": {
+      "title": "M:// IGNITION SEQUENCE",
+      "timeout": "GEAR ▲ 04",
+      "entries": ["DRIVE · Arch", "SPORT · Fedora", "COMFORT · Win 11", "PARK · UEFI"],
+      "selected": 1
+    }
+  },
+  {
+    "slug": "celebrate",
+    "title": "Celebrate",
+    "tagline": "Hand-drawn line catalog — every OS a different hat.",
+    "background": "./celebrate/background.jpg",
+    "palette": ["#d6d3cb", "#1a1a1a", "#5a5a5a", "#ffffff"],
+    "layout": "celebrate",
+    "layoutLabel": "Line catalog",
+    "font": "Cinzel",
+    "tags": ["minimal", "illustration", "editorial", "light"],
+    "menu": {
+      "title": "CELEBRATE  ·  DIVERSITY",
+      "timeout": "no rush",
+      "entries": ["TEQUILA — Arch", "VODKA — Debian", "WHISKEY — Fedora", "RUM — Windows", "GIN — UEFI"],
+      "selected": 2
+    }
+  },
+  {
+    "slug": "ben",
+    "title": "Omnitrix",
+    "tagline": "Ben 10 dial selector — green plasma core, hexagonal lock.",
+    "background": "./ben/background.jpg",
+    "palette": ["#0a3a55", "#7cff3a", "#000000", "#caffaa"],
+    "layout": "ben",
+    "layoutLabel": "Omnitrix dial",
+    "font": "VT323",
+    "tags": ["cartoon", "neon", "gaming", "circular"],
+    "menu": {
+      "title": "OMNITRIX // SELECT FORM",
+      "timeout": "T-10s",
+      "entries": ["XLR8 · Arch", "HEATBLAST · Fedora", "DIAMONDHEAD · Win", "GHOSTFREAK · BIOS"],
+      "selected": 0
+    }
+  },
+  {
+    "slug": "noir",
+    "title": "Noir",
+    "tagline": "Spider-Noir comic panel — halftone rain, hard-boiled menu.",
+    "background": "./noir/background.jpg",
+    "palette": ["#000000", "#ffffff", "#8a8a8a", "#c8c8c8"],
+    "layout": "noir",
+    "layoutLabel": "Comic panel",
+    "font": "Archivo Black",
+    "tags": ["noir", "comic", "monochrome", "editorial"],
+    "menu": {
+      "title": "CHAPTER I · THE BOOT",
+      "timeout": "MIDNIGHT 00:00",
+      "entries": ["ARCH — the suspect", "DEBIAN — the witness", "WIN 11 — the dame", "RECOVERY — the alibi"],
+      "selected": 0
+    }
+  }
+]

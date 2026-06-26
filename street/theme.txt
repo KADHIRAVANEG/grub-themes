@@ -1,0 +1,72 @@
+# Gorgeous GRUB — street
+# Cyberpunk right-rail terminal with magenta + cyan.
+
+title-text: ""
+desktop-image: "background.gif"
+desktop-color: "#0b0218"
+message-color: "#f0d2ff"
+message-bg-color: "#0b0218"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 14%
+    right = 6%
+    text = "// runtime.select"
+    color = "#ff3df0"
+    font = "Unifont Bold 22"
+}
+
++ label {
+    top = 20%
+    right = 6%
+    text = "----------------------"
+    color = "#00ffd5"
+    font = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left = 55%
+    top = 28%
+    width = 40%
+    height = 50%
+    item_font = "Unifont Bold 20"
+    item_color = "#f0d2ff"
+    selected_item_color = "#00ffd5"
+    item_height = 36
+    item_padding = 8
+    item_spacing = 6
+}
+
++ label {
+    bottom = 8%
+    left = 6%
+    text = "NET//OK"
+    color = "#00ffd5"
+    font = "Unifont Regular 14"
+}
+
++ label {
+    bottom = 8%
+    right = 6%
+    text = "T-03"
+    color = "#ff3df0"
+    font = "Unifont Bold 16"
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 55%
+    bottom = 14%
+    width = 40%
+    height = 3
+    fg_color = "#ff3df0"
+    bg_color = "#1a0228"
+    border_color = "#00ffd5"
+    text_color = "#00ffd5"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

@@ -1,0 +1,59 @@
+# Gorgeous GRUB — celebrate
+# Minimal line-catalog on warm paper. Inverted (light) theme.
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#d6d3cb"
+message-color: "#1a1a1a"
+message-bg-color: "#d6d3cb"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 70%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "C E L E B R A T E   ·   D I V E R S I T Y"
+    color = "#1a1a1a"
+    font = "Unifont Bold 22"
+}
+
++ label {
+    top = 76%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "— pick your spirit —"
+    color = "#5a5a5a"
+    font = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left = 20%
+    top = 30%
+    width = 60%
+    height = 38%
+    item_font = "Unifont Regular 18"
+    item_color = "#1a1a1a"
+    selected_item_color = "#000000"
+    item_height = 34
+    item_padding = 8
+    item_spacing = 4
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 30%
+    bottom = 4%
+    width = 40%
+    height = 3
+    fg_color = "#1a1a1a"
+    bg_color = "#b8b5ac"
+    text_color = "#1a1a1a"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

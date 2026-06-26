@@ -1,0 +1,65 @@
+# Gorgeous GRUB — bmw
+# Cinematic HUD telemetry strip. Cyan accents on deep navy.
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#03060c"
+message-color: "#9fc6ff"
+message-bg-color: "#03060c"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 6%
+    left = 6%
+    text = "M:// IGNITION SEQUENCE"
+    color = "#0095ff"
+    font = "Unifont Bold 18"
+}
+
++ label {
+    top = 6%
+    right = 6%
+    text = "GEAR ^ 04   ABS   DSC   SPORT+"
+    color = "#9fc6ff"
+    font = "Unifont Bold 14"
+}
+
++ label {
+    top = 11%
+    left = 6%
+    width = 88%
+    text = "============================================================"
+    color = "#0095ff"
+    font = "Unifont Regular 12"
+}
+
++ boot_menu {
+    left = 6%
+    top = 16%
+    width = 88%
+    height = 70%
+    item_font = "Unifont Bold 22"
+    item_color = "#eaf3ff"
+    selected_item_color = "#ffffff"
+    item_height = 48
+    item_padding = 12
+    item_spacing = 8
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 6%
+    bottom = 4%
+    width = 88%
+    height = 4
+    fg_color = "#0095ff"
+    bg_color = "#0a1a2e"
+    border_color = "#9fc6ff"
+    text_color = "#9fc6ff"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

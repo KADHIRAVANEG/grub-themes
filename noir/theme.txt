@@ -1,0 +1,80 @@
+# Gorgeous GRUB — noir
+# Spider-Noir comic panel. Halftone rain, hard-boiled menu.
+
+title-text: ""
+desktop-image: "background.jpg"
+desktop-color: "#000000"
+message-color: "#ffffff"
+message-bg-color: "#000000"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 8%
+    left = 6%
+    text = "CHAPTER I  ·  THE BOOT"
+    color = "#ffffff"
+    font = "Unifont Bold 24"
+}
+
++ label {
+    top = 14%
+    left = 6%
+    width = 88%
+    text = "____________________________________________________________"
+    color = "#ffffff"
+    font = "Unifont Bold 14"
+}
+
++ label {
+    top = 18%
+    left = 6%
+    text = "// the rain hadn't stopped in three days. neither had the kernel."
+    color = "#c8c8c8"
+    font = "Unifont Regular 12"
+}
+
++ boot_menu {
+    left = 8%
+    top = 30%
+    width = 84%
+    height = 54%
+    item_font = "Unifont Bold 20"
+    item_color = "#ffffff"
+    selected_item_color = "#000000"
+    item_height = 40
+    item_padding = 10
+    item_spacing = 6
+}
+
++ label {
+    bottom = 6%
+    left = 6%
+    text = "[ CONFIDENTIAL ]"
+    color = "#000000"
+    font = "Unifont Bold 14"
+}
+
++ label {
+    bottom = 6%
+    right = 6%
+    text = "MIDNIGHT 00:00"
+    color = "#ffffff"
+    font = "Unifont Bold 14"
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 8%
+    bottom = 2%
+    width = 84%
+    height = 3
+    fg_color = "#ffffff"
+    bg_color = "#1a1a1a"
+    text_color = "#ffffff"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

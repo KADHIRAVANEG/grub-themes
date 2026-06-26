@@ -1,0 +1,65 @@
+# Gorgeous GRUB — gas_station
+# Bottom pump-strip layout. Warm sunset.
+
+title-text: ""
+desktop-image: "background.gif"
+desktop-color: "#2a1408"
+message-color: "#ffe2c2"
+message-bg-color: "#2a1408"
+terminal-font: "Unifont Regular 16"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ label {
+    top = 60%
+    left = 6%
+    text = "PUMP 04 · SELECT FUEL"
+    color = "#ffe2c2"
+    font = "Unifont Bold 18"
+}
+
++ label {
+    top = 60%
+    right = 6%
+    text = "auto in 7s"
+    color = "#ff7a18"
+    font = "Unifont Bold 18"
+}
+
++ label {
+    top = 66%
+    left = 6%
+    width = 88%
+    text = "------------------------------------------------------------"
+    color = "#ffb86b"
+    font = "Unifont Regular 12"
+}
+
++ boot_menu {
+    left = 6%
+    top = 70%
+    width = 88%
+    height = 22%
+    item_font = "Unifont Bold 20"
+    item_color = "#ffe2c2"
+    selected_item_color = "#ffffff"
+    item_height = 40
+    item_padding = 10
+    item_spacing = 10
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 6%
+    bottom = 3%
+    width = 88%
+    height = 4
+    fg_color = "#ff7a18"
+    bg_color = "#1a0a04"
+    border_color = "#ffb86b"
+    text_color = "#ffb86b"
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    font = "Unifont Regular 12"
+}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gorgeous GRUB — a curated collection of GRUB2 boot themes</title>
+  <meta name="description" content="A curated collection of GRUB configurations and themes for Linux. Pick one, copy a single command, reboot beautifully." />
+  <meta property="og:title" content="Gorgeous GRUB" />
+  <meta property="og:description" content="Hand-crafted GRUB2 boot menu themes with a one-command installer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=VT323&family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=Major+Mono+Display&family=Share+Tech+Mono&family=Cinzel:wght@600;800&family=DotGothic16&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" id="top">
+        <span class="brand-bar"></span>
+        <span class="brand-stack">
+          <span class="brand-name">GORGEOUS GRUB</span>
+          <span class="brand-sub">a curated collection</span>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="#themes" class="active">BROWSE</a>
+        <a href="#install">INSTALL</a>
+        <a href="https://github.com/" target="_blank" rel="noreferrer">GITHUB <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="path-marker"><span class="bar"></span><span class="cursor">_</span> /boot/grub/themes</p>
+        <h1 class="hero-title">Boot <span class="accent">beautifully.</span></h1>
+        <p class="lede">
+          A curated collection of GRUB configurations and themes for Linux.
+          Pick one, copy a single command, and your bootloader is reborn
+          before the next power cycle.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#install">$ curl install.sh</a>
+          <a class="btn btn-ghost" href="#themes"><span id="cta-count">browse</span> configs</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section id="themes" class="themes">
+      <div class="wrap">
+        <div class="filter-bar">
+          <input id="search" type="search" class="search" placeholder="grep configs..." autocomplete="off" />
+          <div class="tags" id="tags"></div>
+        </div>
+
+        <div class="grid" id="theme-grid" aria-live="polite">
+          <p class="loading">Loading themes…</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install">
+      <div class="wrap">
+        <h2><span class="hash">##</span> Install</h2>
+        <p class="section-sub">Clone the repo and run the interactive installer. The script backs up <code>/etc/default/grub</code> automatically.</p>
+        <pre class="block"><code>git clone &lt;your-repo-url&gt; gorgeous-grub
+cd gorgeous-grub
+chmod +x install.sh
+sudo ./install.sh                <span class="cmt"># interactive dropdown</span>
+sudo ./install.sh miku           <span class="cmt"># pick directly by slug</span>
+sudo ./install.sh -l             <span class="cmt"># list themes</span>
+sudo ./install.sh -u             <span class="cmt"># restore previous config</span></code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>MIT · backgrounds belong to their respective artists</span>
+      <span>made for the linux community</span>
+    </div>
+  </footer>
+
+  <!-- Theme detail modal -->
+  <dialog id="theme-modal" class="modal">
+    <article class="modal-card">
+      <header class="modal-head">
+        <div>
+          <p class="modal-eyebrow" data-field="layout"></p>
+          <h3 data-field="title"></h3>
+        </div>
+        <button type="button" class="modal-close" aria-label="Close" data-close>×</button>
+      </header>
+      <div class="modal-preview" data-field="preview"></div>
+      <div class="modal-body">
+        <p data-field="tagline"></p>
+        <h4>Install just this theme</h4>
+        <pre class="block"><code data-field="cmd"></code></pre>
+        <h4>theme.txt</h4>
+        <pre class="block theme-txt"><code data-field="theme-txt">Loading…</code></pre>
+      </div>
+    </article>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>

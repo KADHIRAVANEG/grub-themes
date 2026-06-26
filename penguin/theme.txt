@@ -1,0 +1,59 @@
+# Gorgeous GRUB — penguin
+# ASCII terminal window. Tux on the left, menu on the right.
+
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#0c0f12"
+message-color: "#d8dde3"
+message-bg-color: "#0c0f12"
+terminal-font: "Unifont Regular 16"
+terminal-left: "8%"
+terminal-top: "10%"
+terminal-width: "84%"
+terminal-height: "80%"
+
++ label {
+    top = 6%
+    left = 6%
+    text = "● ● ●   tux@grub:~$"
+    color = "#888888"
+    font = "Unifont Regular 14"
+}
+
+# Tux ASCII (left rail)
++ label { top = 22%; left = 8%;  text = "    .--.";    color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 26%; left = 8%;  text = "   |o_o |";   color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 30%; left = 8%;  text = "   |:_/ |";   color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 34%; left = 8%;  text = "  //   \\ \\"; color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 38%; left = 8%;  text = " (|     | )"; color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 42%; left = 8%;  text = "/'\\_   _/`\\"; color = "#ffb86b"; font = "Unifont Bold 16" }
++ label { top = 46%; left = 8%;  text = "\\___)=(___/"; color = "#ffb86b"; font = "Unifont Bold 16" }
+
++ label {
+    top = 20%
+    left = 36%
+    text = "$ select-os --timeout=10s"
+    color = "#ff7a18"
+    font = "Unifont Bold 16"
+}
+
++ boot_menu {
+    left = 36%
+    top = 26%
+    width = 56%
+    height = 50%
+    item_font = "Unifont Regular 18"
+    item_color = "#d8dde3"
+    selected_item_color = "#ffb86b"
+    item_height = 32
+    item_padding = 6
+    item_spacing = 4
+}
+
++ label {
+    bottom = 6%
+    left = 36%
+    text = "↑/↓ move   ↵ boot   e edit"
+    color = "#5b667c"
+    font = "Unifont Regular 12"
+}

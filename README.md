@@ -214,7 +214,43 @@ sudo ./install.sh -u --purge
 ├── ben/
 └── noir/
 ```
+## Flow chart 
+```mermaid
+flowchart LR
+    %% Styling Definitions
+    classDef root fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#fff;
+    classDef script fill:#f1c40f,stroke:#f39c12,stroke-width:2px,color:#000;
+    classDef web fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff;
+    classDef theme fill:#8e44ad,stroke:#7d3c98,stroke-width:2px,color:#fff;
+    classDef meta fill:#ecf0f1,stroke:#bdc3c7,stroke-width:1px,color:#2c3e50;
 
+    Root[sddm-themes-repo]:::root
+    
+    %% Repository Root Files
+    Root --> Install[install.sh]:::script
+    Root --> Readme[README.md]:::meta
+    Root --> License[LICENSE]:::meta
+    
+    %% Website components
+    Root --> Gallery[Gallery Website]:::web
+    Gallery --> Index[index.html]:::web
+    Gallery --> CSS[styles.css]:::web
+    Gallery --> JS[app.js]:::web
+    Gallery --> Manifest[themes.json]:::web
+
+    %% Theme Collections
+    Root --> Themes[Theme Folders]:::theme
+    
+    Themes --> Miku[miku/]:::theme
+    Themes --> Penguin[penguin/]:::theme
+    Themes --> Nes[nes/]:::theme
+    Themes --> More[...]
+    Themes --> Noir[noir/]:::theme
+    
+    %% Theme Anatomy (Example)
+    Miku --> Txt[theme.txt]:::meta
+    Miku --> BG[background.*]:::meta
+```
 ---
 
 ## License

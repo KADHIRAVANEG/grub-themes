@@ -1,4 +1,4 @@
-# JOKER53's Grub
+# JOKER53's-Grub
 
 > A curated collection of GRUB2 boot-menu themes for Linux, with a one-command interactive installer.
 

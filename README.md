@@ -1,3 +1,9 @@
+> ⚠️ **Status Notice:** This repository currently has known bugs. I am actively working on fixing them. Updates will be pushed soon!
+![Status](https://shields.io)
+
+This repository currently contains a few bugs. I am actively working on resolving them.
+
+
 # JOKER53's-Grub
 
 > A curated collection of GRUB2 boot-menu themes for Linux, with a one-command interactive installer.

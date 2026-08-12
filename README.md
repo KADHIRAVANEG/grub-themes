@@ -1,8 +1,21 @@
 > ⚠️ **Status Notice:** This repository currently has known bugs. I am actively working on fixing them. Updates will be pushed soon!
+
 ![Status](https://shields.io)
 
 This repository currently contains a few bugs. I am actively working on resolving them.
 
+# 🛠️ Work In Progress
+
+Please note that the installer script and some theme assets are undergoing heavy maintenance. If you encounter issues while configuring your bootloader, you can track current progress below or wait for the next stable update.
+
+### 🔍 Current Status:
+- [ ] **Fixing `install.sh` edge cases**: Working on distribution-specific layout detection bugs.
+- [ ] **Resolution adjustments**: Tweaking `theme.txt` files to prevent pixelation on certain monitors.
+- [ ] **Testing environments**: Ensuring full compatibility with system updates.
+
+*If you find a new bug that isn't mentioned here, please feel free to open a formal GitHub Issue!*
+
+---
 
 # JOKER53's-Grub
 

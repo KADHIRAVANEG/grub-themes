@@ -1,7 +1,5 @@
 > ⚠️ **Status Notice:** This repository currently has known bugs. I am actively working on fixing them. Updates will be pushed soon!
 
-![Status](https://shields.io)
-
 This repository currently contains a few bugs. I am actively working on resolving them.
 
 # 🛠️ Work In Progress

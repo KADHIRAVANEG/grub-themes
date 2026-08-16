@@ -1,0 +1,71 @@
+# Gorgeous GRUB — nes
+# 8-bit arcade · PRESS START
+
+title-text:     ""
+desktop-image:  "background.jpg"
+desktop-color:  "#000000"
+terminal-font:  "Unifont Regular 16"
+terminal-left:  "10%"
+terminal-top:   "10%"
+terminal-width: "80%"
+terminal-height:"80%"
+
++ label {
+    top   = 20%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "▼  SELECT GAME  ▼"
+    color = "#fff200"
+    font  = "Unifont Bold 26"
+}
+
++ label {
+    top   = 28%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "════════════════════════════════════"
+    color = "#ff2e2e"
+    font  = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left   = 20%
+    top    = 35%
+    width  = 60%
+    height = 40%
+    item_font              = "Unifont Bold 22"
+    item_color             = "#ffffff"
+    selected_item_color    = "#fff200"
+    item_height            = 46
+    item_padding           = 14
+    item_spacing           = 6
+    selected_item_pixmap_style = "select/select_*.png"
+    scrollbar = false
+}
+
++ label {
+    id     = "__timeout__"
+    bottom = 11%
+    left   = 0
+    width  = 100%
+    align  = "center"
+    text   = "@TIMEOUT_NOTIFICATION_SHORT@"
+    color  = "#ff2e2e"
+    font   = "Unifont Bold 16"
+}
+
++ progress_bar {
+    id           = "__timeout__"
+    left         = 20%
+    bottom       = 5%
+    width        = 60%
+    height       = 5
+    fg_color     = "#ff2e2e"
+    bg_color     = "#1a0000"
+    border_color = "#fff200"
+    text_color   = "#fff200"
+    text         = ""
+    font         = "Unifont Regular 12"
+}

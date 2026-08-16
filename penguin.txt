@@ -1,0 +1,73 @@
+# Gorgeous GRUB — penguin
+# ASCII Tux terminal · classic GNU/Linux
+
+title-text:     ""
+desktop-image:  "background.png"
+desktop-color:  "#101418"
+terminal-font:  "Unifont Regular 16"
+terminal-left:  "10%"
+terminal-top:   "10%"
+terminal-width: "80%"
+terminal-height:"80%"
+
++ label {
+    top   = 8%
+    left  = 6%
+    text  = "tux@grub:~$"
+    color = "#ffb86b"
+    font  = "Unifont Bold 22"
+}
+
++ label {
+    top   = 15%
+    left  = 6%
+    text  = "────────────────────────────────────────────────────────────"
+    color = "#ff7a18"
+    font  = "Unifont Regular 12"
+}
+
++ label {
+    top   = 20%
+    left  = 6%
+    text  = "select kernel image to load:"
+    color = "#dddddd"
+    font  = "Unifont Regular 16"
+}
+
++ boot_menu {
+    left   = 6%
+    top    = 28%
+    width  = 55%
+    height = 52%
+    item_font              = "Unifont Bold 20"
+    item_color             = "#dddddd"
+    selected_item_color    = "#ffb86b"
+    item_height            = 44
+    item_padding           = 12
+    item_spacing           = 6
+    selected_item_pixmap_style = "select/select_*.png"
+    scrollbar = false
+}
+
++ label {
+    id     = "__timeout__"
+    bottom = 10%
+    left   = 6%
+    text   = "@TIMEOUT_NOTIFICATION_SHORT@"
+    color  = "#ff7a18"
+    font   = "Unifont Regular 15"
+}
+
++ progress_bar {
+    id           = "__timeout__"
+    left         = 6%
+    bottom       = 5%
+    width        = 55%
+    height       = 4
+    fg_color     = "#ff7a18"
+    bg_color     = "#1a1e22"
+    border_color = "#ffb86b"
+    text_color   = "#ffb86b"
+    text         = ""
+    font         = "Unifont Regular 12"
+}

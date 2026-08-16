@@ -1,0 +1,76 @@
+# Gorgeous GRUB — gas_station
+# Bottom pump-strip layout · warm lo-fi sunset
+
+title-text:     ""
+desktop-image:  "background.png"
+desktop-color:  "#2a1408"
+terminal-font:  "Unifont Regular 16"
+terminal-left:  "10%"
+terminal-top:   "10%"
+terminal-width: "80%"
+terminal-height:"80%"
+
++ label {
+    top = 6%
+    left = 0
+    width = 100%
+    align = "center"
+    text = "06  //  GAS STATION"
+    color = "#ffb86b"
+    font = "Unifont Regular 14"
+}
+
++ label {
+    top = 56%
+    left = 6%
+    text = "PUMP 04 · SELECT FUEL"
+    color = "#ffe2c2"
+    font = "Unifont Bold 20"
+}
+
++ label {
+    id = "__timeout__"
+    top = 56%
+    right = 6%
+    text = "@TIMEOUT_NOTIFICATION_SHORT@"
+    color = "#ff7a18"
+    font = "Unifont Bold 18"
+}
+
++ label {
+    top = 63%
+    left = 6%
+    width = 88%
+    text = "────────────────────────────────────────────────────────────"
+    color = "#ffb86b"
+    font = "Unifont Regular 12"
+}
+
++ boot_menu {
+    left   = 6%
+    top    = 67%
+    width  = 88%
+    height = 24%
+    item_font              = "Unifont Bold 22"
+    item_color             = "#ffe2c2"
+    selected_item_color    = "#ffffff"
+    item_height            = 46
+    item_padding           = 14
+    item_spacing           = 6
+    selected_item_pixmap_style = "select/select_*.png"
+    scrollbar = false
+}
+
++ progress_bar {
+    id           = "__timeout__"
+    left         = 6%
+    bottom       = 3%
+    width        = 88%
+    height       = 5
+    fg_color     = "#ff7a18"
+    bg_color     = "#1a0a04"
+    border_color = "#ffb86b"
+    text_color   = "#ffb86b"
+    text         = ""
+    font         = "Unifont Regular 12"
+}

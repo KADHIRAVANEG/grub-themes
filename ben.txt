@@ -1,0 +1,71 @@
+# Gorgeous GRUB — ben
+# Omnitrix dial · Ben 10
+
+title-text:     ""
+desktop-image:  "background.jpg"
+desktop-color:  "#0a3a55"
+terminal-font:  "Unifont Regular 16"
+terminal-left:  "10%"
+terminal-top:   "10%"
+terminal-width: "80%"
+terminal-height:"80%"
+
++ label {
+    top   = 8%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "OMNITRIX  //  SELECT FORM"
+    color = "#7cff3a"
+    font  = "Unifont Bold 24"
+}
+
++ label {
+    top   = 16%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "════════════════════════════════════"
+    color = "#caffaa"
+    font  = "Unifont Regular 14"
+}
+
++ boot_menu {
+    left   = 20%
+    top    = 26%
+    width  = 60%
+    height = 50%
+    item_font              = "Unifont Bold 22"
+    item_color             = "#caffaa"
+    selected_item_color    = "#7cff3a"
+    item_height            = 46
+    item_padding           = 14
+    item_spacing           = 6
+    selected_item_pixmap_style = "select/select_*.png"
+    scrollbar = false
+}
+
++ label {
+    id     = "__timeout__"
+    bottom = 10%
+    left   = 0
+    width  = 100%
+    align  = "center"
+    text   = "@TIMEOUT_NOTIFICATION_SHORT@"
+    color  = "#7cff3a"
+    font   = "Unifont Bold 16"
+}
+
++ progress_bar {
+    id           = "__timeout__"
+    left         = 20%
+    bottom       = 5%
+    width        = 60%
+    height       = 5
+    fg_color     = "#7cff3a"
+    bg_color     = "#041a0a"
+    border_color = "#caffaa"
+    text_color   = "#caffaa"
+    text         = ""
+    font         = "Unifont Regular 12"
+}

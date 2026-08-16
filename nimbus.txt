@@ -1,0 +1,81 @@
+# Gorgeous GRUB — nimbus
+# Bottom dock · soft animated sky
+
+title-text:     ""
+desktop-image:  "background.png"
+desktop-color:  "#1a2438"
+terminal-font:  "Unifont Regular 16"
+terminal-left:  "10%"
+terminal-top:   "10%"
+terminal-width: "80%"
+terminal-height:"80%"
+
++ label {
+    top   = 8%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "boot  ·  nimbus"
+    color = "#cfe1ff"
+    font  = "Unifont Regular 20"
+}
+
++ label {
+    top   = 15%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "─────────────────────────────────"
+    color = "#9fbce6"
+    font  = "Unifont Regular 14"
+}
+
++ label {
+    top   = 21%
+    left  = 0
+    width = 100%
+    align = "center"
+    text  = "—  pick your boot  —"
+    color = "#9fbce6"
+    font  = "Unifont Regular 15"
+}
+
++ boot_menu {
+    left   = 10%
+    top    = 68%
+    width  = 80%
+    height = 24%
+    item_font              = "Unifont Bold 22"
+    item_color             = "#cfe1ff"
+    selected_item_color    = "#ffffff"
+    item_height            = 46
+    item_padding           = 14
+    item_spacing           = 6
+    selected_item_pixmap_style = "select/select_*.png"
+    scrollbar = false
+}
+
++ label {
+    id     = "__timeout__"
+    bottom = 9%
+    left   = 0
+    width  = 100%
+    align  = "center"
+    text   = "@TIMEOUT_NOTIFICATION_SHORT@"
+    color  = "#9fbce6"
+    font   = "Unifont Regular 14"
+}
+
++ progress_bar {
+    id           = "__timeout__"
+    left         = 25%
+    bottom       = 4%
+    width        = 50%
+    height       = 5
+    fg_color     = "#cfe1ff"
+    bg_color     = "#2a3548"
+    border_color = "#9fbce6"
+    text_color   = "#cfe1ff"
+    text         = ""
+    font         = "Unifont Regular 12"
+}

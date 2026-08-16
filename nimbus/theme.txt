@@ -3,17 +3,18 @@ desktop-image: "background_ui.png"
 desktop-color: "#1a2438"
 
 + boot_menu {
-    left   = 8%
-    top    = 63%
-    width  = 84%
-    height = 22%
-    item_font           = "SpaceGrotesk Regular 1"
-    item_color          = "#00000000"
-    selected_item_color = "#00000000"
-    item_height         = 1
-    item_padding        = 0
-    item_spacing        = 0
-    scrollbar           = false
+    left                    = 8%
+    top                     = 63%
+    width                   = 84%
+    height                  = 22%
+    item_font               = "SpaceGrotesk Regular 16"
+    item_color              = "#9fbce6"
+    selected_item_color     = "#ffffff"
+    item_height             = 60
+    item_padding            = 10
+    item_spacing            = 0
+    selected_item_pixmap_style = "box/sel_*.png"
+    scrollbar               = false
 }
 
 + progress_bar {

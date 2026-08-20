@@ -4,6 +4,8 @@
 # Usage:
 #   sudo ./install.sh              # interactive dropdown
 #   sudo ./install.sh <theme>      # install a specific theme by slug
+#   sudo ./install.sh -t 15        # set boot timeout in seconds (default: 15)
+#   sudo ./install.sh -t 10 miku    # set timeout AND install specific theme
 #   sudo ./install.sh -l           # list available themes
 #   sudo ./install.sh -u           # uninstall (restore backup of /etc/default/grub)
 #   sudo ./install.sh -u --purge   # uninstall AND delete theme assets from /boot
@@ -182,7 +184,7 @@ install_theme() {
 
   # Update /etc/default/grub
   set_grub_var GRUB_THEME            "$dst/theme.txt" "$GRUB_DEFAULTS"
-  set_grub_var GRUB_TIMEOUT          "5"              "$GRUB_DEFAULTS"
+  set_grub_var GRUB_TIMEOUT          "${BOOT_TIMEOUT:-15}"    "$GRUB_DEFAULTS"
   set_grub_var GRUB_GFXMODE         "auto"            "$GRUB_DEFAULTS"
   set_grub_var GRUB_GFXPAYLOAD_LINUX "keep"           "$GRUB_DEFAULTS"
   set_grub_var GRUB_TERMINAL_OUTPUT  "gfxterm"        "$GRUB_DEFAULTS"
@@ -262,6 +264,14 @@ usage() {
 
 main() {
   case "${1:-}" in
+    -t|--timeout)
+        [[ -n "${2:-}" ]] || die "-t requires a number (e.g. sudo $0 -t 10)"
+        [[ "$2" =~ ^[0-9]+$ ]] || die "timeout must be a number, got: $2"
+        BOOT_TIMEOUT="$2"
+        shift 2
+        # remaining arg is theme name or empty for interactive
+        [[ -n "${1:-}" ]] && install_theme "$1" || interactive_pick
+        ;;
     -l|--list)      list_themes ;;
     -u|--uninstall) uninstall "${2:-}" ;;
     -h|--help)      usage ;;

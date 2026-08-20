@@ -3,20 +3,19 @@ desktop-image: "background_ui.png"
 desktop-color: "#000000"
 
 + boot_menu {
-    left   = 27%
-    top    = 23%
-    width  = 46%
-    height = 45%
-    item_font               = "PressStart2P Regular 20"
-    item_color              = "#fff200"
-    selected_item_color     = "#ffffff"
-    item_height             = 58
-    item_padding            = 14
-    item_spacing            = 6
+    left                       = 27%
+    top                        = 23%
+    width                      = 46%
+    height                     = 45%
+    item_font                  = "Press Start 2P Regular 16"
+    item_color                 = "#fff200"
+    selected_item_color        = "#ffffff"
+    item_height                = 58
+    item_padding               = 14
+    item_spacing               = 6
     selected_item_pixmap_style = "box/sel_*.png"
-    scrollbar               = false
+    scrollbar                  = false
 }
-
 + progress_bar {
     id           = "__timeout__"
     left         = 27%
@@ -28,5 +27,5 @@ desktop-color: "#000000"
     border_color = "#fff200"
     text_color   = "#fff200"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
-    font         = "PressStart2P Regular 12"
+    font         = "Press Start 2P Regular 16"
 }

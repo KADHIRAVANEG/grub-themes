@@ -3,20 +3,19 @@ desktop-image: "background_ui.png"
 desktop-color: "#0b0218"
 
 + boot_menu {
-    left   = 52%
-    top    = 16%
-    width  = 44%
-    height = 56%
-    item_font               = "ShareTechMono Regular 22"
-    item_color              = "#f0d2ff"
-    selected_item_color     = "#ffffff"
-    item_height             = 52
-    item_padding            = 14
-    item_spacing            = 6
+    left                       = 52%
+    top                        = 16%
+    width                      = 44%
+    height                     = 56%
+    item_font                  = "Share Tech Mono Regular 24"
+    item_color                 = "#f0d2ff"
+    selected_item_color        = "#ffffff"
+    item_height                = 52
+    item_padding               = 14
+    item_spacing               = 6
     selected_item_pixmap_style = "box/sel_*.png"
-    scrollbar               = false
+    scrollbar                  = false
 }
-
 + progress_bar {
     id           = "__timeout__"
     left         = 52%
@@ -28,5 +27,5 @@ desktop-color: "#0b0218"
     border_color = "#00ffd5"
     text_color   = "#00ffd5"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
-    font         = "ShareTechMono Regular 14"
+    font         = "Share Tech Mono Regular 18"
 }

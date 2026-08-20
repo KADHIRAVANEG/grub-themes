@@ -3,19 +3,19 @@ desktop-image: "background_ui.png"
 desktop-color: "#0a3a55"
 
 + boot_menu {
-    left   = 5%
-    top    = 8%
-    width  = 90%
-    height = 80%
-    item_font           = "VT323 Regular 1"
-    item_color          = "#00000000"
-    selected_item_color = "#00000000"
-    item_height         = 1
-    item_padding        = 0
-    item_spacing        = 0
-    scrollbar           = false
+    left                       = 5%
+    top                        = 8%
+    width                      = 90%
+    height                     = 80%
+    item_font                  = "VT323 Regular 28"
+    item_color                 = "#caffaa"
+    selected_item_color        = "#7cff3a"
+    item_height                = 80
+    item_padding               = 14
+    item_spacing               = 0
+    selected_item_pixmap_style = "box/sel_*.png"
+    scrollbar                  = false
 }
-
 + progress_bar {
     id           = "__timeout__"
     left         = 20%
@@ -27,5 +27,5 @@ desktop-color: "#0a3a55"
     border_color = "#caffaa"
     text_color   = "#caffaa"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
-    font         = "VT323 Regular 16"
+    font         = "VT323 Regular 28"
 }

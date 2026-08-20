@@ -3,20 +3,19 @@ desktop-image: "background_ui.png"
 desktop-color: "#03060c"
 
 + boot_menu {
-    left                    = 4%
-    top                     = 22%
-    width                   = 57%
-    height                  = 50%
-    item_font               = "Orbitron Regular 18"
-    item_color              = "#9fc6ff"
-    selected_item_color     = "#ffffff"
-    item_height             = 130
-    item_padding            = 10
-    item_spacing            = 0
+    left                       = 4%
+    top                        = 22%
+    width                      = 57%
+    height                     = 50%
+    item_font                  = "Orbitron Regular 20"
+    item_color                 = "#9fc6ff"
+    selected_item_color        = "#ffffff"
+    item_height                = 130
+    item_padding               = 10
+    item_spacing               = 0
     selected_item_pixmap_style = "box/sel_*.png"
-    scrollbar               = false
+    scrollbar                  = false
 }
-
 + progress_bar {
     id           = "__timeout__"
     left         = 4%
@@ -28,5 +27,5 @@ desktop-color: "#03060c"
     border_color = "#9fc6ff"
     text_color   = "#9fc6ff"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
-    font         = "Orbitron Regular 14"
+    font         = "Orbitron Regular 20"
 }

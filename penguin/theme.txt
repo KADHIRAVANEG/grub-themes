@@ -3,20 +3,19 @@ desktop-image: "background_ui.png"
 desktop-color: "#101418"
 
 + boot_menu {
-    left   = 30%
-    top    = 21%
-    width  = 38%
-    height = 49%
-    item_font               = "IBMPlexMono Regular 20"
-    item_color              = "#dddddd"
-    selected_item_color     = "#ff7a18"
-    item_height             = 52
-    item_padding            = 14
-    item_spacing            = 4
+    left                       = 30%
+    top                        = 21%
+    width                      = 38%
+    height                     = 49%
+    item_font                  = "IBM Plex Mono Regular 18"
+    item_color                 = "#dddddd"
+    selected_item_color        = "#ff7a18"
+    item_height                = 52
+    item_padding               = 14
+    item_spacing               = 4
     selected_item_pixmap_style = "box/sel_*.png"
-    scrollbar               = false
+    scrollbar                  = false
 }
-
 + progress_bar {
     id           = "__timeout__"
     left         = 30%
@@ -28,5 +27,5 @@ desktop-color: "#101418"
     border_color = "#ffb86b"
     text_color   = "#ffb86b"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
-    font         = "IBMPlexMono Regular 14"
+    font         = "IBM Plex Mono Regular 18"
 }

@@ -2,13 +2,13 @@
 
 > A curated collection of source-driven GRUB2 boot-menu themes for Linux, with faithful browser previews and a transactional installer.
 
-[![ShellCheck](https://github.com/JOKER-53/grub-themes/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/JOKER-53/grub-themes/actions/workflows/shellcheck.yml)
+[![ShellCheck](https://github.com/KADHIRAVANEG/grub-themes/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/KADHIRAVANEG/grub-themes/actions/workflows/shellcheck.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 **Preview every theme before touching your bootloader →** [joker-53.github.io/grub-themes](https://joker-53.github.io/grub-themes/)
 
 ```bash
-git clone https://github.com/JOKER-53/grub-themes.git gorgeous-grub
+git clone https://github.com/KADHIRAVANEG/grub-themes.git gorgeous-grub
 cd gorgeous-grub
 sudo ./install.sh
 ```
@@ -226,8 +226,8 @@ sudo ./install.sh -u --purge       # restore + delete theme files from /boot
 
 ## Author
 
-**JOKER-53** (alias **Kadhiravan E.G.**)
-- GitHub: [@JOKER-53](https://github.com/JOKER-53)
+**KADHIRAVANEG** (alias **Kadhiravan E.G.**)
+- GitHub: [@KADHIRAVANEG](https://github.com/KADHIRAVANEG)
 
 ## License
 

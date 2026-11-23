@@ -66,5 +66,10 @@ while IFS=$'\t' read -r slug status background; do
   [[ "$status" == working || "$status" == maintenance ]] || { printf 'invalid status: %s\n' "$status" >&2; errors=1; }
 done < <(jq -r '.[] | [.slug, .status, .background] | @tsv' themes.json)
 
+while IFS= read -r bad_slice; do
+  printf 'accidental double extension detected: %s\n' "$bad_slice" >&2
+  errors=1
+done < <(find . -name "*.png.png" -o -name "*.jpg.jpg" 2>/dev/null)
+
 (( errors == 0 ))
 printf 'All static installer, manifest, font, and GRUB theme asset checks passed.\n'

@@ -2,25 +2,57 @@ title-text:    ""
 desktop-image: "background_ui.png"
 desktop-color: "#d6d3cb"
 
++ label {
+    top    = 70%
+    left   = 0
+    width  = 100%
+    align  = "center"
+    text   = "CELEBRATE · DIVERSITY"
+    color  = "#1a1a1a"
+    font   = "Cinzel Regular 24"
+}
+
++ label {
+    top    = 76%
+    left   = 27%
+    width  = 4%
+    align  = "center"
+    text   = "◄"
+    color  = "#1a1a1a"
+    font   = "Cinzel Regular 24"
+}
+
 + boot_menu {
-    left                       = 35%
-    top                        = 12%
-    width                      = 30%
-    height                     = 46%
+    left                       = 32%
+    top                        = 76%
+    width                      = 36%
+    height                     = 60
     item_font                  = "Cinzel Regular 24"
     item_color                 = "#1a1a1a"
     selected_item_color        = "#000000"
-    item_height                = 80
-    item_padding               = 14
+    item_height                = 60
+    item_padding               = 16
     item_spacing               = 0
+    menu_pixmap_style          = "box/box_*.png"
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar                  = false
 }
+
++ label {
+    top    = 76%
+    left   = 69%
+    width  = 4%
+    align  = "center"
+    text   = "►"
+    color  = "#1a1a1a"
+    font   = "Cinzel Regular 24"
+}
+
 + progress_bar {
     id           = "__timeout__"
-    left         = 35%
-    top          = 97%
-    width        = 30%
+    left         = 32%
+    top          = 85%
+    width        = 36%
     height       = 3
     fg_color     = "#1a1a1a"
     bg_color     = "#c0bdb5"

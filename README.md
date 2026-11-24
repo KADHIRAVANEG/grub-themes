@@ -30,9 +30,9 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 05 | `noir`        | Spider-Noir comic panel, halftone rain, hard-boiled menu    | ✅ |
 | 06 | `bmw`         | Cinematic automotive HUD, telemetry bars and throttle       | ✅ |
 | 07 | `nimbus`      | Soft-sky single-slot horizontal dock & rEFInd companion    | ✅ |
-| 08 | `gas_station` | Retro pump display, warm lo-fi sunset strip                 | 🔧 |
-| 09 | `celebrate`   | Hand-drawn line catalog, every OS a different hat           | 🔧 |
-| 10 | `ben`         | Ben 10 Omnitrix dial selector, green plasma core            | 🔧 |
+| 08 | `gas_station` | Retro pump display with horizontal fuel carousel dock       | ✅ |
+| 09 | `celebrate`   | Hand-drawn lineup with horizontal catalog carousel dock     | ✅ |
+| 10 | `ben`         | Ben 10 Omnitrix dial with horizontal alien form dock        | ✅ |
 | 11 | `motorcycle`  | Framed ignition console and road-status instrumentation     | ✅ |
 | 12 | `spider`      | Angled right-side hero rail                                 | ✅ |
 | 13 | `comic_spider`| Offset comic issue frame and chapter stack                  | ✅ |

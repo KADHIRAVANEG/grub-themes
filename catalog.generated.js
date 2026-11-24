@@ -181,12 +181,13 @@ window.GRUB_THEME_CATALOG = [
       "#ffe2c2"
     ],
     "layout": "gas",
-    "layoutLabel": "Pump strip",
+    "layoutLabel": "Pump horizontal dock",
     "font": "DotGothic16",
     "tags": [
       "ambient",
       "lofi",
-      "cozy"
+      "cozy",
+      "horizontal"
     ],
     "menu": {
       "title": "PUMP 04 · SELECT FUEL",
@@ -199,8 +200,8 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 0
     },
-    "status": "maintenance",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#2a1408\"\n\n+ boot_menu {\n    left                       = 5%\n    top                        = 36%\n    width                      = 37%\n    height                     = 47%\n    item_font                  = \"DotGothic16 Regular 24\"\n    item_color                 = \"#ffe2c2\"\n    selected_item_color        = \"#ffffff\"\n    item_height                = 90\n    item_padding               = 20\n    item_spacing               = 2\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 5%\n    top          = 97%\n    width        = 37%\n    height       = 4\n    fg_color     = \"#ff7a18\"\n    bg_color     = \"#1a0a04\"\n    border_color = \"#ffb86b\"\n    text_color   = \"#ffb86b\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"DotGothic16 Regular 24\"\n}\n"
+    "status": "working",
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#2a1408\"\n\n+ label {\n    top    = 38%\n    left   = 5%\n    width  = 37%\n    align  = \"center\"\n    text   = \"PUMP 04 · SELECT FUEL\"\n    color  = \"#ffb86b\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ label {\n    top    = 46%\n    left   = 2%\n    width  = 3%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#ff7a18\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 5%\n    top                        = 46%\n    width                      = 37%\n    height                     = 64\n    item_font                  = \"DotGothic16 Regular 24\"\n    item_color                 = \"#ffe2c2\"\n    selected_item_color        = \"#ffffff\"\n    item_height                = 64\n    item_padding               = 18\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 46%\n    left   = 42%\n    width  = 3%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#ff7a18\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 5%\n    top          = 58%\n    width        = 37%\n    height       = 4\n    fg_color     = \"#ff7a18\"\n    bg_color     = \"#1a0a04\"\n    border_color = \"#ffb86b\"\n    text_color   = \"#ffb86b\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"DotGothic16 Regular 24\"\n}\n"
   },
   {
     "slug": "bmw",
@@ -239,8 +240,8 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "celebrate",
     "title": "Celebrate",
-    "tagline": "Hand-drawn catalog framing a vertical GRUB selector.",
-    "background": "./celebrate/background.jpg",
+    "tagline": "Hand-drawn catalog framing a horizontal carousel dock.",
+    "background": "./celebrate/background_ui.png",
     "palette": [
       "#d6d3cb",
       "#1a1a1a",
@@ -248,13 +249,14 @@ window.GRUB_THEME_CATALOG = [
       "#ffffff"
     ],
     "layout": "celebrate",
-    "layoutLabel": "Vertical catalog",
+    "layoutLabel": "Horizontal catalog dock",
     "font": "Cinzel",
     "tags": [
       "minimal",
       "illustration",
       "editorial",
-      "light"
+      "light",
+      "horizontal"
     ],
     "menu": {
       "title": "CELEBRATE  ·  DIVERSITY",
@@ -268,14 +270,14 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 2
     },
-    "status": "maintenance",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#d6d3cb\"\n\n+ boot_menu {\n    left                       = 35%\n    top                        = 12%\n    width                      = 30%\n    height                     = 46%\n    item_font                  = \"Cinzel Regular 24\"\n    item_color                 = \"#1a1a1a\"\n    selected_item_color        = \"#000000\"\n    item_height                = 80\n    item_padding               = 14\n    item_spacing               = 0\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 35%\n    top          = 97%\n    width        = 30%\n    height       = 3\n    fg_color     = \"#1a1a1a\"\n    bg_color     = \"#c0bdb5\"\n    border_color = \"#5a5a5a\"\n    text_color   = \"#5a5a5a\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Cinzel Regular 24\"\n}\n"
+    "status": "working",
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#d6d3cb\"\n\n+ label {\n    top    = 70%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"CELEBRATE · DIVERSITY\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ label {\n    top    = 76%\n    left   = 27%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 32%\n    top                        = 76%\n    width                      = 36%\n    height                     = 60\n    item_font                  = \"Cinzel Regular 24\"\n    item_color                 = \"#1a1a1a\"\n    selected_item_color        = \"#000000\"\n    item_height                = 60\n    item_padding               = 16\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 76%\n    left   = 69%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 32%\n    top          = 85%\n    width        = 36%\n    height       = 3\n    fg_color     = \"#1a1a1a\"\n    bg_color     = \"#c0bdb5\"\n    border_color = \"#5a5a5a\"\n    text_color   = \"#5a5a5a\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Cinzel Regular 24\"\n}\n"
   },
   {
     "slug": "ben",
     "title": "Omnitrix",
-    "tagline": "Omnitrix artwork framing a vertical GRUB selector.",
-    "background": "./ben/background.jpg",
+    "tagline": "Omnitrix artwork framing a horizontal form selector dock.",
+    "background": "./ben/background_ui.png",
     "palette": [
       "#0a3a55",
       "#7cff3a",
@@ -283,13 +285,14 @@ window.GRUB_THEME_CATALOG = [
       "#caffaa"
     ],
     "layout": "ben",
-    "layoutLabel": "Vertical selector",
+    "layoutLabel": "Omnitrix horizontal dock",
     "font": "VT323",
     "tags": [
       "cartoon",
       "neon",
       "gaming",
-      "circular"
+      "circular",
+      "horizontal"
     ],
     "menu": {
       "title": "OMNITRIX // SELECT FORM",
@@ -302,8 +305,8 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 0
     },
-    "status": "maintenance",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#0a3a55\"\n\n+ boot_menu {\n    left                       = 5%\n    top                        = 20%\n    width                      = 30%\n    height                     = 50%\n    item_font                  = \"VT323 Regular 28\"\n    item_color                 = \"#caffaa\"\n    selected_item_color        = \"#000000\"\n    item_height                = 80\n    item_padding               = 14\n    item_spacing               = 0\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 5%\n    top          = 97%\n    width        = 30%\n    height       = 5\n    fg_color     = \"#7cff3a\"\n    bg_color     = \"#041a0a\"\n    border_color = \"#caffaa\"\n    text_color   = \"#caffaa\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"VT323 Regular 28\"\n}\n"
+    "status": "working",
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#0a3a55\"\n\n+ label {\n    top    = 42%\n    left   = 6%\n    width  = 36%\n    align  = \"center\"\n    text   = \"OMNITRIX // SELECT FORM\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ label {\n    top    = 48%\n    left   = 2%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 48%\n    width                      = 36%\n    height                     = 60\n    item_font                  = \"VT323 Regular 28\"\n    item_color                 = \"#caffaa\"\n    selected_item_color        = \"#000000\"\n    item_height                = 60\n    item_padding               = 16\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 48%\n    left   = 42%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 58%\n    width        = 36%\n    height       = 5\n    fg_color     = \"#7cff3a\"\n    bg_color     = \"#041a0a\"\n    border_color = \"#caffaa\"\n    text_color   = \"#caffaa\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"VT323 Regular 28\"\n}\n"
   },
   {
     "slug": "noir",

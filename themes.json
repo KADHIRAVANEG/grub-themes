@@ -175,12 +175,13 @@
       "#ffe2c2"
     ],
     "layout": "gas",
-    "layoutLabel": "Pump strip",
+    "layoutLabel": "Pump horizontal dock",
     "font": "DotGothic16",
     "tags": [
       "ambient",
       "lofi",
-      "cozy"
+      "cozy",
+      "horizontal"
     ],
     "menu": {
       "title": "PUMP 04 \u00b7 SELECT FUEL",
@@ -193,7 +194,7 @@
       ],
       "selected": 0
     },
-    "status": "maintenance"
+    "status": "working"
   },
   {
     "slug": "bmw",
@@ -231,8 +232,8 @@
   {
     "slug": "celebrate",
     "title": "Celebrate",
-    "tagline": "Hand-drawn catalog framing a vertical GRUB selector.",
-    "background": "./celebrate/background.jpg",
+    "tagline": "Hand-drawn catalog framing a horizontal carousel dock.",
+    "background": "./celebrate/background_ui.png",
     "palette": [
       "#d6d3cb",
       "#1a1a1a",
@@ -240,13 +241,14 @@
       "#ffffff"
     ],
     "layout": "celebrate",
-    "layoutLabel": "Vertical catalog",
+    "layoutLabel": "Horizontal catalog dock",
     "font": "Cinzel",
     "tags": [
       "minimal",
       "illustration",
       "editorial",
-      "light"
+      "light",
+      "horizontal"
     ],
     "menu": {
       "title": "CELEBRATE  \u00b7  DIVERSITY",
@@ -260,13 +262,13 @@
       ],
       "selected": 2
     },
-    "status": "maintenance"
+    "status": "working"
   },
   {
     "slug": "ben",
     "title": "Omnitrix",
-    "tagline": "Omnitrix artwork framing a vertical GRUB selector.",
-    "background": "./ben/background.jpg",
+    "tagline": "Omnitrix artwork framing a horizontal form selector dock.",
+    "background": "./ben/background_ui.png",
     "palette": [
       "#0a3a55",
       "#7cff3a",
@@ -274,13 +276,14 @@
       "#caffaa"
     ],
     "layout": "ben",
-    "layoutLabel": "Vertical selector",
+    "layoutLabel": "Omnitrix horizontal dock",
     "font": "VT323",
     "tags": [
       "cartoon",
       "neon",
       "gaming",
-      "circular"
+      "circular",
+      "horizontal"
     ],
     "menu": {
       "title": "OMNITRIX // SELECT FORM",
@@ -293,7 +296,7 @@
       ],
       "selected": 0
     },
-    "status": "maintenance"
+    "status": "working"
   },
   {
     "slug": "noir",

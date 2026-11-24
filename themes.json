@@ -101,7 +101,7 @@
   {
     "slug": "nimbus",
     "title": "Nimbus",
-    "tagline": "Soft sky with a GRUB-compatible vertical selector.",
+    "tagline": "Soft sky with a single-slot horizontal carousel dock.",
     "background": "./nimbus/background.png",
     "palette": [
       "#1a2438",
@@ -110,12 +110,13 @@
       "#9fbce6"
     ],
     "layout": "nimbus",
-    "layoutLabel": "Vertical selector",
+    "layoutLabel": "Horizontal dock",
     "font": "Space Grotesk",
     "tags": [
       "ambient",
       "cozy",
-      "minimal"
+      "minimal",
+      "horizontal"
     ],
     "menu": {
       "title": "boot \u00b7 nimbus",
@@ -126,9 +127,9 @@
         "Win 11",
         "Firmware"
       ],
-      "selected": 1
+      "selected": 0
     },
-    "status": "maintenance"
+    "status": "working"
   },
   {
     "slug": "street",

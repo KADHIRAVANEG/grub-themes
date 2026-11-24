@@ -120,7 +120,8 @@ window.GRUB_THEME_CATALOG = [
       "ambient",
       "cozy",
       "minimal",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
       "title": "boot · nimbus",
@@ -133,7 +134,7 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true,
     "themeText": "title-text:    \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"crop\"\ndesktop-color: \"#1a2438\"\n\n+ label {\n    top    = 66%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"↑ ↓ TO SELECT TARGET  ·  ENTER TO BOOT\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ boot_menu {\n    left                = 30%\n    top                 = 72%\n    width               = 40%\n    height              = 22%\n    item_font           = \"Space Grotesk Regular 18\"\n    item_color          = \"#dbe7ff\"\n    selected_item_color = \"#ffffff\"\n    item_height         = 44\n    item_padding        = 12\n    item_spacing        = 4\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar           = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 30%\n    top          = 95%\n    width        = 40%\n    height       = 3\n    fg_color     = \"#cfe1ff\"\n    bg_color     = \"#2a3548\"\n    border_color = \"#9fbce6\"\n    text_color   = \"#9fbce6\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Space Grotesk Regular 18\"\n}\n"
   },
@@ -188,7 +189,8 @@ window.GRUB_THEME_CATALOG = [
       "ambient",
       "lofi",
       "cozy",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
       "title": "PUMP 04 · SELECT FUEL",
@@ -201,7 +203,7 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true,
     "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#2a1408\"\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 45%\n    width                      = 35%\n    height                     = 36%\n    item_font                  = \"DotGothic16 Regular 24\"\n    item_color                 = \"#ffe2c2\"\n    selected_item_color        = \"#ffffff\"\n    item_height                = 60\n    item_padding               = 12\n    item_spacing               = 8\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 82%\n    width        = 35%\n    height       = 6\n    fg_color     = \"#ff7a18\"\n    bg_color     = \"#1a0a04\"\n    border_color = \"#ffb86b\"\n    text_color   = \"#ffb86b\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"DotGothic16 Regular 24\"\n}\n"
   },
@@ -258,7 +260,8 @@ window.GRUB_THEME_CATALOG = [
       "illustration",
       "editorial",
       "light",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
       "title": "CELEBRATE  ·  DIVERSITY",
@@ -272,7 +275,7 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 2
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true,
     "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#d6d3cb\"\n\n+ label {\n    top    = 66%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"CELEBRATE · DIVERSITY\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 28%\n    top                        = 72%\n    width                      = 44%\n    height                     = 20%\n    item_font                  = \"Cinzel Regular 24\"\n    item_color                 = \"#1a1a1a\"\n    selected_item_color        = \"#000000\"\n    item_height                = 48\n    item_padding               = 12\n    item_spacing               = 6\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 28%\n    top          = 94%\n    width        = 44%\n    height       = 3\n    fg_color     = \"#1a1a1a\"\n    bg_color     = \"#c0bdb5\"\n    border_color = \"#5a5a5a\"\n    text_color   = \"#5a5a5a\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Cinzel Regular 24\"\n}\n"
   },
@@ -295,7 +298,8 @@ window.GRUB_THEME_CATALOG = [
       "neon",
       "gaming",
       "circular",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
       "title": "OMNITRIX // SELECT FORM",
@@ -308,7 +312,7 @@ window.GRUB_THEME_CATALOG = [
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true,
     "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#0a3a55\"\n\n+ label {\n    top    = 38%\n    left   = 6%\n    width  = 36%\n    align  = \"center\"\n    text   = \"OMNITRIX // SELECT FORM\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 45%\n    width                      = 36%\n    height                     = 35%\n    item_font                  = \"VT323 Regular 28\"\n    item_color                 = \"#caffaa\"\n    selected_item_color        = \"#000000\"\n    item_height                = 52\n    item_padding               = 10\n    item_spacing               = 6\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 82%\n    width        = 36%\n    height       = 5\n    fg_color     = \"#7cff3a\"\n    bg_color     = \"#041a0a\"\n    border_color = \"#caffaa\"\n    text_color   = \"#caffaa\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"VT323 Regular 28\"\n}\n"
   },

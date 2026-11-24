@@ -136,7 +136,7 @@ function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progres
     const barHeight = grubCoordinate(bar.height, 1080, 4);
     const barTop = bar.top ? grubCoordinate(bar.top, 1080) : 1080 - grubCoordinate(bar.bottom, 1080) - barHeight;
     const currentWidth = Math.max(0, Math.min(barWidth, barWidth * progressRatio));
-    progress = `<rect x="${barLeft}" y="${barTop}" width="${barWidth}" height="${barHeight}" fill="${escapeHtml(bar.bg_color || "#000000")}" stroke="${escapeHtml(bar.border_color || "#ffffff")}" stroke-width="1"/><rect x="${barLeft}" y="${barTop}" width="${currentWidth}" height="${barHeight}" fill="${escapeHtml(bar.fg_color || "#ffffff")}"/>`;
+    progress = `<rect x="${barLeft}" y="${barTop}" width="${barWidth}" height="${barHeight}" fill="${escapeHtml(bar.bg_color || "#000000")}" stroke="${escapeHtml(bar.border_color || "#ffffff")}" stroke-width="1"/><rect class="sim-progress-bar-fill" data-max-width="${barWidth}" x="${barLeft}" y="${barTop}" width="${currentWidth}" height="${barHeight}" fill="${escapeHtml(bar.fg_color || "#ffffff")}"/>`;
   }
   const desktopImage = theme.desktopImage.split("/").map(encodeURIComponent).join("/");
   return `<div class="actual-screen">
@@ -217,7 +217,7 @@ const simulatorState = {
   isBooted: false
 };
 
-function renderModalSimulation() {
+function mountSimulator() {
   const modal = $("#theme-modal");
   const previewContainer = $("[data-field=preview]", modal);
   if (!simulatorState.theme) return;
@@ -227,18 +227,19 @@ function renderModalSimulation() {
 
   previewContainer.innerHTML = `
     <div class="actual-preview-wrap simulator-wrap" id="sim-viewport" tabindex="0">
-      ${html}
-      ${simulatorState.isBooted ? `
-        <div class="boot-screen-overlay">
-          <div class="boot-terminal">
-            <p class="boot-line">Booting '${escapeHtml(simulatorState.theme.menu.entries[simulatorState.selected])}'...</p>
-            <p class="boot-line">Loading Linux linux...</p>
-            <p class="boot-line">Loading initial ramdisk...</p>
-            <p class="boot-line boot-cursor">_</p>
-            <button type="button" class="btn btn-ghost btn-sm" id="btn-reboot-sim" style="margin-top:20px;">↺ Reboot Test Drive</button>
-          </div>
+      <button type="button" class="sim-exit-fullscreen-btn" id="btn-exit-sim" aria-label="Exit Fullscreen">✕ Exit Fullscreen (Esc)</button>
+      <div id="sim-screen-container">
+        ${html}
+      </div>
+      <div class="boot-screen-overlay" id="sim-boot-overlay" style="display:none;">
+        <div class="boot-terminal">
+          <p class="boot-line" id="boot-terminal-entry">Booting '${escapeHtml(simulatorState.theme.menu.entries[simulatorState.selected] || "Linux")}'...</p>
+          <p class="boot-line">Loading Linux linux...</p>
+          <p class="boot-line">Loading initial ramdisk...</p>
+          <p class="boot-line boot-cursor">_</p>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-reboot-sim" style="margin-top:20px;">↺ Reboot Test Drive</button>
         </div>
-      ` : ""}
+      </div>
     </div>
   `;
 
@@ -247,23 +248,50 @@ function renderModalSimulation() {
     rebootBtn.addEventListener("click", () => {
       simulatorState.isBooted = false;
       simulatorState.timerSeconds = 10;
+      const overlay = $("#sim-boot-overlay", previewContainer);
+      if (overlay) overlay.style.display = "none";
+      updateSimulatorScreen();
       startSimulatorTimer();
-      renderModalSimulation();
+    });
+  }
+
+  const exitBtn = $("#btn-exit-sim", previewContainer);
+  if (exitBtn) {
+    exitBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      exitFullscreenSimulator();
     });
   }
 }
 
+function updateSimulatorScreen() {
+  const screenContainer = document.getElementById("sim-screen-container");
+  if (!screenContainer || !simulatorState.theme) return;
+  const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
+  screenContainer.innerHTML = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio);
+}
+
+function updateSimulatorTimerTick() {
+  const viewport = document.getElementById("sim-viewport");
+  if (!viewport || !simulatorState.theme || simulatorState.isBooted) return;
+
+  const bar = viewport.querySelector(".sim-progress-bar-fill");
+  if (bar) {
+    const maxWidth = Number.parseFloat(bar.dataset.maxWidth) || 0;
+    const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
+    bar.setAttribute("width", String(Math.max(0, Math.min(maxWidth, maxWidth * ratio))));
+  }
+}
+
 function startSimulatorTimer() {
-  if (simulatorState.timerInterval) clearInterval(simulatorState.timerInterval);
+  stopSimulatorTimer();
   simulatorState.timerInterval = setInterval(() => {
     if (simulatorState.isBooted) return;
     if (simulatorState.timerSeconds > 0) {
       simulatorState.timerSeconds = Math.max(0, simulatorState.timerSeconds - 0.2);
-      renderModalSimulation();
+      updateSimulatorTimerTick();
     } else {
-      stopSimulatorTimer();
-      simulatorState.isBooted = true;
-      renderModalSimulation();
+      triggerSimulatorBoot();
     }
   }, 200);
 }
@@ -275,43 +303,141 @@ function stopSimulatorTimer() {
   }
 }
 
-function toggleFullscreenSimulator() {
+function triggerSimulatorBoot() {
+  stopSimulatorTimer();
+  simulatorState.isBooted = true;
+  const overlay = document.getElementById("sim-boot-overlay");
+  const entryText = document.getElementById("boot-terminal-entry");
+  if (overlay && simulatorState.theme) {
+    const entryName = simulatorState.theme.menu.entries[simulatorState.selected] || "Linux";
+    if (entryText) entryText.textContent = `Booting '${entryName}'...`;
+    overlay.style.display = "flex";
+  }
+}
+
+function isSimulatorFullscreen() {
+  const el = document.getElementById("sim-viewport");
+  return Boolean(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement ||
+    (el && el.classList.contains("is-fullscreen-sim"))
+  );
+}
+
+function updateFullscreenButtonState() {
+  const btn = document.getElementById("btn-fullscreen-drive");
+  if (!btn) return;
+  const isFs = isSimulatorFullscreen();
+  if (isFs) {
+    btn.textContent = "✕ Exit Fullscreen (Esc / F)";
+    btn.classList.add("btn-active-fs");
+  } else {
+    btn.textContent = "⛶ Test Drive Fullscreen (Press F)";
+    btn.classList.remove("btn-active-fs");
+  }
+}
+
+function enterFullscreenSimulator() {
   const el = document.getElementById("sim-viewport");
   if (!el) return;
-  if (!document.fullscreenElement) {
-    el.requestFullscreen().catch(() => {});
+
+  const rfs = el.requestFullscreen ||
+              el.webkitRequestFullscreen ||
+              el.mozRequestFullScreen ||
+              el.msRequestFullscreen;
+
+  if (rfs) {
+    try {
+      const p = rfs.call(el);
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          el.classList.add("is-fullscreen-sim");
+          document.body.classList.add("sim-fullscreen-active");
+          updateFullscreenButtonState();
+        });
+      }
+    } catch {
+      el.classList.add("is-fullscreen-sim");
+      document.body.classList.add("sim-fullscreen-active");
+      updateFullscreenButtonState();
+    }
   } else {
-    document.exitFullscreen().catch(() => {});
+    el.classList.add("is-fullscreen-sim");
+    document.body.classList.add("sim-fullscreen-active");
+    updateFullscreenButtonState();
+  }
+  updateFullscreenButtonState();
+  el.focus();
+}
+
+function exitFullscreenSimulator() {
+  const el = document.getElementById("sim-viewport");
+  if (el) el.classList.remove("is-fullscreen-sim");
+  document.body.classList.remove("sim-fullscreen-active");
+
+  if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+    const efs = document.exitFullscreen ||
+                document.webkitExitFullscreen ||
+                document.mozCancelFullScreen ||
+                document.msExitFullscreen;
+    if (efs) {
+      try {
+        const p = efs.call(document);
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      } catch {}
+    }
+  }
+  updateFullscreenButtonState();
+}
+
+function toggleFullscreenSimulator() {
+  if (isSimulatorFullscreen()) {
+    exitFullscreenSimulator();
+  } else {
+    enterFullscreenSimulator();
   }
 }
 
 function handleSimulatorKey(e) {
   const modal = $("#theme-modal");
   if (!modal || (!modal.open && !modal.hasAttribute("open"))) return;
-  if (!simulatorState.theme || simulatorState.isBooted) return;
+  if (!simulatorState.theme) return;
 
   const entriesCount = simulatorState.theme.menu.entries.length;
+
+  if (e.key === "f" || e.key === "F") {
+    if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      toggleFullscreenSimulator();
+      return;
+    }
+  }
+
+  if (e.key === "Escape") {
+    if (isSimulatorFullscreen()) {
+      e.preventDefault();
+      exitFullscreenSimulator();
+      return;
+    }
+  }
+
+  if (simulatorState.isBooted) return;
 
   if (e.key === "ArrowDown" || e.key === "ArrowRight") {
     e.preventDefault();
     stopSimulatorTimer();
     simulatorState.selected = (simulatorState.selected + 1) % entriesCount;
-    renderModalSimulation();
+    updateSimulatorScreen();
   } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
     e.preventDefault();
     stopSimulatorTimer();
     simulatorState.selected = (simulatorState.selected - 1 + entriesCount) % entriesCount;
-    renderModalSimulation();
+    updateSimulatorScreen();
   } else if (e.key === "Enter") {
     e.preventDefault();
-    stopSimulatorTimer();
-    simulatorState.isBooted = true;
-    renderModalSimulation();
-  } else if (e.key === "f" || e.key === "F") {
-    if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
-      e.preventDefault();
-      toggleFullscreenSimulator();
-    }
+    triggerSimulatorBoot();
   }
 }
 
@@ -319,7 +445,7 @@ async function openModal(slug) {
   const theme = state.themes.find((t) => t.slug === slug);
   if (!theme) return;
   const modal = $("#theme-modal");
-  $("[data-field=title]", modal).textContent = theme.title;
+  $("[data-field=title]", modal).innerHTML = `${escapeHtml(theme.title)} ${statusBadge(theme)}`;
   $("[data-field=layout]", modal).textContent = `${theme.layoutLabel} · ${theme.font}`;
   $("[data-field=tagline]", modal).textContent = theme.tagline;
   $("[data-field=cmd]", modal).textContent = `sudo ./install.sh ${theme.slug}`;
@@ -328,7 +454,7 @@ async function openModal(slug) {
   if (refindEl) {
     if (theme.refind) {
       refindEl.style.display = "block";
-      refindEl.innerHTML = `💡 <b>rEFInd Companion Available:</b> Prefer a native UEFI horizontal icon dock (<b>←</b> / <b>→</b>) instead of vertical GRUB? Install with: <code>sudo ./install.sh -r ${escapeHtml(theme.slug)}</code>`;
+      refindEl.innerHTML = `💡 <b>Layout &amp; Navigation:</b> In standard GRUB2, menus operate vertically (<code>↑</code> / <code>↓</code>). For a native horizontal icon dock with left/right navigation (<code>←</code> / <code>→</code>), install the companion rEFInd theme: <code>sudo ./install.sh -r ${escapeHtml(theme.slug)}</code>`;
     } else {
       refindEl.style.display = "none";
       refindEl.innerHTML = "";
@@ -340,8 +466,9 @@ async function openModal(slug) {
   simulatorState.timerSeconds = 10;
   simulatorState.isBooted = false;
 
-  renderModalSimulation();
+  mountSimulator();
   startSimulatorTimer();
+  updateFullscreenButtonState();
 
   const txtEl = $("[data-field=theme-txt]", modal);
   txtEl.textContent = theme.themeText || "(theme.txt not found)";
@@ -353,15 +480,23 @@ function wireModal() {
   const modal = $("#theme-modal");
   modal.addEventListener("click", (e) => {
     if (e.target === modal || e.target.matches("[data-close]")) {
+      exitFullscreenSimulator();
       stopSimulatorTimer();
       if (typeof modal.close === "function") modal.close();
       else modal.removeAttribute("open");
     }
   });
-  modal.addEventListener("close", () => stopSimulatorTimer());
+  modal.addEventListener("close", () => {
+    exitFullscreenSimulator();
+    stopSimulatorTimer();
+  });
   const driveBtn = $("#btn-fullscreen-drive");
   if (driveBtn) driveBtn.addEventListener("click", toggleFullscreenSimulator);
   window.addEventListener("keydown", handleSimulatorKey);
+  document.addEventListener("fullscreenchange", updateFullscreenButtonState);
+  document.addEventListener("webkitfullscreenchange", updateFullscreenButtonState);
+  document.addEventListener("mozfullscreenchange", updateFullscreenButtonState);
+  document.addEventListener("MSFullscreenChange", updateFullscreenButtonState);
 }
 
 function wireSearch() {

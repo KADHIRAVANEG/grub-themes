@@ -20,7 +20,7 @@
     ],
     "menu": {
       "title": "01 / miku.boot",
-      "timeout": "auto \u00b7 5s",
+      "timeout": "auto · 5s",
       "entries": [
         "CachyOS Linux",
         "Advanced options",
@@ -35,7 +35,7 @@
   {
     "slug": "penguin",
     "title": "Penguin",
-    "tagline": "ASCII Tux terminal \u2014 classic GNU/Linux feel.",
+    "tagline": "ASCII Tux terminal — classic GNU/Linux feel.",
     "background": "./penguin/background.png",
     "palette": [
       "#101418",
@@ -86,7 +86,7 @@
       "gaming"
     ],
     "menu": {
-      "title": "\u25bc SELECT GAME \u25bc",
+      "title": "▼ SELECT GAME ▼",
       "timeout": "P1 PRESS START",
       "entries": [
         "CachyOS Linux",
@@ -116,10 +116,11 @@
       "ambient",
       "cozy",
       "minimal",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
-      "title": "boot \u00b7 nimbus",
+      "title": "boot · nimbus",
       "timeout": "8s",
       "entries": [
         "NixOS",
@@ -129,7 +130,7 @@
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true
   },
   {
@@ -144,7 +145,7 @@
       "#f0d2ff"
     ],
     "layout": "street",
-    "layoutLabel": "Right rail \u00b7 neon",
+    "layoutLabel": "Right rail · neon",
     "font": "Share Tech Mono",
     "tags": [
       "cyberpunk",
@@ -167,7 +168,7 @@
   {
     "slug": "gas_station",
     "title": "Gas Station",
-    "tagline": "Retro pump display \u2014 select your fuel and roll (companion rEFInd dock available).",
+    "tagline": "Retro pump display — select your fuel and roll (companion rEFInd dock available).",
     "background": "./gas_station/background_ui.png",
     "palette": [
       "#2a1408",
@@ -182,10 +183,11 @@
       "ambient",
       "lofi",
       "cozy",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
-      "title": "PUMP 04 \u00b7 SELECT FUEL",
+      "title": "PUMP 04 · SELECT FUEL",
       "timeout": "auto in 7s",
       "entries": [
         "Arch",
@@ -195,13 +197,13 @@
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true
   },
   {
     "slug": "bmw",
     "title": "BMW",
-    "tagline": "Cinematic automotive HUD \u2014 telemetry strip with throttle bars.",
+    "tagline": "Cinematic automotive HUD — telemetry strip with throttle bars.",
     "background": "./bmw/background.jpg",
     "video": "./bmw/background.mp4.asset.json",
     "palette": [
@@ -220,7 +222,7 @@
     ],
     "menu": {
       "title": "M:// IGNITION SEQUENCE",
-      "timeout": "GEAR \u25b2 04",
+      "timeout": "GEAR ▲ 04",
       "entries": [
         "CachyOS Linux",
         "Advanced options",
@@ -250,21 +252,22 @@
       "illustration",
       "editorial",
       "light",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
-      "title": "CELEBRATE  \u00b7  DIVERSITY",
+      "title": "CELEBRATE  ·  DIVERSITY",
       "timeout": "no rush",
       "entries": [
-        "TEQUILA \u2014 Arch",
-        "VODKA \u2014 Debian",
-        "WHISKEY \u2014 Fedora",
-        "RUM \u2014 Windows",
-        "GIN \u2014 UEFI"
+        "TEQUILA — Arch",
+        "VODKA — Debian",
+        "WHISKEY — Fedora",
+        "RUM — Windows",
+        "GIN — UEFI"
       ],
       "selected": 2
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true
   },
   {
@@ -286,26 +289,27 @@
       "neon",
       "gaming",
       "circular",
-      "horizontal"
+      "horizontal",
+      "maintenance"
     ],
     "menu": {
       "title": "OMNITRIX // SELECT FORM",
       "timeout": "T-10s",
       "entries": [
-        "XLR8 \u00b7 Arch",
-        "HEATBLAST \u00b7 Fedora",
-        "DIAMONDHEAD \u00b7 Win",
-        "GHOSTFREAK \u00b7 BIOS"
+        "XLR8 · Arch",
+        "HEATBLAST · Fedora",
+        "DIAMONDHEAD · Win",
+        "GHOSTFREAK · BIOS"
       ],
       "selected": 0
     },
-    "status": "working",
+    "status": "maintenance",
     "refind": true
   },
   {
     "slug": "noir",
     "title": "Noir",
-    "tagline": "Spider-Noir comic panel \u2014 halftone rain, hard-boiled menu.",
+    "tagline": "Spider-Noir comic panel — halftone rain, hard-boiled menu.",
     "background": "./noir/background.jpg",
     "palette": [
       "#000000",
@@ -323,7 +327,7 @@
       "editorial"
     ],
     "menu": {
-      "title": "CHAPTER I \u00b7 THE BOOT",
+      "title": "CHAPTER I · THE BOOT",
       "timeout": "MIDNIGHT 00:00",
       "entries": [
         "CachyOS Linux",

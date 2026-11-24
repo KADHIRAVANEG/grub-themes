@@ -2,10 +2,11 @@
 # Test & Validation Environment Runner for Gorgeous GRUB
 #
 # Usage:
-#   ./tools/test-env.sh check            # Run static linters & asset validators
-#   ./tools/test-env.sh serve [port]     # Start live preview HTTP server (default: 8000)
-#   ./tools/test-env.sh snapshot <theme> # Render SVG/PNG layout snapshot to artifacts
-#   ./tools/test-env.sh qemu <theme>     # Boot theme in interactive QEMU test VM
+#   ./tools/test-env.sh check                # Run static linters & asset validators
+#   ./tools/test-env.sh serve [port]         # Start live preview HTTP server (default: 8000)
+#   ./tools/test-env.sh snapshot <theme>     # Render SVG/PNG layout snapshot to artifacts
+#   ./tools/test-env.sh qemu <theme>         # Boot theme in interactive GRUB QEMU test VM (vertical)
+#   ./tools/test-env.sh qemu-refind <theme>  # Boot theme in interactive UEFI rEFInd QEMU test VM (horizontal dock)
 #
 set -euo pipefail
 
@@ -162,15 +163,98 @@ EOF
   qemu-system-x86_64 -m 512M -cdrom "$tmp_iso" -vga "$vga_opt"
 }
 
+cmd_qemu_refind() {
+  local theme="${1:-nimbus}"
+  [[ -n "$theme" ]] || die "usage: $0 qemu-refind <theme-slug>"
+  [[ -d "$theme" ]] || die "theme '$theme' not found"
+  [[ -d "$theme/refind" ]] || die "theme '$theme' does not have a rEFInd companion configuration"
+
+  if ! command -v qemu-system-x86_64 >/dev/null 2>&1; then
+    die "VM testing requires QEMU. Install on Arch/CachyOS with:\n  sudo pacman -S qemu-desktop"
+  fi
+
+  local ovmf_firmware="/usr/share/edk2/x64/OVMF.4m.fd"
+  if [[ ! -f "$ovmf_firmware" ]]; then
+    ovmf_firmware="$(find /usr/share -name "OVMF.fd" -o -name "OVMF_CODE.fd" -o -name "OVMF.4m.fd" 2>/dev/null | head -n 1)"
+  fi
+  [[ -n "$ovmf_firmware" && -f "$ovmf_firmware" ]] || die "OVMF UEFI firmware not found. Install edk2-ovmf."
+
+  local refind_bin=""
+  local cand
+  for cand in /usr/share/refind/refind_x64.efi /tmp/usr/share/refind/refind_x64.efi; do
+    if [[ -f "$cand" ]]; then
+      refind_bin="$cand"
+      break
+    fi
+  done
+
+  if [[ -z "$refind_bin" ]]; then
+    info "Preparing standalone rEFInd binary for virtual testing..."
+    local cache_pkg="/tmp/refind_pkg.tar.zst"
+    if [[ ! -f "$cache_pkg" ]]; then
+      curl -sL "https://archlinux.org/packages/extra/x86_64/refind/download" > "$cache_pkg"
+    fi
+    tar -I zstd -xf "$cache_pkg" -C /tmp/ usr/share/refind/
+    refind_bin="/tmp/usr/share/refind/refind_x64.efi"
+  fi
+  [[ -f "$refind_bin" ]] || die "rEFInd binary not available"
+
+  local tmp_disk
+  tmp_disk="$(mktemp -d)"
+  # shellcheck disable=SC2064
+  trap "rm -rf '$tmp_disk'" EXIT
+
+  info "Preparing UEFI virtual drive with rEFInd horizontal dock for theme '$theme'..."
+  mkdir -p "$tmp_disk/EFI/BOOT/themes/$theme"
+  mkdir -p "$tmp_disk/EFI/BOOT/icons"
+  cp "$refind_bin" "$tmp_disk/EFI/BOOT/bootx64.efi"
+
+  local icon_src
+  for icon_src in /usr/share/refind/icons /tmp/usr/share/refind/icons; do
+    if [[ -d "$icon_src" ]]; then
+      cp -r "$icon_src/." "$tmp_disk/EFI/BOOT/icons/"
+      break
+    fi
+  done
+
+  cp -rL "$theme/." "$tmp_disk/EFI/BOOT/themes/$theme/"
+
+  mkdir -p "$tmp_disk/EFI/arch" "$tmp_disk/EFI/ubuntu" "$tmp_disk/EFI/fedora" "$tmp_disk/EFI/Microsoft/Boot"
+  cp "$refind_bin" "$tmp_disk/EFI/arch/vmlinuz-linux.efi"
+  cp "$refind_bin" "$tmp_disk/EFI/ubuntu/grubx64.efi"
+  cp "$refind_bin" "$tmp_disk/EFI/fedora/grubx64.efi"
+  cp "$refind_bin" "$tmp_disk/EFI/Microsoft/Boot/bootmgfw.efi"
+
+  cat << EOF > "$tmp_disk/EFI/BOOT/refind.conf"
+timeout 15
+scanfor internal,external,optical,manual
+hideui hints,badges
+showtools shutdown,reboot,firmware
+big_icon_size 128
+small_icon_size 48
+
+include themes/$theme/refind/theme.conf
+EOF
+
+  local vga_opt="std"
+  if qemu-system-x86_64 -vga help 2>&1 | grep -q "virtio"; then
+    vga_opt="virtio"
+  fi
+
+  info "Launching QEMU UEFI with rEFInd native horizontal dock..."
+  qemu-system-x86_64 -m 512M -bios "$ovmf_firmware" -drive "file=fat:rw:$tmp_disk,format=raw" -vga "$vga_opt"
+}
+
 usage() {
-  sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 case "${1:-}" in
-  check)    cmd_check ;;
-  serve)    cmd_serve "${2:-8000}" ;;
-  snapshot) cmd_snapshot "${2:-}" ;;
-  qemu)     cmd_qemu "${2:-}" ;;
-  -h|--help) usage ;;
-  *)        usage; exit 1 ;;
+  check)        cmd_check ;;
+  serve)        cmd_serve "${2:-8000}" ;;
+  snapshot)     cmd_snapshot "${2:-}" ;;
+  qemu)         cmd_qemu "${2:-}" ;;
+  qemu-refind)  cmd_qemu_refind "${2:-nimbus}" ;;
+  -h|--help)    usage ;;
+  *)            usage; exit 1 ;;
 esac

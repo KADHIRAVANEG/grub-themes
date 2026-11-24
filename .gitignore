@@ -1,0 +1,9 @@
+# Generated artifacts and test snapshots
+artifacts/
+*.iso
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*~

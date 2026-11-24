@@ -5,7 +5,7 @@
 [![ShellCheck](https://github.com/KADHIRAVANEG/grub-themes/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/KADHIRAVANEG/grub-themes/actions/workflows/shellcheck.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-**Preview every theme before touching your bootloader →** [joker-53.github.io/grub-themes](https://joker-53.github.io/grub-themes/)
+**Preview every theme before touching your bootloader →** [kadhiravaneg.github.io/grub-themes](https://kadhiravaneg.github.io/grub-themes/)
 
 ```bash
 git clone https://github.com/KADHIRAVANEG/grub-themes.git gorgeous-grub
@@ -29,7 +29,7 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 04 | `street`      | Cyberpunk right-rail terminal, magenta neon glitch          | ✅ |
 | 05 | `noir`        | Spider-Noir comic panel, halftone rain, hard-boiled menu    | ✅ |
 | 06 | `bmw`         | Cinematic automotive HUD, telemetry bars and throttle       | ✅ |
-| 07 | `nimbus`      | Soft-sky concept (static, vertical GRUB menu adaptation)    | 🔧 |
+| 07 | `nimbus`      | Soft-sky single-slot horizontal dock & rEFInd companion    | ✅ |
 | 08 | `gas_station` | Retro pump display, warm lo-fi sunset strip                 | 🔧 |
 | 09 | `celebrate`   | Hand-drawn line catalog, every OS a different hat           | 🔧 |
 | 10 | `ben`         | Ben 10 Omnitrix dial selector, green plasma core            | 🔧 |
@@ -73,6 +73,7 @@ sudo ./install.sh                  # interactive dropdown
 sudo ./install.sh miku             # install specific theme by slug
 sudo ./install.sh -t 10            # set boot timeout to 10 seconds
 sudo ./install.sh -t 10 miku       # set timeout AND install theme
+sudo ./install.sh -r nimbus        # install rEFInd companion theme (native horizontal dock)
 sudo ./install.sh -l               # list all themes
 sudo ./install.sh -u               # restore original /etc/default/grub
 sudo ./install.sh -u --purge       # restore config AND delete theme files
@@ -189,6 +190,26 @@ See [Theme authoring](docs/THEME-AUTHORING.md) for the supported structure, laye
 ```bash
 sudo ./install.sh -u               # restore /etc/default/grub
 sudo ./install.sh -u --purge       # restore + delete theme files from /boot
+```
+
+---
+
+## Development & Test Environment
+
+You can test themes, scripts, and preview rendering locally without touching your system's bootloader:
+
+```bash
+# Run ShellCheck and the static validation suite
+./tools/test-env.sh check
+
+# Start a local web server to preview themes in browser (http://localhost:8000)
+./tools/test-env.sh serve
+
+# Render a high-resolution PNG snapshot of any theme
+./tools/test-env.sh snapshot nimbus
+
+# Launch an isolated virtual machine to test real GRUB theme rendering
+./tools/test-env.sh qemu miku
 ```
 
 ---

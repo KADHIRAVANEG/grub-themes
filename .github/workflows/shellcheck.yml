@@ -29,12 +29,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+        uses: ludeeus/action-shellcheck@19389e7c53655385d38865c3eb895782728be26c # v2.0.0
+        env:
+          # SC2034 = unused variable (false positives on colour vars when TTY check strips them)
+          SHELLCHECK_OPTS: -e SC2034
         with:
           scandir: '.'
           severity: warning
-          # SC2034 = unused variable (false positives on colour vars when TTY check strips them)
-          ignore_codes: SC2034
 
       - name: Validate theme assets and manifest
         run: bash tests/validate.sh

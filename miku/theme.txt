@@ -19,7 +19,7 @@ desktop-color: "#0a0a1a"
 + progress_bar {
     id           = "__timeout__"
     left         = 33%
-    bottom       = 6%
+    top          = 94%
     width        = 35%
     height       = 4
     fg_color     = "#00f0ff"

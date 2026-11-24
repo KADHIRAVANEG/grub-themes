@@ -58,6 +58,11 @@ while IFS= read -r theme_file; do
       errors=1
     fi
   done < <(sed -nE 's/^[[:space:]]*(font|item_font|selected_item_font)[[:space:]]*=[[:space:]]*"([^"]+)".*/\2/p' "$theme_file" | sort -u)
+
+  if grep -nE '^[[:space:]]*bottom[[:space:]]*=' "$theme_file" >/dev/null; then
+    printf 'unsupported GRUB property "bottom" in %s (GRUB only supports "top")\n' "$theme_file" >&2
+    errors=1
+  fi
 done < <(find . -mindepth 2 -maxdepth 2 -name theme.txt | sort)
 
 while IFS=$'\t' read -r slug status background; do

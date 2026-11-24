@@ -19,7 +19,7 @@ c_cya='\033[1;36m'; c_rst='\033[0m'
 info() { printf "%b %s\n" "${c_cya}::${c_rst}" "$*"; }
 ok()   { printf "%b %s\n" "${c_grn}✓${c_rst}" "$*"; }
 warn() { printf "%b %s\n" "${c_ylw}!${c_rst}" "$*"; }
-die()  { printf "%b %s\n" "${c_red}error:${c_rst}" "$*" >&2; exit 1; }
+die()  { printf "%b %b\n" "${c_red}error:${c_rst}" "$*" >&2; exit 1; }
 
 cmd_check() {
   info "Running ShellCheck..."
@@ -71,7 +71,10 @@ cmd_qemu() {
   [[ -d "$theme" && -f "$theme/theme.txt" ]] || die "theme '$theme' not found"
 
   if ! command -v qemu-system-x86_64 >/dev/null 2>&1 || ! command -v xorriso >/dev/null 2>&1; then
-    die "VM testing requires QEMU and xorriso. Install them on Arch/CachyOS with:\n  sudo pacman -S qemu-system-x86 libisoburn"
+    die "VM testing requires QEMU and xorriso. Install them on Arch/CachyOS with:\n  sudo pacman -S qemu-desktop libisoburn"
+  fi
+  if ! qemu-system-x86_64 -display help 2>&1 | grep -qE "gtk|sdl|cocoa"; then
+    die "QEMU graphical display backend (GTK/SDL) not found.\nInstall desktop GUI drivers:\n  Arch / CachyOS:  sudo pacman -S qemu-desktop\n  Debian / Ubuntu: sudo apt install qemu-system-gui\n  Fedora:          sudo dnf install qemu-ui-gtk"
   fi
   command -v grub-mkrescue >/dev/null 2>&1 || die "grub-mkrescue is required"
 
@@ -111,8 +114,12 @@ menuentry "UEFI Firmware Settings" {
 EOF
 
   grub-mkrescue -o "$tmp_iso" "$tmp_dir" >/dev/null 2>&1
-  info "Launching QEMU (1920x1080 virtual display)..."
-  qemu-system-x86_64 -m 512M -cdrom "$tmp_iso" -vga virtio
+  local vga_opt="std"
+  if qemu-system-x86_64 -vga help 2>&1 | grep -q "virtio"; then
+    vga_opt="virtio"
+  fi
+  info "Launching QEMU (1920x1080 virtual display, -vga $vga_opt)..."
+  qemu-system-x86_64 -m 512M -cdrom "$tmp_iso" -vga "$vga_opt"
 }
 
 usage() {

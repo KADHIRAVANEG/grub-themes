@@ -3,7 +3,7 @@ desktop-image: "background_ui.png"
 desktop-color: "#0a3a55"
 
 + label {
-    top    = 42%
+    top    = 38%
     left   = 6%
     width  = 36%
     align  = "center"
@@ -12,46 +12,25 @@ desktop-color: "#0a3a55"
     font   = "VT323 Regular 28"
 }
 
-+ label {
-    top    = 48%
-    left   = 2%
-    width  = 4%
-    align  = "center"
-    text   = "◄"
-    color  = "#7cff3a"
-    font   = "VT323 Regular 28"
-}
-
 + boot_menu {
     left                       = 6%
-    top                        = 48%
+    top                        = 45%
     width                      = 36%
-    height                     = 60
+    height                     = 35%
     item_font                  = "VT323 Regular 28"
     item_color                 = "#caffaa"
     selected_item_color        = "#000000"
-    item_height                = 60
-    item_padding               = 16
-    item_spacing               = 0
-    menu_pixmap_style          = "box/box_*.png"
+    item_height                = 52
+    item_padding               = 10
+    item_spacing               = 6
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar                  = false
-}
-
-+ label {
-    top    = 48%
-    left   = 42%
-    width  = 4%
-    align  = "center"
-    text   = "►"
-    color  = "#7cff3a"
-    font   = "VT323 Regular 28"
 }
 
 + progress_bar {
     id           = "__timeout__"
     left         = 6%
-    top          = 58%
+    top          = 82%
     width        = 36%
     height       = 5
     fg_color     = "#7cff3a"

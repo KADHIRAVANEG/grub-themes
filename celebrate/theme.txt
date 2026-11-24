@@ -3,7 +3,7 @@ desktop-image: "background_ui.png"
 desktop-color: "#d6d3cb"
 
 + label {
-    top    = 70%
+    top    = 66%
     left   = 0
     width  = 100%
     align  = "center"
@@ -12,47 +12,26 @@ desktop-color: "#d6d3cb"
     font   = "Cinzel Regular 24"
 }
 
-+ label {
-    top    = 76%
-    left   = 27%
-    width  = 4%
-    align  = "center"
-    text   = "◄"
-    color  = "#1a1a1a"
-    font   = "Cinzel Regular 24"
-}
-
 + boot_menu {
-    left                       = 32%
-    top                        = 76%
-    width                      = 36%
-    height                     = 60
+    left                       = 28%
+    top                        = 72%
+    width                      = 44%
+    height                     = 20%
     item_font                  = "Cinzel Regular 24"
     item_color                 = "#1a1a1a"
     selected_item_color        = "#000000"
-    item_height                = 60
-    item_padding               = 16
-    item_spacing               = 0
-    menu_pixmap_style          = "box/box_*.png"
+    item_height                = 48
+    item_padding               = 12
+    item_spacing               = 6
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar                  = false
 }
 
-+ label {
-    top    = 76%
-    left   = 69%
-    width  = 4%
-    align  = "center"
-    text   = "►"
-    color  = "#1a1a1a"
-    font   = "Cinzel Regular 24"
-}
-
 + progress_bar {
     id           = "__timeout__"
-    left         = 32%
-    top          = 85%
-    width        = 36%
+    left         = 28%
+    top          = 94%
+    width        = 44%
     height       = 3
     fg_color     = "#1a1a1a"
     bg_color     = "#c0bdb5"

@@ -105,7 +105,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "nimbus",
     "title": "Nimbus",
-    "tagline": "Soft sky with a single-slot horizontal carousel dock.",
+    "tagline": "Soft sky with clean bottom menu and companion rEFInd horizontal dock.",
     "background": "./nimbus/background.png",
     "palette": [
       "#1a2438",
@@ -114,7 +114,7 @@ window.GRUB_THEME_CATALOG = [
       "#9fbce6"
     ],
     "layout": "nimbus",
-    "layoutLabel": "Horizontal dock",
+    "layoutLabel": "Sky bottom dock",
     "font": "Space Grotesk",
     "tags": [
       "ambient",
@@ -134,7 +134,8 @@ window.GRUB_THEME_CATALOG = [
       "selected": 0
     },
     "status": "working",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"crop\"\ndesktop-color: \"#1a2438\"\n\n+ label {\n    top    = 70%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"↑ ↓ TO SELECT TARGET  ·  ENTER TO BOOT\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ label {\n    top    = 75%\n    left   = 28%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ boot_menu {\n    left                = 32%\n    top                 = 75%\n    width               = 36%\n    height              = 48\n    item_font           = \"Space Grotesk Regular 18\"\n    item_color          = \"#dbe7ff\"\n    selected_item_color = \"#ffffff\"\n    item_height         = 48\n    item_padding        = 16\n    item_spacing        = 0\n    menu_pixmap_style   = \"menu/menu_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar           = false\n}\n\n+ label {\n    top    = 75%\n    left   = 68%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 32%\n    top          = 83%\n    width        = 36%\n    height       = 3\n    fg_color     = \"#cfe1ff\"\n    bg_color     = \"#2a3548\"\n    border_color = \"#9fbce6\"\n    text_color   = \"#cfe1ff\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Space Grotesk Regular 18\"\n}\n"
+    "refind": true,
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"crop\"\ndesktop-color: \"#1a2438\"\n\n+ label {\n    top    = 66%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"↑ ↓ TO SELECT TARGET  ·  ENTER TO BOOT\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ boot_menu {\n    left                = 30%\n    top                 = 72%\n    width               = 40%\n    height              = 22%\n    item_font           = \"Space Grotesk Regular 18\"\n    item_color          = \"#dbe7ff\"\n    selected_item_color = \"#ffffff\"\n    item_height         = 44\n    item_padding        = 12\n    item_spacing        = 4\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar           = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 30%\n    top          = 95%\n    width        = 40%\n    height       = 3\n    fg_color     = \"#cfe1ff\"\n    bg_color     = \"#2a3548\"\n    border_color = \"#9fbce6\"\n    text_color   = \"#9fbce6\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Space Grotesk Regular 18\"\n}\n"
   },
   {
     "slug": "street",
@@ -172,7 +173,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "gas_station",
     "title": "Gas Station",
-    "tagline": "Retro pump display — pick your fuel and roll.",
+    "tagline": "Retro pump display — select your fuel and roll (companion rEFInd dock available).",
     "background": "./gas_station/background_ui.png",
     "palette": [
       "#2a1408",
@@ -181,7 +182,7 @@ window.GRUB_THEME_CATALOG = [
       "#ffe2c2"
     ],
     "layout": "gas",
-    "layoutLabel": "Pump horizontal dock",
+    "layoutLabel": "Pump terminal",
     "font": "DotGothic16",
     "tags": [
       "ambient",
@@ -201,7 +202,8 @@ window.GRUB_THEME_CATALOG = [
       "selected": 0
     },
     "status": "working",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#2a1408\"\n\n+ label {\n    top    = 38%\n    left   = 5%\n    width  = 37%\n    align  = \"center\"\n    text   = \"PUMP 04 · SELECT FUEL\"\n    color  = \"#ffb86b\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ label {\n    top    = 46%\n    left   = 2%\n    width  = 3%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#ff7a18\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 5%\n    top                        = 46%\n    width                      = 37%\n    height                     = 64\n    item_font                  = \"DotGothic16 Regular 24\"\n    item_color                 = \"#ffe2c2\"\n    selected_item_color        = \"#ffffff\"\n    item_height                = 64\n    item_padding               = 18\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 46%\n    left   = 42%\n    width  = 3%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#ff7a18\"\n    font   = \"DotGothic16 Regular 24\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 5%\n    top          = 58%\n    width        = 37%\n    height       = 4\n    fg_color     = \"#ff7a18\"\n    bg_color     = \"#1a0a04\"\n    border_color = \"#ffb86b\"\n    text_color   = \"#ffb86b\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"DotGothic16 Regular 24\"\n}\n"
+    "refind": true,
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#2a1408\"\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 45%\n    width                      = 35%\n    height                     = 36%\n    item_font                  = \"DotGothic16 Regular 24\"\n    item_color                 = \"#ffe2c2\"\n    selected_item_color        = \"#ffffff\"\n    item_height                = 60\n    item_padding               = 12\n    item_spacing               = 8\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 82%\n    width        = 35%\n    height       = 6\n    fg_color     = \"#ff7a18\"\n    bg_color     = \"#1a0a04\"\n    border_color = \"#ffb86b\"\n    text_color   = \"#ffb86b\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"DotGothic16 Regular 24\"\n}\n"
   },
   {
     "slug": "bmw",
@@ -240,7 +242,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "celebrate",
     "title": "Celebrate",
-    "tagline": "Hand-drawn catalog framing a horizontal carousel dock.",
+    "tagline": "Hand-drawn catalog framing a clean selection menu (companion rEFInd dock available).",
     "background": "./celebrate/background_ui.png",
     "palette": [
       "#d6d3cb",
@@ -249,7 +251,7 @@ window.GRUB_THEME_CATALOG = [
       "#ffffff"
     ],
     "layout": "celebrate",
-    "layoutLabel": "Horizontal catalog dock",
+    "layoutLabel": "Catalog frame",
     "font": "Cinzel",
     "tags": [
       "minimal",
@@ -271,12 +273,13 @@ window.GRUB_THEME_CATALOG = [
       "selected": 2
     },
     "status": "working",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#d6d3cb\"\n\n+ label {\n    top    = 70%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"CELEBRATE · DIVERSITY\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ label {\n    top    = 76%\n    left   = 27%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 32%\n    top                        = 76%\n    width                      = 36%\n    height                     = 60\n    item_font                  = \"Cinzel Regular 24\"\n    item_color                 = \"#1a1a1a\"\n    selected_item_color        = \"#000000\"\n    item_height                = 60\n    item_padding               = 16\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 76%\n    left   = 69%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 32%\n    top          = 85%\n    width        = 36%\n    height       = 3\n    fg_color     = \"#1a1a1a\"\n    bg_color     = \"#c0bdb5\"\n    border_color = \"#5a5a5a\"\n    text_color   = \"#5a5a5a\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Cinzel Regular 24\"\n}\n"
+    "refind": true,
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#d6d3cb\"\n\n+ label {\n    top    = 66%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"CELEBRATE · DIVERSITY\"\n    color  = \"#1a1a1a\"\n    font   = \"Cinzel Regular 24\"\n}\n\n+ boot_menu {\n    left                       = 28%\n    top                        = 72%\n    width                      = 44%\n    height                     = 20%\n    item_font                  = \"Cinzel Regular 24\"\n    item_color                 = \"#1a1a1a\"\n    selected_item_color        = \"#000000\"\n    item_height                = 48\n    item_padding               = 12\n    item_spacing               = 6\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 28%\n    top          = 94%\n    width        = 44%\n    height       = 3\n    fg_color     = \"#1a1a1a\"\n    bg_color     = \"#c0bdb5\"\n    border_color = \"#5a5a5a\"\n    text_color   = \"#5a5a5a\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Cinzel Regular 24\"\n}\n"
   },
   {
     "slug": "ben",
     "title": "Omnitrix",
-    "tagline": "Omnitrix artwork framing a horizontal form selector dock.",
+    "tagline": "Omnitrix artwork framing alien form selector (companion rEFInd dock available).",
     "background": "./ben/background_ui.png",
     "palette": [
       "#0a3a55",
@@ -285,7 +288,7 @@ window.GRUB_THEME_CATALOG = [
       "#caffaa"
     ],
     "layout": "ben",
-    "layoutLabel": "Omnitrix horizontal dock",
+    "layoutLabel": "Omnitrix terminal",
     "font": "VT323",
     "tags": [
       "cartoon",
@@ -306,7 +309,8 @@ window.GRUB_THEME_CATALOG = [
       "selected": 0
     },
     "status": "working",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#0a3a55\"\n\n+ label {\n    top    = 42%\n    left   = 6%\n    width  = 36%\n    align  = \"center\"\n    text   = \"OMNITRIX // SELECT FORM\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ label {\n    top    = 48%\n    left   = 2%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 48%\n    width                      = 36%\n    height                     = 60\n    item_font                  = \"VT323 Regular 28\"\n    item_color                 = \"#caffaa\"\n    selected_item_color        = \"#000000\"\n    item_height                = 60\n    item_padding               = 16\n    item_spacing               = 0\n    menu_pixmap_style          = \"box/box_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ label {\n    top    = 48%\n    left   = 42%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 58%\n    width        = 36%\n    height       = 5\n    fg_color     = \"#7cff3a\"\n    bg_color     = \"#041a0a\"\n    border_color = \"#caffaa\"\n    text_color   = \"#caffaa\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"VT323 Regular 28\"\n}\n"
+    "refind": true,
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background_ui.png\"\ndesktop-color: \"#0a3a55\"\n\n+ label {\n    top    = 38%\n    left   = 6%\n    width  = 36%\n    align  = \"center\"\n    text   = \"OMNITRIX // SELECT FORM\"\n    color  = \"#7cff3a\"\n    font   = \"VT323 Regular 28\"\n}\n\n+ boot_menu {\n    left                       = 6%\n    top                        = 45%\n    width                      = 36%\n    height                     = 35%\n    item_font                  = \"VT323 Regular 28\"\n    item_color                 = \"#caffaa\"\n    selected_item_color        = \"#000000\"\n    item_height                = 52\n    item_padding               = 10\n    item_spacing               = 6\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar                  = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 82%\n    width        = 36%\n    height       = 5\n    fg_color     = \"#7cff3a\"\n    bg_color     = \"#041a0a\"\n    border_color = \"#caffaa\"\n    text_color   = \"#caffaa\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"VT323 Regular 28\"\n}\n"
   },
   {
     "slug": "noir",

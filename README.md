@@ -29,10 +29,10 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 04 | `street`      | Cyberpunk right-rail terminal, magenta neon glitch          | ✅ |
 | 05 | `noir`        | Spider-Noir comic panel, halftone rain, hard-boiled menu    | ✅ |
 | 06 | `bmw`         | Cinematic automotive HUD, telemetry bars and throttle       | ✅ |
-| 07 | `nimbus`      | Soft-sky single-slot horizontal dock & rEFInd companion    | ✅ |
-| 08 | `gas_station` | Retro pump display with horizontal fuel carousel dock       | ✅ |
-| 09 | `celebrate`   | Hand-drawn lineup with horizontal catalog carousel dock     | ✅ |
-| 10 | `ben`         | Ben 10 Omnitrix dial with horizontal alien form dock        | ✅ |
+| 07 | `nimbus`      | Soft-sky bottom menu & rEFInd horizontal companion          | ✅ |
+| 08 | `gas_station` | Retro pump display & rEFInd horizontal companion            | ✅ |
+| 09 | `celebrate`   | Hand-drawn lineup & rEFInd horizontal companion             | ✅ |
+| 10 | `ben`         | Ben 10 Omnitrix dial & rEFInd horizontal companion          | ✅ |
 | 11 | `motorcycle`  | Framed ignition console and road-status instrumentation     | ✅ |
 | 12 | `spider`      | Angled right-side hero rail                                 | ✅ |
 | 13 | `comic_spider`| Offset comic issue frame and chapter stack                  | ✅ |
@@ -45,6 +45,14 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 20 | `thugs`       | Full-height afterlife terminal                              | ✅ |
 
 ✅ = fully working | 🔧 = in progress
+
+> [!NOTE]
+> **Bootloader Navigation: GRUB2 Vertical vs. rEFInd Horizontal**
+> - **GNU GRUB2 (Standard / Universal)**: GRUB2 natively renders vertical boot menus (`↑` / `↓`) across all Linux distributions, Legacy BIOS, and UEFI.
+> - **rEFInd Companion (Native Horizontal Icon Docks)**: For UEFI systems desiring a native horizontal icon dock (`←` / `→`), companion themes (`refind/theme.conf`) are provided for select themes (`nimbus`, `gas_station`, `celebrate`, `ben`). Install with:
+>   ```bash
+>   sudo ./install.sh -r <theme>
+>   ```
 
 ---
 
@@ -99,7 +107,7 @@ The new themes separate artwork into two layers:
 - `background.jpg` or `background.png` is the untouched supplied wallpaper.
 - `overlay.png` is a transparent 1920×1080 interface layer referenced by a GRUB `image` component.
 
-GRUB still presents entries as a vertical list. Dramatically different designs are created around that list with interface overlays, styled boxes, multiple menu layers, labels, images, frames, spacing, and selection assets. Standard GRUB themes do not play GIF or video backgrounds.
+GRUB presents entries as a vertical list (`↑` / `↓`). Dramatically different designs are created around that list with interface overlays, styled boxes, multiple menu layers, labels, images, frames, spacing, and selection assets. For native horizontal icon docks (`←` / `→`), use the companion rEFInd mode (`sudo ./install.sh -r <theme>`). Standard GRUB themes do not play GIF or video backgrounds.
 
 ---
 

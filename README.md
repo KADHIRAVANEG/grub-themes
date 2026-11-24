@@ -29,10 +29,10 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 04 | `street`      | Cyberpunk right-rail terminal, magenta neon glitch          | ✅ |
 | 05 | `noir`        | Spider-Noir comic panel, halftone rain, hard-boiled menu    | ✅ |
 | 06 | `bmw`         | Cinematic automotive HUD, telemetry bars and throttle       | ✅ |
-| 07 | `nimbus`      | Soft-sky bottom menu & rEFInd horizontal companion          | ✅ |
-| 08 | `gas_station` | Retro pump display & rEFInd horizontal companion            | ✅ |
-| 09 | `celebrate`   | Hand-drawn lineup & rEFInd horizontal companion             | ✅ |
-| 10 | `ben`         | Ben 10 Omnitrix dial & rEFInd horizontal companion          | ✅ |
+| 07 | `nimbus`      | Soft-sky bottom menu & rEFInd horizontal dock (Maintenance) | 🔧 |
+| 08 | `gas_station` | Retro pump display & rEFInd horizontal dock (Maintenance)   | 🔧 |
+| 09 | `celebrate`   | Hand-drawn lineup & rEFInd horizontal dock (Maintenance)    | 🔧 |
+| 10 | `ben`         | Ben 10 Omnitrix dial & rEFInd horizontal dock (Maintenance) | 🔧 |
 | 11 | `motorcycle`  | Framed ignition console and road-status instrumentation     | ✅ |
 | 12 | `spider`      | Angled right-side hero rail                                 | ✅ |
 | 13 | `comic_spider`| Offset comic issue frame and chapter stack                  | ✅ |
@@ -44,7 +44,7 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 19 | `batman_city` | Low cinematic command strip                                 | ✅ |
 | 20 | `thugs`       | Full-height afterlife terminal                              | ✅ |
 
-✅ = fully working | 🔧 = in progress
+✅ = fully working (GRUB2 standard vertical) | 🔧 = maintenance (horizontal dock / rEFInd companion)
 
 > [!NOTE]
 > **Bootloader Navigation: GRUB2 Vertical vs. rEFInd Horizontal**

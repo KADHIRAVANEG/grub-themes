@@ -95,9 +95,13 @@ function actualPreviewHtml(theme, lazy = false) {
     const fontFamily = configuredFont.replace(/\s+(?:Regular|Bold|Italic)?\s*\d+$/i, "");
     const normalColor = menu.item_color || "#ffffff";
     const selectedColor = menu.selected_item_color === "inherit" ? normalColor : (menu.selected_item_color || normalColor);
-    const rows = theme.menu.entries.map((entry, index) => {
-      const y = top + index * (itemHeight + spacing);
-      if (y >= top + height) return "";
+    const isSingleSlot = height <= (itemHeight + spacing) * 1.5;
+    const entriesToRender = isSingleSlot
+      ? [{ entry: theme.menu.entries[selected] || theme.menu.entries[0], index: selected, y: top }]
+      : theme.menu.entries.map((entry, index) => ({ entry, index, y: top + index * (itemHeight + spacing) }))
+          .filter(item => item.y < top + height);
+
+    const rows = entriesToRender.map(({ entry, index, y }) => {
       const rowStyle = index === selected ? menu.selected_item_pixmap_style : menu.item_pixmap_style;
       const rowBox = styledBoxHtml(theme, rowStyle, left, y, width, itemHeight);
       return `${rowBox}<text x="${left + padding}" y="${y + itemHeight * 0.67}" fill="${escapeHtml(index === selected ? selectedColor : normalColor)}" font-family="${escapeHtml(fontFamily)}, monospace" font-size="${fontSize}">${escapeHtml(entry)}</text>`;

@@ -4,36 +4,56 @@ desktop-image-scale-method: "crop"
 desktop-color: "#1a2438"
 
 + label {
-    top    = 4%
+    top    = 70%
     left   = 0
     width  = 100%
     align  = "center"
-    text   = "↑ ↓ to navigate  ·  Enter to boot"
+    text   = "↑ ↓ TO SELECT TARGET  ·  ENTER TO BOOT"
+    color  = "#9fbce6"
+    font   = "Space Grotesk Regular 18"
+}
+
++ label {
+    top    = 75%
+    left   = 28%
+    width  = 4%
+    align  = "center"
+    text   = "◄"
     color  = "#9fbce6"
     font   = "Space Grotesk Regular 18"
 }
 
 + boot_menu {
-    left                = 6%
-    top                 = 22%
-    width               = 28%
-    height              = 50%
+    left                = 32%
+    top                 = 75%
+    width               = 36%
+    height              = 48
     item_font           = "Space Grotesk Regular 18"
     item_color          = "#dbe7ff"
     selected_item_color = "#ffffff"
     item_height         = 48
-    item_padding        = 12
-    item_spacing        = 2
+    item_padding        = 16
+    item_spacing        = 0
     menu_pixmap_style   = "menu/menu_*.png"
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar           = false
 }
 
++ label {
+    top    = 75%
+    left   = 68%
+    width  = 4%
+    align  = "center"
+    text   = "►"
+    color  = "#9fbce6"
+    font   = "Space Grotesk Regular 18"
+}
+
 + progress_bar {
     id           = "__timeout__"
-    left         = 6%
-    top          = 96%
-    width        = 28%
+    left         = 32%
+    top          = 83%
+    width        = 36%
     height       = 3
     fg_color     = "#cfe1ff"
     bg_color     = "#2a3548"

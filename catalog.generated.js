@@ -105,7 +105,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "nimbus",
     "title": "Nimbus",
-    "tagline": "Soft sky with a GRUB-compatible vertical selector.",
+    "tagline": "Soft sky with a single-slot horizontal carousel dock.",
     "background": "./nimbus/background.png",
     "palette": [
       "#1a2438",
@@ -114,12 +114,13 @@ window.GRUB_THEME_CATALOG = [
       "#9fbce6"
     ],
     "layout": "nimbus",
-    "layoutLabel": "Vertical selector",
+    "layoutLabel": "Horizontal dock",
     "font": "Space Grotesk",
     "tags": [
       "ambient",
       "cozy",
-      "minimal"
+      "minimal",
+      "horizontal"
     ],
     "menu": {
       "title": "boot · nimbus",
@@ -130,10 +131,10 @@ window.GRUB_THEME_CATALOG = [
         "Win 11",
         "Firmware"
       ],
-      "selected": 1
+      "selected": 0
     },
-    "status": "maintenance",
-    "themeText": "title-text:    \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"crop\"\ndesktop-color: \"#1a2438\"\n\n+ label {\n    top    = 4%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"↑ ↓ to navigate  ·  Enter to boot\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ boot_menu {\n    left                = 6%\n    top                 = 22%\n    width               = 28%\n    height              = 50%\n    item_font           = \"Space Grotesk Regular 18\"\n    item_color          = \"#dbe7ff\"\n    selected_item_color = \"#ffffff\"\n    item_height         = 48\n    item_padding        = 12\n    item_spacing        = 2\n    menu_pixmap_style   = \"menu/menu_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar           = false\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 6%\n    top          = 96%\n    width        = 28%\n    height       = 3\n    fg_color     = \"#cfe1ff\"\n    bg_color     = \"#2a3548\"\n    border_color = \"#9fbce6\"\n    text_color   = \"#cfe1ff\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Space Grotesk Regular 18\"\n}\n"
+    "status": "working",
+    "themeText": "title-text:    \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"crop\"\ndesktop-color: \"#1a2438\"\n\n+ label {\n    top    = 70%\n    left   = 0\n    width  = 100%\n    align  = \"center\"\n    text   = \"↑ ↓ TO SELECT TARGET  ·  ENTER TO BOOT\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ label {\n    top    = 75%\n    left   = 28%\n    width  = 4%\n    align  = \"center\"\n    text   = \"◄\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ boot_menu {\n    left                = 32%\n    top                 = 75%\n    width               = 36%\n    height              = 48\n    item_font           = \"Space Grotesk Regular 18\"\n    item_color          = \"#dbe7ff\"\n    selected_item_color = \"#ffffff\"\n    item_height         = 48\n    item_padding        = 16\n    item_spacing        = 0\n    menu_pixmap_style   = \"menu/menu_*.png\"\n    selected_item_pixmap_style = \"box/sel_*.png\"\n    scrollbar           = false\n}\n\n+ label {\n    top    = 75%\n    left   = 68%\n    width  = 4%\n    align  = \"center\"\n    text   = \"►\"\n    color  = \"#9fbce6\"\n    font   = \"Space Grotesk Regular 18\"\n}\n\n+ progress_bar {\n    id           = \"__timeout__\"\n    left         = 32%\n    top          = 83%\n    width        = 36%\n    height       = 3\n    fg_color     = \"#cfe1ff\"\n    bg_color     = \"#2a3548\"\n    border_color = \"#9fbce6\"\n    text_color   = \"#cfe1ff\"\n    text         = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n    font         = \"Space Grotesk Regular 18\"\n}\n"
   },
   {
     "slug": "street",

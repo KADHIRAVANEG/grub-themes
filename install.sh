@@ -9,6 +9,7 @@
 #   sudo ./install.sh -l           # list available themes
 #   sudo ./install.sh -u           # uninstall (restore backup of /etc/default/grub)
 #   sudo ./install.sh -u --purge   # uninstall AND delete theme assets from /boot
+#   sudo ./install.sh -r <theme>   # install rEFInd companion theme (native horizontal dock)
 #   sudo ./install.sh -h           # show this help
 #
 # Run from the cloned repo root so it can find theme folders alongside this script.
@@ -333,7 +334,42 @@ interactive_pick() {
 # ── Usage ─────────────────────────────────────────────────────────────────────
 
 usage() {
-  sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'
+}
+
+install_refind() {
+  local theme="${1:-nimbus}"
+  local src_dir="$THEMES_SRC/$theme"
+  require_root
+
+  [[ -d "$src_dir" ]] || die "unknown theme: '$theme'"
+  [[ -d "$src_dir/refind" ]] || die "theme '$theme' does not have a rEFInd companion configuration"
+
+  local refind_dir=""
+  local cand
+  for cand in /boot/efi/EFI/refind /boot/EFI/refind /efi/EFI/refind; do
+    if [[ -d "$cand" ]]; then
+      refind_dir="$cand"
+      break
+    fi
+  done
+
+  [[ -n "$refind_dir" ]] || die "rEFInd installation not found in /boot/efi/EFI/refind or /efi/EFI/refind"
+
+  local target_theme_dir="$refind_dir/themes/$theme"
+  install -d -m 0755 "$target_theme_dir"
+  cp -rL "$src_dir/." "$target_theme_dir/"
+  chown -R root:root "$target_theme_dir"
+  chmod -R u=rwX,go=rX "$target_theme_dir"
+
+  local conf="$refind_dir/refind.conf"
+  if [[ -f "$conf" ]]; then
+    if ! grep -qE "include[[:space:]]+themes/${theme}/" "$conf"; then
+      printf '\n# Gorgeous rEFInd Theme\ninclude themes/%s/refind/theme.conf\n' "$theme" >> "$conf"
+      ok "added include directive to $conf"
+    fi
+  fi
+  ok "rEFInd companion theme '$theme' installed to $target_theme_dir"
 }
 
 # ── Entry point ───────────────────────────────────────────────────────────────
@@ -353,6 +389,7 @@ main() {
         fi
         ;;
     -l|--list)      list_themes ;;
+    -r|--refind)    install_refind "${2:-nimbus}" ;;
     -u|--uninstall) uninstall "${2:-}" ;;
     -h|--help)      usage ;;
     "")             interactive_pick ;;

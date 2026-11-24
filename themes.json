@@ -101,7 +101,7 @@
   {
     "slug": "nimbus",
     "title": "Nimbus",
-    "tagline": "Soft sky with a single-slot horizontal carousel dock.",
+    "tagline": "Soft sky with clean bottom menu and companion rEFInd horizontal dock.",
     "background": "./nimbus/background.png",
     "palette": [
       "#1a2438",
@@ -110,7 +110,7 @@
       "#9fbce6"
     ],
     "layout": "nimbus",
-    "layoutLabel": "Horizontal dock",
+    "layoutLabel": "Sky bottom dock",
     "font": "Space Grotesk",
     "tags": [
       "ambient",
@@ -129,7 +129,8 @@
       ],
       "selected": 0
     },
-    "status": "working"
+    "status": "working",
+    "refind": true
   },
   {
     "slug": "street",
@@ -166,7 +167,7 @@
   {
     "slug": "gas_station",
     "title": "Gas Station",
-    "tagline": "Retro pump display \u2014 pick your fuel and roll.",
+    "tagline": "Retro pump display \u2014 select your fuel and roll (companion rEFInd dock available).",
     "background": "./gas_station/background_ui.png",
     "palette": [
       "#2a1408",
@@ -175,7 +176,7 @@
       "#ffe2c2"
     ],
     "layout": "gas",
-    "layoutLabel": "Pump horizontal dock",
+    "layoutLabel": "Pump terminal",
     "font": "DotGothic16",
     "tags": [
       "ambient",
@@ -194,7 +195,8 @@
       ],
       "selected": 0
     },
-    "status": "working"
+    "status": "working",
+    "refind": true
   },
   {
     "slug": "bmw",
@@ -232,7 +234,7 @@
   {
     "slug": "celebrate",
     "title": "Celebrate",
-    "tagline": "Hand-drawn catalog framing a horizontal carousel dock.",
+    "tagline": "Hand-drawn catalog framing a clean selection menu (companion rEFInd dock available).",
     "background": "./celebrate/background_ui.png",
     "palette": [
       "#d6d3cb",
@@ -241,7 +243,7 @@
       "#ffffff"
     ],
     "layout": "celebrate",
-    "layoutLabel": "Horizontal catalog dock",
+    "layoutLabel": "Catalog frame",
     "font": "Cinzel",
     "tags": [
       "minimal",
@@ -262,12 +264,13 @@
       ],
       "selected": 2
     },
-    "status": "working"
+    "status": "working",
+    "refind": true
   },
   {
     "slug": "ben",
     "title": "Omnitrix",
-    "tagline": "Omnitrix artwork framing a horizontal form selector dock.",
+    "tagline": "Omnitrix artwork framing alien form selector (companion rEFInd dock available).",
     "background": "./ben/background_ui.png",
     "palette": [
       "#0a3a55",
@@ -276,7 +279,7 @@
       "#caffaa"
     ],
     "layout": "ben",
-    "layoutLabel": "Omnitrix horizontal dock",
+    "layoutLabel": "Omnitrix terminal",
     "font": "VT323",
     "tags": [
       "cartoon",
@@ -296,7 +299,8 @@
       ],
       "selected": 0
     },
-    "status": "working"
+    "status": "working",
+    "refind": true
   },
   {
     "slug": "noir",

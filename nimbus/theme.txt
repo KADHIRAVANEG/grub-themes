@@ -4,7 +4,7 @@ desktop-image-scale-method: "crop"
 desktop-color: "#1a2438"
 
 + label {
-    top    = 70%
+    top    = 66%
     left   = 0
     width  = 100%
     align  = "center"
@@ -13,52 +13,31 @@ desktop-color: "#1a2438"
     font   = "Space Grotesk Regular 18"
 }
 
-+ label {
-    top    = 75%
-    left   = 28%
-    width  = 4%
-    align  = "center"
-    text   = "◄"
-    color  = "#9fbce6"
-    font   = "Space Grotesk Regular 18"
-}
-
 + boot_menu {
-    left                = 32%
-    top                 = 75%
-    width               = 36%
-    height              = 48
+    left                = 30%
+    top                 = 72%
+    width               = 40%
+    height              = 22%
     item_font           = "Space Grotesk Regular 18"
     item_color          = "#dbe7ff"
     selected_item_color = "#ffffff"
-    item_height         = 48
-    item_padding        = 16
-    item_spacing        = 0
-    menu_pixmap_style   = "menu/menu_*.png"
+    item_height         = 44
+    item_padding        = 12
+    item_spacing        = 4
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar           = false
 }
 
-+ label {
-    top    = 75%
-    left   = 68%
-    width  = 4%
-    align  = "center"
-    text   = "►"
-    color  = "#9fbce6"
-    font   = "Space Grotesk Regular 18"
-}
-
 + progress_bar {
     id           = "__timeout__"
-    left         = 32%
-    top          = 83%
-    width        = 36%
+    left         = 30%
+    top          = 95%
+    width        = 40%
     height       = 3
     fg_color     = "#cfe1ff"
     bg_color     = "#2a3548"
     border_color = "#9fbce6"
-    text_color   = "#cfe1ff"
+    text_color   = "#9fbce6"
     text         = "@TIMEOUT_NOTIFICATION_SHORT@"
     font         = "Space Grotesk Regular 18"
 }

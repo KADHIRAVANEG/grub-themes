@@ -642,3 +642,34 @@ code { font-family: var(--mono); font-size: 0.92em; }
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
+
+/* ── Dual Engine Notes (GRUB vs rEFInd) ─────────────────────────────────── */
+.refind-callout {
+  margin: 12px 0 16px;
+  padding: 10px 14px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #cfefff;
+  line-height: 1.5;
+}
+
+.refind-callout code {
+  color: var(--accent);
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.dual-engine-note {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(255, 184, 107, 0.08);
+  border-left: 3px solid #ffb86b;
+  border-radius: 0 6px 6px 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}

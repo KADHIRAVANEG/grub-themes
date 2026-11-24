@@ -324,6 +324,17 @@ async function openModal(slug) {
   $("[data-field=tagline]", modal).textContent = theme.tagline;
   $("[data-field=cmd]", modal).textContent = `sudo ./install.sh ${theme.slug}`;
 
+  const refindEl = $("#modal-refind-note", modal);
+  if (refindEl) {
+    if (theme.refind) {
+      refindEl.style.display = "block";
+      refindEl.innerHTML = `💡 <b>rEFInd Companion Available:</b> Prefer a native UEFI horizontal icon dock (<b>←</b> / <b>→</b>) instead of vertical GRUB? Install with: <code>sudo ./install.sh -r ${escapeHtml(theme.slug)}</code>`;
+    } else {
+      refindEl.style.display = "none";
+      refindEl.innerHTML = "";
+    }
+  }
+
   simulatorState.theme = theme;
   simulatorState.selected = theme.menu.selected || 0;
   simulatorState.timerSeconds = 10;

@@ -73,8 +73,12 @@ sudo ./install.sh                <span class="cmt"># interactive dropdown</span>
 sudo ./install.sh miku           <span class="cmt"># pick directly by slug</span>
 sudo ./install.sh -t 10          <span class="cmt"># set boot timeout to 10 seconds</span>
 sudo ./install.sh -t 10 miku     <span class="cmt"># set timeout AND install theme</span>
+sudo ./install.sh -r nimbus      <span class="cmt"># install rEFInd companion (native horizontal dock)</span>
 sudo ./install.sh -l             <span class="cmt"># list themes</span>
 sudo ./install.sh -u             <span class="cmt"># restore previous config</span></code></pre>
+        <div class="dual-engine-note">
+          <p>💡 <b>Note on Bootloader Navigation:</b> GNU GRUB2 natively renders vertical boot menus (<b>↑</b> / <b>↓</b>) across all Linux distros, Legacy BIOS, and UEFI. For modern UEFI systems desiring a native horizontal icon dock (<b>←</b> / <b>→</b>), companion rEFInd themes are included for select themes via <code>sudo ./install.sh -r &lt;theme&gt;</code>.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -103,6 +107,7 @@ sudo ./install.sh -u             <span class="cmt"># restore previous config</sp
       </div>
       <div class="modal-body">
         <p data-field="tagline"></p>
+        <div id="modal-refind-note" class="refind-callout" style="display:none"></div>
         <h4>Install just this theme</h4>
         <pre class="block"><code data-field="cmd"></code></pre>
         <h4>theme.txt</h4>

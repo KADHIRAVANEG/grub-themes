@@ -2,58 +2,27 @@ title-text:    ""
 desktop-image: "background_ui.png"
 desktop-color: "#2a1408"
 
-+ label {
-    top    = 38%
-    left   = 5%
-    width  = 37%
-    align  = "center"
-    text   = "PUMP 04 · SELECT FUEL"
-    color  = "#ffb86b"
-    font   = "DotGothic16 Regular 24"
-}
-
-+ label {
-    top    = 46%
-    left   = 2%
-    width  = 3%
-    align  = "center"
-    text   = "◄"
-    color  = "#ff7a18"
-    font   = "DotGothic16 Regular 24"
-}
-
 + boot_menu {
-    left                       = 5%
-    top                        = 46%
-    width                      = 37%
-    height                     = 64
+    left                       = 6%
+    top                        = 45%
+    width                      = 35%
+    height                     = 36%
     item_font                  = "DotGothic16 Regular 24"
     item_color                 = "#ffe2c2"
     selected_item_color        = "#ffffff"
-    item_height                = 64
-    item_padding               = 18
-    item_spacing               = 0
-    menu_pixmap_style          = "box/box_*.png"
+    item_height                = 60
+    item_padding               = 12
+    item_spacing               = 8
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar                  = false
 }
 
-+ label {
-    top    = 46%
-    left   = 42%
-    width  = 3%
-    align  = "center"
-    text   = "►"
-    color  = "#ff7a18"
-    font   = "DotGothic16 Regular 24"
-}
-
 + progress_bar {
     id           = "__timeout__"
-    left         = 5%
-    top          = 58%
-    width        = 37%
-    height       = 4
+    left         = 6%
+    top          = 82%
+    width        = 35%
+    height       = 6
     fg_color     = "#ff7a18"
     bg_color     = "#1a0a04"
     border_color = "#ffb86b"

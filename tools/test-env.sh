@@ -86,15 +86,55 @@ cmd_qemu() {
 
   info "Building standalone GRUB rescue ISO for theme '$theme'..."
   mkdir -p "$tmp_dir/boot/grub/themes/$theme"
+  mkdir -p "$tmp_dir/boot/grub/fonts"
   cp -rL "$theme/." "$tmp_dir/boot/grub/themes/$theme/"
 
+  for f in /usr/share/grub/unicode.pf2 /usr/share/grub/*.pf2; do
+    if [[ -f "$f" ]]; then
+      cp "$f" "$tmp_dir/boot/grub/fonts/unicode.pf2"
+      break
+    fi
+  done
+
   cat << EOF > "$tmp_dir/boot/grub/grub.cfg"
+function load_video {
+  if [ x\$feature_all_video_module = xy ]; then
+    insmod all_video
+  else
+    insmod efi_gop
+    insmod ieee1275_fb
+    insmod vbe
+    insmod vga
+    insmod video_bochs
+    insmod video_cirrus
+  fi
+}
+
+load_video
+insmod gfxterm
+insmod png
+insmod jpeg
+insmod gfxmenu
+
+set gfxmode=1920x1080,1024x768,auto
+set gfxpayload=keep
+
+if [ -f /boot/grub/fonts/unicode.pf2 ]; then
+  loadfont /boot/grub/fonts/unicode.pf2
+fi
+EOF
+
+  find "$tmp_dir/boot/grub/themes/$theme" -type f -name "*.pf2" | while read -r font_file; do
+    rel_path="${font_file#"$tmp_dir"}"
+    echo "loadfont $rel_path" >> "$tmp_dir/boot/grub/grub.cfg"
+  done
+
+  cat << EOF >> "$tmp_dir/boot/grub/grub.cfg"
+set theme=/boot/grub/themes/$theme/theme.txt
+terminal_output gfxterm
+
 set timeout=15
 set timeout_style=menu
-set gfxmode=auto
-set gfxpayload=keep
-terminal_output gfxterm
-set theme=/boot/grub/themes/$theme/theme.txt
 
 menuentry "Arch Linux (Test Entry)" {
     echo "Booting Arch Linux..."

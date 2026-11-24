@@ -43,13 +43,13 @@ c_cya='\033[1;36m'; c_dim='\033[2m';    c_rst='\033[0m'
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
-die()  { printf "${c_red}error:${c_rst} %s\n" "$*" >&2; exit 1; }
-info() { printf "${c_cya}::${c_rst} %s\n" "$*"; }
-ok()   { printf "${c_grn}✓${c_rst} %s\n" "$*"; }
-warn() { printf "${c_ylw}!${c_rst} %s\n" "$*"; }
+die()  { printf "%b %s\n" "${c_red}error:${c_rst}" "$*" >&2; exit 1; }
+info() { printf "%b %s\n" "${c_cya}::${c_rst}" "$*"; }
+ok()   { printf "%b %s\n" "${c_grn}✓${c_rst}" "$*"; }
+warn() { printf "%b %s\n" "${c_ylw}!${c_rst}" "$*"; }
 
 require_root() {
-  [[ "$(id -u)" -eq 0 ]] || die "must be run as root — try: sudo $0 $*"
+  [[ "$(id -u)" -eq 0 ]] || die "must be run as root — try: sudo $0"
 }
 
 # ── Cleanup trap ─────────────────────────────────────────────────────────────
@@ -250,7 +250,7 @@ uninstall() {
     local theme removed=0
     while IFS= read -r theme; do
       if [[ -d "$THEMES_DST/$theme" ]]; then
-        rm -rf -- "$THEMES_DST/$theme"
+        rm -rf -- "${THEMES_DST:?}/${theme:?}"
         ok "removed $THEMES_DST/$theme"
         removed=1
       fi
@@ -274,15 +274,15 @@ interactive_pick() {
   while IFS= read -r line; do themes+=("$line"); done < <(list_themes)
   [[ "${#themes[@]}" -gt 0 ]] || die "no themes found in $THEMES_SRC"
 
-  printf "\n${c_cya}Gorgeous GRUB${c_rst} — pick a theme:\n"
-  printf "${c_dim}Preview every theme at: https://joker-53.github.io/grub-themes/${c_rst}\n\n"
+  printf "\n%bGorgeous GRUB%b — pick a theme:\n" "$c_cya" "$c_rst"
+  printf "%bPreview every theme at: https://kadhiravaneg.github.io/grub-themes/%b\n\n" "$c_dim" "$c_rst"
 
   local i=1
   for t in "${themes[@]}"; do
-    printf "  ${c_ylw}%2d${c_rst})  %s\n" "$i" "$t"
+    printf "  %b%2d%b)  %s\n" "$c_ylw" "$i" "$c_rst" "$t"
     (( i++ ))
   done
-  printf "  ${c_ylw} q${c_rst})  quit\n\n"
+  printf "  %b q%b)  quit\n\n" "$c_ylw" "$c_rst"
 
   local choice
   read -rp "  selection [1-${#themes[@]}]: " choice
@@ -310,7 +310,11 @@ main() {
         BOOT_TIMEOUT="$2"
         shift 2
         # remaining arg is theme name or empty for interactive
-        [[ -n "${1:-}" ]] && install_theme "$1" || interactive_pick
+        if [[ -n "${1:-}" ]]; then
+          install_theme "$1"
+        else
+          interactive_pick
+        fi
         ;;
     -l|--list)      list_themes ;;
     -u|--uninstall) uninstall "${2:-}" ;;

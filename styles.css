@@ -547,3 +547,98 @@ code { font-family: var(--mono); font-size: 0.92em; }
   padding: 8px 18px; border-radius: 4px;
   background: rgba(255,122,24,0.06);
 }
+
+/* ── Interactive Simulator Styles ────────────────────────────────────────── */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 11px;
+}
+
+.test-drive-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin: 10px 22px 14px;
+  gap: 12px;
+}
+
+.test-drive-hints {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.test-drive-hints b {
+  color: var(--accent);
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.simulator-wrap {
+  position: relative;
+  outline: none;
+}
+
+.simulator-wrap:focus {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+#sim-viewport:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  cursor: none;
+}
+
+#sim-viewport:fullscreen .actual-screen {
+  width: 100vw;
+  height: 56.25vw;
+  max-height: 100vh;
+  max-width: 177.78vh;
+  border-radius: 0;
+}
+
+.boot-screen-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 32px;
+  font-family: var(--mono);
+}
+
+.boot-terminal {
+  color: #ededed;
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+.boot-line {
+  margin: 0 0 4px;
+}
+
+.boot-cursor {
+  animation: sim-blink 0.8s infinite;
+  display: inline-block;
+  color: var(--accent);
+}
+
+@keyframes sim-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

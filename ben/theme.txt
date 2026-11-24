@@ -2,25 +2,57 @@ title-text:    ""
 desktop-image: "background_ui.png"
 desktop-color: "#0a3a55"
 
++ label {
+    top    = 42%
+    left   = 6%
+    width  = 36%
+    align  = "center"
+    text   = "OMNITRIX // SELECT FORM"
+    color  = "#7cff3a"
+    font   = "VT323 Regular 28"
+}
+
++ label {
+    top    = 48%
+    left   = 2%
+    width  = 4%
+    align  = "center"
+    text   = "◄"
+    color  = "#7cff3a"
+    font   = "VT323 Regular 28"
+}
+
 + boot_menu {
-    left                       = 5%
-    top                        = 20%
-    width                      = 30%
-    height                     = 50%
+    left                       = 6%
+    top                        = 48%
+    width                      = 36%
+    height                     = 60
     item_font                  = "VT323 Regular 28"
     item_color                 = "#caffaa"
     selected_item_color        = "#000000"
-    item_height                = 80
-    item_padding               = 14
+    item_height                = 60
+    item_padding               = 16
     item_spacing               = 0
+    menu_pixmap_style          = "box/box_*.png"
     selected_item_pixmap_style = "box/sel_*.png"
     scrollbar                  = false
 }
+
++ label {
+    top    = 48%
+    left   = 42%
+    width  = 4%
+    align  = "center"
+    text   = "►"
+    color  = "#7cff3a"
+    font   = "VT323 Regular 28"
+}
+
 + progress_bar {
     id           = "__timeout__"
-    left         = 5%
-    top          = 97%
-    width        = 30%
+    left         = 6%
+    top          = 58%
+    width        = 36%
     height       = 5
     fg_color     = "#7cff3a"
     bg_color     = "#041a0a"

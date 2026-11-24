@@ -44,7 +44,7 @@ desktop-color: "#000000"
 + progress_bar {
  id = "__timeout__"
  left = 5%
- bottom = 5%
+ top = 95%
  width = 40%
  height = 2
  fg_color = "#ededed"

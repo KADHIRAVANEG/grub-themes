@@ -61,10 +61,11 @@ _INSTALL_NEW=""
 _INSTALL_OLD=""
 _INSTALL_SWAPPED=0
 _GRUB_CONFIG_SNAPSHOT=""
+_GRUB_CFG_SNAPSHOT=""
 _cleanup() {
   local ec=$?
   if [[ $ec -ne 0 && -n "$_INSTALL_DST" ]]; then
-    warn "install failed — rolling back theme files"
+    warn "install failed — rolling back theme files and configuration"
     [[ -n "$_INSTALL_NEW" && -e "$_INSTALL_NEW" ]] && rm -rf -- "$_INSTALL_NEW"
     if (( _INSTALL_SWAPPED == 1 )); then
       [[ -e "$_INSTALL_DST" ]] && rm -rf -- "$_INSTALL_DST"
@@ -76,7 +77,13 @@ _cleanup() {
       cp -a -- "$_GRUB_CONFIG_SNAPSHOT" "$GRUB_DEFAULTS"
       rm -f -- "$_GRUB_CONFIG_SNAPSHOT"
     fi
+    if [[ -n "$_GRUB_CFG_SNAPSHOT" && -f "$_GRUB_CFG_SNAPSHOT" ]]; then
+      cp -a -- "$_GRUB_CFG_SNAPSHOT" "$GRUB_CFG"
+      rm -f -- "$_GRUB_CFG_SNAPSHOT"
+    fi
   fi
+  [[ -n "${_GRUB_CONFIG_SNAPSHOT:-}" && -f "$_GRUB_CONFIG_SNAPSHOT" ]] && rm -f -- "$_GRUB_CONFIG_SNAPSHOT"
+  [[ -n "${_GRUB_CFG_SNAPSHOT:-}" && -f "$_GRUB_CFG_SNAPSHOT" ]] && rm -f -- "$_GRUB_CFG_SNAPSHOT"
 }
 trap _cleanup EXIT
 
@@ -84,12 +91,12 @@ trap _cleanup EXIT
 
 list_themes() {
   [[ -d "$THEMES_SRC" ]] || die "themes source dir not found: $THEMES_SRC"
-  # A valid theme folder is any direct child of THEMES_SRC that contains theme.txt
-  # Uses POSIX-compatible find (no -printf) so it works on BusyBox / Alpine too
-  find "$THEMES_SRC" -mindepth 2 -maxdepth 2 -name "theme.txt" \
-    | sed 's|/theme\.txt$||' \
-    | xargs -I{} basename {} \
-    | sort -u
+  local dir
+  for dir in "$THEMES_SRC"/*; do
+    if [[ -d "$dir" && -f "$dir/theme.txt" ]]; then
+      basename "$dir"
+    fi
+  done | sort
 }
 
 # ── GRUB config regeneration ─────────────────────────────────────────────────
@@ -118,8 +125,10 @@ set_grub_var() {
   local key="$1" value="$2" file="$3"
   # Escape sed replacement specials in value string
   local esc; esc=$(printf '%s' "$value" | sed 's|[\\&|]|\\&|g')
-  if grep -qE "^[[:space:]]*#?[[:space:]]*${key}=" "$file"; then
-    sed -i -E "s|^[[:space:]]*#?[[:space:]]*${key}=.*|${key}=\"${esc}\"|" "$file"
+  if grep -qE "^[[:space:]]*${key}=" "$file"; then
+    sed -i -E "0,/^[[:space:]]*${key}=.*/s|^[[:space:]]*${key}=.*|${key}=\"${esc}\"|" "$file"
+  elif grep -qE "^[[:space:]]*#[[:space:]]*${key}=" "$file"; then
+    sed -i -E "0,/^[[:space:]]*#[[:space:]]*${key}=.*/s|^[[:space:]]*#[[:space:]]*${key}=.*|${key}=\"${esc}\"|" "$file"
   else
     printf '\n%s="%s"\n' "$key" "$value" >> "$file"
   fi
@@ -144,9 +153,9 @@ preflight_checks() {
   # 3. Disk space — compare theme folder size vs free space on /boot
   local required_kb available_kb
   required_kb=$(du -sk "$src_dir" | cut -f1)
-  # df -k on the destination parent (create it temporarily if needed)
+  # df -k -P on the destination parent (create it temporarily if needed)
   mkdir -p "$THEMES_DST"
-  available_kb=$(df -k "$THEMES_DST" | awk 'NR==2{print $4}')
+  available_kb=$(df -k -P "$THEMES_DST" | awk 'NR==2{print $4}')
   if (( required_kb > available_kb )); then
     die "/boot has insufficient space — need ~${required_kb} KB, only ${available_kb} KB free"
   fi
@@ -192,15 +201,18 @@ install_theme() {
   # Stage alongside the destination and retain the old copy until grub-mkconfig
   # succeeds, so an interrupted reinstall can be rolled back.
   local dst="$THEMES_DST/$theme"
-  local new_dst="$THEMES_DST/.gorgeous-${theme}.new.$$"
-  local old_dst="$THEMES_DST/.gorgeous-${theme}.old.$$"
+  local new_dst old_dst
+  new_dst=$(mktemp -d "${THEMES_DST}/.gorgeous-${theme}.new.XXXXXX")
+  old_dst=$(mktemp -u "${THEMES_DST}/.gorgeous-${theme}.old.XXXXXX")
   _INSTALL_DST="$dst"
   _INSTALL_NEW="$new_dst"
   _INSTALL_OLD=""
   _INSTALL_SWAPPED=0
 
   install -d -m 0755 "$new_dst"
-  cp -af "$src_dir/." "$new_dst/"
+  cp -rL "$src_dir/." "$new_dst/"
+  chown -R root:root "$new_dst"
+  chmod -R u=rwX,go=rX "$new_dst"
   [[ -s "$new_dst/theme.txt" ]] || die "copied theme failed validation"
   if [[ -e "$dst" ]]; then
     mv -- "$dst" "$old_dst"
@@ -211,14 +223,29 @@ install_theme() {
   _INSTALL_SWAPPED=1
   ok "installed theme assets → $dst"
 
-  # Update /etc/default/grub
-  _GRUB_CONFIG_SNAPSHOT="$GRUB_DEFAULTS.gorgeous.transaction.$$"
+  # Update /etc/default/grub with transaction snapshot
+  _GRUB_CONFIG_SNAPSHOT=$(mktemp "${GRUB_DEFAULTS}.gorgeous.snapshot.XXXXXX")
   cp -a -- "$GRUB_DEFAULTS" "$_GRUB_CONFIG_SNAPSHOT"
+
+  # Snapshot existing grub.cfg in case grub-mkconfig fails
+  if [[ -f "$GRUB_CFG" ]]; then
+    _GRUB_CFG_SNAPSHOT=$(mktemp "${GRUB_DIR}/.gorgeous-grub-cfg.snapshot.XXXXXX")
+    cp -a -- "$GRUB_CFG" "$_GRUB_CFG_SNAPSHOT"
+  fi
+
   set_grub_var GRUB_THEME            "$dst/theme.txt" "$GRUB_DEFAULTS"
-  set_grub_var GRUB_TIMEOUT          "${BOOT_TIMEOUT:-15}"    "$GRUB_DEFAULTS"
+  if [[ -n "${BOOT_TIMEOUT:-}" ]]; then
+    set_grub_var GRUB_TIMEOUT        "$BOOT_TIMEOUT"  "$GRUB_DEFAULTS"
+  fi
+  set_grub_var GRUB_TIMEOUT_STYLE    "menu"           "$GRUB_DEFAULTS"
   set_grub_var GRUB_GFXMODE         "auto"            "$GRUB_DEFAULTS"
   set_grub_var GRUB_GFXPAYLOAD_LINUX "keep"           "$GRUB_DEFAULTS"
   set_grub_var GRUB_TERMINAL_OUTPUT  "gfxterm"        "$GRUB_DEFAULTS"
+
+  if grep -qE '^[[:space:]]*GRUB_TERMINAL(=.*console|.*"console")' "$GRUB_DEFAULTS"; then
+    sed -i -E 's|^[[:space:]]*(GRUB_TERMINAL=.*console.*)|# \1 # disabled by Gorgeous GRUB for gfxterm|' "$GRUB_DEFAULTS"
+    info "commented out conflicting GRUB_TERMINAL=console in $GRUB_DEFAULTS"
+  fi
   ok "updated $GRUB_DEFAULTS"
 
   warn "GRUB_GFXMODE is set to 'auto'."
@@ -229,10 +256,12 @@ install_theme() {
   run_update_grub
   [[ -n "$_INSTALL_OLD" && -e "$_INSTALL_OLD" ]] && rm -rf -- "$_INSTALL_OLD"
   rm -f -- "$_GRUB_CONFIG_SNAPSHOT"
+  [[ -n "$_GRUB_CFG_SNAPSHOT" && -f "$_GRUB_CFG_SNAPSHOT" ]] && rm -f -- "$_GRUB_CFG_SNAPSHOT"
   _INSTALL_DST=""
   _INSTALL_OLD=""
   _INSTALL_SWAPPED=0
   _GRUB_CONFIG_SNAPSHOT=""
+  _GRUB_CFG_SNAPSHOT=""
   ok "theme '$theme' is active — reboot to see it!"
 }
 
@@ -241,10 +270,17 @@ install_theme() {
 uninstall() {
   local purge="${1:-}"
   require_root
-  [[ -f "$BACKUP" ]] || die "no backup found at $BACKUP — nothing to restore"
 
-  cp -a "$BACKUP" "$GRUB_DEFAULTS"
-  ok "restored $GRUB_DEFAULTS from backup"
+  if [[ -f "$BACKUP" ]]; then
+    cp -a "$BACKUP" "$GRUB_DEFAULTS"
+    ok "restored $GRUB_DEFAULTS from backup"
+  else
+    warn "no backup found at $BACKUP — surgically disabling Gorgeous GRUB settings"
+    if grep -qE "^[[:space:]]*GRUB_THEME=" "$GRUB_DEFAULTS"; then
+      sed -i -E 's|^[[:space:]]*(GRUB_THEME=.*)|# \1 # disabled by Gorgeous GRUB|' "$GRUB_DEFAULTS"
+      ok "disabled GRUB_THEME in $GRUB_DEFAULTS"
+    fi
+  fi
 
   if [[ "$purge" == "--purge" ]]; then
     local theme removed=0

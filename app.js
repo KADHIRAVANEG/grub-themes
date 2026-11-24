@@ -79,8 +79,9 @@ function styledBoxHtml(theme, pattern, x, y, width, height, edge = 8) {
     + image("sw", x, y + height - edge, edge, edge) + image("s", x + edge, y + height - edge, middleWidth, edge) + image("se", x + width - edge, y + height - edge, edge, edge);
 }
 
-function actualPreviewHtml(theme, lazy = false) {
-  const selected = Math.max(0, Math.min(theme.menu.selected || 0, theme.menu.entries.length - 1));
+function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progressRatio = 0.62) {
+  const selectedIndex = overrideSelected !== null ? overrideSelected : (theme.menu.selected || 0);
+  const selected = Math.max(0, Math.min(selectedIndex, theme.menu.entries.length - 1));
   const clipId = `menu-${theme.slug.replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const menuLayers = (theme.bootMenus || [theme.bootMenu]).map((menu, layerIndex) => {
     const left = grubCoordinate(menu.left, 1920);
@@ -134,7 +135,8 @@ function actualPreviewHtml(theme, lazy = false) {
     const barWidth = grubCoordinate(bar.width, 1920, 500);
     const barHeight = grubCoordinate(bar.height, 1080, 4);
     const barTop = bar.top ? grubCoordinate(bar.top, 1080) : 1080 - grubCoordinate(bar.bottom, 1080) - barHeight;
-    progress = `<rect x="${barLeft}" y="${barTop}" width="${barWidth}" height="${barHeight}" fill="${escapeHtml(bar.bg_color || "#000000")}" stroke="${escapeHtml(bar.border_color || "#ffffff")}" stroke-width="1"/><rect x="${barLeft}" y="${barTop}" width="${barWidth * 0.62}" height="${barHeight}" fill="${escapeHtml(bar.fg_color || "#ffffff")}"/>`;
+    const currentWidth = Math.max(0, Math.min(barWidth, barWidth * progressRatio));
+    progress = `<rect x="${barLeft}" y="${barTop}" width="${barWidth}" height="${barHeight}" fill="${escapeHtml(bar.bg_color || "#000000")}" stroke="${escapeHtml(bar.border_color || "#ffffff")}" stroke-width="1"/><rect x="${barLeft}" y="${barTop}" width="${currentWidth}" height="${barHeight}" fill="${escapeHtml(bar.fg_color || "#ffffff")}"/>`;
   }
   const desktopImage = theme.desktopImage.split("/").map(encodeURIComponent).join("/");
   return `<div class="actual-screen">
@@ -207,6 +209,112 @@ function renderGrid() {
   );
 }
 
+const simulatorState = {
+  theme: null,
+  selected: 0,
+  timerSeconds: 10,
+  timerInterval: null,
+  isBooted: false
+};
+
+function renderModalSimulation() {
+  const modal = $("#theme-modal");
+  const previewContainer = $("[data-field=preview]", modal);
+  if (!simulatorState.theme) return;
+
+  const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
+  const html = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio);
+
+  previewContainer.innerHTML = `
+    <div class="actual-preview-wrap simulator-wrap" id="sim-viewport" tabindex="0">
+      ${html}
+      ${simulatorState.isBooted ? `
+        <div class="boot-screen-overlay">
+          <div class="boot-terminal">
+            <p class="boot-line">Booting '${escapeHtml(simulatorState.theme.menu.entries[simulatorState.selected])}'...</p>
+            <p class="boot-line">Loading Linux linux...</p>
+            <p class="boot-line">Loading initial ramdisk...</p>
+            <p class="boot-line boot-cursor">_</p>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-reboot-sim" style="margin-top:20px;">↺ Reboot Test Drive</button>
+          </div>
+        </div>
+      ` : ""}
+    </div>
+  `;
+
+  const rebootBtn = $("#btn-reboot-sim", previewContainer);
+  if (rebootBtn) {
+    rebootBtn.addEventListener("click", () => {
+      simulatorState.isBooted = false;
+      simulatorState.timerSeconds = 10;
+      startSimulatorTimer();
+      renderModalSimulation();
+    });
+  }
+}
+
+function startSimulatorTimer() {
+  if (simulatorState.timerInterval) clearInterval(simulatorState.timerInterval);
+  simulatorState.timerInterval = setInterval(() => {
+    if (simulatorState.isBooted) return;
+    if (simulatorState.timerSeconds > 0) {
+      simulatorState.timerSeconds = Math.max(0, simulatorState.timerSeconds - 0.2);
+      renderModalSimulation();
+    } else {
+      stopSimulatorTimer();
+      simulatorState.isBooted = true;
+      renderModalSimulation();
+    }
+  }, 200);
+}
+
+function stopSimulatorTimer() {
+  if (simulatorState.timerInterval) {
+    clearInterval(simulatorState.timerInterval);
+    simulatorState.timerInterval = null;
+  }
+}
+
+function toggleFullscreenSimulator() {
+  const el = document.getElementById("sim-viewport");
+  if (!el) return;
+  if (!document.fullscreenElement) {
+    el.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+
+function handleSimulatorKey(e) {
+  const modal = $("#theme-modal");
+  if (!modal || (!modal.open && !modal.hasAttribute("open"))) return;
+  if (!simulatorState.theme || simulatorState.isBooted) return;
+
+  const entriesCount = simulatorState.theme.menu.entries.length;
+
+  if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+    e.preventDefault();
+    stopSimulatorTimer();
+    simulatorState.selected = (simulatorState.selected + 1) % entriesCount;
+    renderModalSimulation();
+  } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+    e.preventDefault();
+    stopSimulatorTimer();
+    simulatorState.selected = (simulatorState.selected - 1 + entriesCount) % entriesCount;
+    renderModalSimulation();
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    stopSimulatorTimer();
+    simulatorState.isBooted = true;
+    renderModalSimulation();
+  } else if (e.key === "f" || e.key === "F") {
+    if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      toggleFullscreenSimulator();
+    }
+  }
+}
+
 async function openModal(slug) {
   const theme = state.themes.find((t) => t.slug === slug);
   if (!theme) return;
@@ -215,10 +323,15 @@ async function openModal(slug) {
   $("[data-field=layout]", modal).textContent = `${theme.layoutLabel} · ${theme.font}`;
   $("[data-field=tagline]", modal).textContent = theme.tagline;
   $("[data-field=cmd]", modal).textContent = `sudo ./install.sh ${theme.slug}`;
-  $("[data-field=preview]", modal).innerHTML = `
-    <div class="actual-preview-wrap">${actualPreviewHtml(theme)}</div>`;
-  $("[data-field=preview]", modal).firstElementChild.dataset.slug = theme.slug;
-  $("[data-field=preview]", modal).firstElementChild.classList.add("card");
+
+  simulatorState.theme = theme;
+  simulatorState.selected = theme.menu.selected || 0;
+  simulatorState.timerSeconds = 10;
+  simulatorState.isBooted = false;
+
+  renderModalSimulation();
+  startSimulatorTimer();
+
   const txtEl = $("[data-field=theme-txt]", modal);
   txtEl.textContent = theme.themeText || "(theme.txt not found)";
   if (typeof modal.showModal === "function") modal.showModal();
@@ -229,10 +342,15 @@ function wireModal() {
   const modal = $("#theme-modal");
   modal.addEventListener("click", (e) => {
     if (e.target === modal || e.target.matches("[data-close]")) {
+      stopSimulatorTimer();
       if (typeof modal.close === "function") modal.close();
       else modal.removeAttribute("open");
     }
   });
+  modal.addEventListener("close", () => stopSimulatorTimer());
+  const driveBtn = $("#btn-fullscreen-drive");
+  if (driveBtn) driveBtn.addEventListener("click", toggleFullscreenSimulator);
+  window.addEventListener("keydown", handleSimulatorKey);
 }
 
 function wireSearch() {

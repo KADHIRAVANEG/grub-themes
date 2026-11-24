@@ -70,8 +70,10 @@ cmd_qemu() {
   [[ -n "$theme" ]] || die "usage: $0 qemu <theme-slug>"
   [[ -d "$theme" && -f "$theme/theme.txt" ]] || die "theme '$theme' not found"
 
-  command -v qemu-system-x86_64 >/dev/null 2>&1 || die "qemu-system-x86_64 is required for VM testing"
-  command -v grub-mkrescue >/dev/null 2>&1 || die "grub-mkrescue (from grub-pc-bin / xorriso) is required"
+  if ! command -v qemu-system-x86_64 >/dev/null 2>&1 || ! command -v xorriso >/dev/null 2>&1; then
+    die "VM testing requires QEMU and xorriso. Install them on Arch/CachyOS with:\n  sudo pacman -S qemu-system-x86 libisoburn"
+  fi
+  command -v grub-mkrescue >/dev/null 2>&1 || die "grub-mkrescue is required"
 
   local tmp_iso tmp_dir
   tmp_dir=$(mktemp -d)

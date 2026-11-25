@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JOKER53's GRUB</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0d14'/%3E%3Crect x='6' y='7' width='4' height='18' rx='1' fill='%23ff7a18'/%3E%3Cpath d='M15 21h11v3H15z' fill='%23e6ecf3'/%3E%3C/svg%3E" />
   <meta name="description" content="A curated collection of GRUB configurations and themes for Linux. Pick one, copy a single command, reboot beautifully." />
   <meta property="og:title" content="Gorgeous GRUB" />
   <meta property="og:description" content="Hand-crafted GRUB2 boot menu themes with a one-command installer." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=VT323&family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=Major+Mono+Display&family=Share+Tech+Mono&family=Cinzel:wght@600;800&family=DotGothic16&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=3" />
+  <link rel="stylesheet" href="./styles.css?v=4" />
 </head>
 <body>
   <header class="site-header">
@@ -52,7 +53,7 @@
     <section id="themes" class="themes">
       <div class="wrap">
         <div class="filter-bar">
-          <input id="search" type="search" class="search" placeholder="grep configs..." autocomplete="off" />
+          <input id="search" type="search" class="search" placeholder="grep configs... (press /)" autocomplete="off" />
           <div class="tags" id="tags"></div>
         </div>
 
@@ -102,21 +103,24 @@ sudo ./install.sh -u             <span class="cmt"># restore previous config</sp
       </header>
       <div class="modal-preview" data-field="preview"></div>
       <div class="test-drive-bar">
-        <button type="button" class="btn btn-primary btn-sm" id="btn-fullscreen-drive">⛶ Test Drive Fullscreen (Press F)</button>
-        <span class="test-drive-hints">Use <b>↑</b> <b>↓</b> / <b>◄</b> <b>►</b> arrows to test · <b>Enter</b> to boot · <b>Esc</b> to close</span>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-fullscreen-drive">⛶ Fullscreen (F)</button>
+        <span class="test-drive-hints">Use <b>↑</b> <b>↓</b> or click entry · <b>Enter</b> to boot · <b>Esc</b> to exit</span>
       </div>
       <div class="modal-body">
         <p data-field="tagline"></p>
         <div id="modal-refind-note" class="refind-callout" style="display:none"></div>
         <h4>Install just this theme</h4>
-        <pre class="block"><code data-field="cmd"></code></pre>
+        <div class="cmd-row">
+          <pre class="block"><code data-field="cmd"></code></pre>
+          <button type="button" class="btn btn-ghost btn-sm btn-copy" id="btn-copy-cmd">Copy</button>
+        </div>
         <h4>theme.txt</h4>
         <pre class="block theme-txt"><code data-field="theme-txt">Loading…</code></pre>
       </div>
     </article>
   </dialog>
 
-  <script src="./catalog.generated.js?v=3"></script>
-  <script src="./app.js?v=3"></script>
+  <script src="./catalog.generated.js?v=4"></script>
+  <script src="./app.js?v=4"></script>
 </body>
 </html>

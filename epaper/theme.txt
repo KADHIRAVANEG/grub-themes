@@ -1,0 +1,35 @@
+title-text: ""
+desktop-image: "background.png"
+desktop-image-scale-method: "stretch"
+desktop-color: "#E9E7E0"
+
++ boot_menu {
+  left = 6%
+  top = 34%
+  width = 52%
+  height = 44%
+  item_font = "Space Grotesk Regular 20"
+  item_color = "#181817"
+  selected_item_color = "#E9E7E0"
+  item_height = 60
+  item_padding = 8
+  item_spacing = 12
+  menu_pixmap_style = "box/frame_*.png"
+  item_pixmap_style = "box/item_*.png"
+  selected_item_pixmap_style = "box/sel_*.png"
+  scrollbar = false
+}
+
++ progress_bar {
+  id = "__timeout__"
+  left = 7%
+  top = 82%
+  width = 50%
+  height = 8
+  fg_color = "#181817"
+  bg_color = "#D6D3CA"
+  border_color = "#181817"
+  text_color = "#181817"
+  text = ""
+  font = "IBM Plex Mono Regular 16"
+}

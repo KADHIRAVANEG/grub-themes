@@ -753,5 +753,41 @@ window.GRUB_THEME_CATALOG = [
     },
     "status": "working",
     "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F7F9FF\"\n\n+ boot_menu {\n  left = 7%\n  top = 34%\n  width = 48%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0B132B\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 10\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 6%\n  top = 81%\n  width = 50%\n  height = 8\n  fg_color = \"#0254EC\"\n  bg_color = \"#E2E9F8\"\n  border_color = \"#CBD8F5\"\n  text_color = \"#0B132B\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "epaper",
+    "title": "E-Paper",
+    "tagline": "Matte monochrome EPD reader — warm e-ink paper, inverted ink selector, and ridge engraving.",
+    "background": "./epaper/background.png",
+    "palette": [
+      "#e9e7e0",
+      "#181817",
+      "#c4c1b8",
+      "#66645e"
+    ],
+    "layout": "epaper",
+    "layoutLabel": "E-Paper folio",
+    "font": "Space Grotesk",
+    "tags": [
+      "epaper",
+      "eink",
+      "monochrome",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "SECTION 01 // Boot Index",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#E9E7E0\"\n\n+ boot_menu {\n  left = 6%\n  top = 34%\n  width = 52%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#181817\"\n  selected_item_color = \"#E9E7E0\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 7%\n  top = 82%\n  width = 50%\n  height = 8\n  fg_color = \"#181817\"\n  bg_color = \"#D6D3CA\"\n  border_color = \"#181817\"\n  text_color = \"#181817\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
   }
 ];

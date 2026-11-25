@@ -726,5 +726,40 @@
       "selected": 0
     },
     "status": "working"
+  },
+  {
+    "slug": "epaper",
+    "title": "E-Paper",
+    "tagline": "Matte monochrome EPD reader — warm e-ink paper, inverted ink selector, and ridge engraving.",
+    "background": "./epaper/background.png",
+    "palette": [
+      "#e9e7e0",
+      "#181817",
+      "#c4c1b8",
+      "#66645e"
+    ],
+    "layout": "epaper",
+    "layoutLabel": "E-Paper folio",
+    "font": "Space Grotesk",
+    "tags": [
+      "epaper",
+      "eink",
+      "monochrome",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "SECTION 01 // Boot Index",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working"
   }
 ]

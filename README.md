@@ -45,6 +45,7 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 20 | `thugs`       | Full-height afterlife terminal                              | ✅ |
 | 21 | `brutalist`   | Centered Swiss-Brutalist cream canvas & crimson selector    | ✅ |
 | 22 | `wiz`         | Cloud-white Wiz canvas, cobalt selector & wizard artwork    | ✅ |
+| 23 | `epaper`      | Matte monochrome EPD reader, inverted ink & ridge engraving | ✅ |
 
 ✅ = fully working (GRUB2 standard vertical) | 🔧 = maintenance (horizontal dock / rEFInd companion)
 

@@ -43,6 +43,7 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 18 | `whisky`      | Double-bordered vintage reserve card                        | ✅ |
 | 19 | `batman_city` | Low cinematic command strip                                 | ✅ |
 | 20 | `thugs`       | Full-height afterlife terminal                              | ✅ |
+| 21 | `brutalist`   | Neo-brutalist archival dossier grid with hard offset shadows | ✅ |
 
 ✅ = fully working (GRUB2 standard vertical) | 🔧 = maintenance (horizontal dock / rEFInd companion)
 

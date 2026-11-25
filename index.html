@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=VT323&family=Press+Start+2P&family=Orbitron:wght@500;700;900&family=Major+Mono+Display&family=Share+Tech+Mono&family=Cinzel:wght@600;800&family=DotGothic16&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=4" />
+  <link rel="stylesheet" href="./styles.css?v=5" />
 </head>
 <body>
   <header class="site-header">
@@ -103,8 +103,14 @@ sudo ./install.sh -u             <span class="cmt"># restore previous config</sp
       </header>
       <div class="modal-preview" data-field="preview"></div>
       <div class="test-drive-bar">
-        <button type="button" class="btn btn-primary btn-sm" id="btn-fullscreen-drive">⛶ Fullscreen (F)</button>
-        <span class="test-drive-hints">Use <b>↑</b> <b>↓</b> or click entry · <b>Enter</b> to boot · <b>Esc</b> to exit</span>
+        <div class="test-drive-controls">
+          <button type="button" class="btn btn-primary btn-sm" id="btn-fullscreen-drive">⛶ Fullscreen (F)</button>
+          <div class="engine-switch" id="engine-switch" style="display:none;" role="group" aria-label="Bootloader preview mode">
+            <button type="button" class="engine-btn active" data-engine="grub">GRUB2 Vertical (↑↓)</button>
+            <button type="button" class="engine-btn" data-engine="refind">rEFInd Dock (←→)</button>
+          </div>
+        </div>
+        <span class="test-drive-hints" data-field="hints">Use <b>↑</b> <b>↓</b> or click entry · <b>Enter</b> to boot · <b>Esc</b> to exit</span>
       </div>
       <div class="modal-body">
         <p data-field="tagline"></p>
@@ -114,13 +120,13 @@ sudo ./install.sh -u             <span class="cmt"># restore previous config</sp
           <pre class="block"><code data-field="cmd"></code></pre>
           <button type="button" class="btn btn-ghost btn-sm btn-copy" id="btn-copy-cmd">Copy</button>
         </div>
-        <h4>theme.txt</h4>
+        <h4 data-field="config-title">theme.txt</h4>
         <pre class="block theme-txt"><code data-field="theme-txt">Loading…</code></pre>
       </div>
     </article>
   </dialog>
 
-  <script src="./catalog.generated.js?v=4"></script>
-  <script src="./app.js?v=4"></script>
+  <script src="./catalog.generated.js?v=5"></script>
+  <script src="./app.js?v=5"></script>
 </body>
 </html>

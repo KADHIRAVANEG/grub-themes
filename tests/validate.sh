@@ -76,5 +76,17 @@ while IFS= read -r bad_slice; do
   errors=1
 done < <(find . -name "*.png.png" -o -name "*.jpg.jpg" 2>/dev/null)
 
+while IFS= read -r refind_conf; do
+  refind_banner="$(sed -nE 's/^[[:space:]]*banner[[:space:]]+themes\/([^[:space:]#]+).*/\1/p' "$refind_conf")"
+  if [[ -z "$refind_banner" || ! -f "$refind_banner" ]]; then
+    printf 'missing rEFInd banner asset: %s -> %s\n' "$refind_conf" "$refind_banner" >&2
+    errors=1
+  fi
+  case "$refind_banner" in
+    *.png) ;;
+    *) printf 'rEFInd banner must be PNG to avoid UEFI firmware JPEG decode artifacts: %s -> %s\n' "$refind_conf" "$refind_banner" >&2; errors=1 ;;
+  esac
+done < <(find . -mindepth 3 -maxdepth 3 -path '*/refind/theme.conf' | sort)
+
 (( errors == 0 ))
 printf 'All static installer, manifest, font, and GRUB theme asset checks passed.\n'

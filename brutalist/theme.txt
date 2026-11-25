@@ -4,16 +4,16 @@ desktop-image-scale-method: "stretch"
 desktop-color: "#F6F2E9"
 
 + boot_menu {
-  left = 5%
-  top = 37%
-  width = 56%
+  left = 14%
+  top = 34%
+  width = 72%
   height = 44%
   item_font = "Space Grotesk Regular 20"
   item_color = "#0A0A0A"
   selected_item_color = "#FFFFFF"
   item_height = 68
-  item_padding = 24
-  item_spacing = 12
+  item_padding = 8
+  item_spacing = 14
   menu_pixmap_style = "box/frame_*.png"
   item_pixmap_style = "box/item_*.png"
   selected_item_pixmap_style = "box/sel_*.png"
@@ -22,9 +22,9 @@ desktop-color: "#F6F2E9"
 
 + progress_bar {
   id = "__timeout__"
-  left = 5%
-  top = 87%
-  width = 56%
+  left = 15%
+  top = 84%
+  width = 70%
   height = 8
   fg_color = "#EF233C"
   bg_color = "#E4DDD0"

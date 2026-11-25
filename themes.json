@@ -692,5 +692,39 @@
       "selected": 0
     },
     "status": "working"
+  },
+  {
+    "slug": "wiz",
+    "title": "Wiz",
+    "tagline": "Bright cloud canvas inspired by Wiz — cobalt selectors, pink-blue line art, and coffee-sipping wizard illustration.",
+    "background": "./wiz/background.png",
+    "palette": [
+      "#f7f9ff",
+      "#0254ec",
+      "#f7c2ff",
+      "#0b132b"
+    ],
+    "layout": "wiz",
+    "layoutLabel": "Cloud graph",
+    "font": "Space Grotesk",
+    "tags": [
+      "wiz",
+      "cloud",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "wiz.boot // Secure Boot Everything",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working"
   }
 ]

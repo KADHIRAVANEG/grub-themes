@@ -789,5 +789,41 @@ window.GRUB_THEME_CATALOG = [
     },
     "status": "working",
     "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#E9E7E0\"\n\n+ boot_menu {\n  left = 6%\n  top = 34%\n  width = 52%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#181817\"\n  selected_item_color = \"#E9E7E0\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 7%\n  top = 82%\n  width = 50%\n  height = 8\n  fg_color = \"#181817\"\n  bg_color = \"#D6D3CA\"\n  border_color = \"#181817\"\n  text_color = \"#181817\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "blocks",
+    "title": "Blocks",
+    "tagline": "Dark slate coordinate pixel grid with a full-canvas pixelated world map and foreground geometric blocks.",
+    "background": "./blocks/background.png",
+    "palette": [
+      "#0e131b",
+      "#8b2df0",
+      "#c084fc",
+      "#7dd3fc"
+    ],
+    "layout": "blocks",
+    "layoutLabel": "Pixel grid",
+    "font": "IBM Plex Mono",
+    "tags": [
+      "blocks",
+      "pixel",
+      "grid",
+      "dark",
+      "minimal"
+    ],
+    "menu": {
+      "title": "/boot/grub/blocks",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#0E131B\"\n\n+ boot_menu {\n  left = 6%\n  top = 32%\n  width = 43%\n  height = 46%\n  item_font = \"IBM Plex Mono Regular 20\"\n  item_color = \"#D8E0EC\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 6%\n  top = 82%\n  width = 43%\n  height = 8\n  fg_color = \"#A855F7\"\n  bg_color = \"#1B2331\"\n  border_color = \"#2E3A4E\"\n  text_color = \"#D8E0EC\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
   }
 ];

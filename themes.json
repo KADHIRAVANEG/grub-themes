@@ -761,5 +761,40 @@
       "selected": 0
     },
     "status": "working"
+  },
+  {
+    "slug": "blocks",
+    "title": "Blocks",
+    "tagline": "Dark slate coordinate pixel grid with a full-canvas pixelated world map and foreground geometric blocks.",
+    "background": "./blocks/background.png",
+    "palette": [
+      "#0e131b",
+      "#8b2df0",
+      "#c084fc",
+      "#7dd3fc"
+    ],
+    "layout": "blocks",
+    "layoutLabel": "Pixel grid",
+    "font": "IBM Plex Mono",
+    "tags": [
+      "blocks",
+      "pixel",
+      "grid",
+      "dark",
+      "minimal"
+    ],
+    "menu": {
+      "title": "/boot/grub/blocks",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working"
   }
 ]

@@ -79,10 +79,11 @@ function styledBoxHtml(theme, pattern, x, y, width, height, edge = 8) {
     + image("sw", x, y + height - edge, edge, edge) + image("s", x + edge, y + height - edge, middleWidth, edge) + image("se", x + width - edge, y + height - edge, edge, edge);
 }
 
-function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progressRatio = 0.62) {
+function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progressRatio = 0.62, scope = "grid") {
   const selectedIndex = overrideSelected !== null ? overrideSelected : (theme.menu.selected || 0);
   const selected = Math.max(0, Math.min(selectedIndex, theme.menu.entries.length - 1));
-  const clipId = `menu-${theme.slug.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  const clipId = `menu-${scope}-${theme.slug.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  const isInteractive = scope === "sim";
   const menuLayers = (theme.bootMenus || [theme.bootMenu]).map((menu, layerIndex) => {
     const left = grubCoordinate(menu.left, 1920);
     const top = grubCoordinate(menu.top, 1080);
@@ -105,7 +106,10 @@ function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progres
     const rows = entriesToRender.map(({ entry, index, y }) => {
       const rowStyle = index === selected ? menu.selected_item_pixmap_style : menu.item_pixmap_style;
       const rowBox = styledBoxHtml(theme, rowStyle, left, y, width, itemHeight);
-      return `${rowBox}<text x="${left + padding}" y="${y + itemHeight * 0.67}" fill="${escapeHtml(index === selected ? selectedColor : normalColor)}" font-family="${escapeHtml(fontFamily)}, monospace" font-size="${fontSize}">${escapeHtml(entry)}</text>`;
+      const hitTarget = isInteractive
+        ? `<rect data-entry-index="${index}" x="${left}" y="${y}" width="${width}" height="${itemHeight}" fill="transparent" style="cursor:pointer"/>`
+        : "";
+      return `${rowBox}<text x="${left + padding}" y="${y + itemHeight * 0.67}" fill="${escapeHtml(index === selected ? selectedColor : normalColor)}" font-family="${escapeHtml(fontFamily)}, monospace" font-size="${fontSize}">${escapeHtml(entry)}</text>${hitTarget}`;
     }).join("");
     const frame = styledBoxHtml(theme, menu.menu_pixmap_style, left, top, width, height);
     return `${frame}<g clip-path="url(#${clipId}-${layerIndex})">${rows}</g><clipPath id="${clipId}-${layerIndex}"><rect x="${left}" y="${top}" width="${width}" height="${height}"/></clipPath>`;
@@ -140,7 +144,7 @@ function actualPreviewHtml(theme, lazy = false, overrideSelected = null, progres
   }
   const desktopImage = theme.desktopImage.split("/").map(encodeURIComponent).join("/");
   return `<div class="actual-screen">
-    <img class="actual-preview scale-${escapeHtml(theme.desktopScaleMethod)}" src="./${encodeURIComponent(theme.slug)}/${desktopImage}" alt="${escapeHtml(theme.title)} GRUB boot screen preview"${lazy ? ' loading="lazy"' : ""}>
+    <img class="actual-preview scale-${escapeHtml(theme.desktopScaleMethod)}" src="./${encodeURIComponent(theme.slug)}/${desktopImage}" alt="${escapeHtml(theme.title)} GRUB boot screen preview" decoding="async"${lazy ? ' loading="lazy"' : ""}>
     <svg class="actual-menu" viewBox="0 0 1920 1080" aria-hidden="true">
       ${imageLayers}${menuLayers}${labels}${progress}
     </svg>
@@ -188,25 +192,45 @@ function renderGrid() {
   const items = filtered();
   const grid = $("#theme-grid");
   if (!items.length) {
-    grid.innerHTML = `<p class="loading">No configs match. Try clearing the filter.</p>`;
+    grid.innerHTML = `<div class="empty-state"><span>No configs match current filter or query.</span><button type="button" class="btn btn-ghost btn-sm" id="btn-clear-filters">Clear filters</button></div>`;
+    const clearBtn = $("#btn-clear-filters", grid);
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        state.filter = "all";
+        state.query = "";
+        const search = $("#search");
+        if (search) search.value = "";
+        renderTags();
+        renderGrid();
+      });
+    }
     return;
   }
   grid.innerHTML = items.map((t) => {
     const num = String(state.themes.indexOf(t) + 1).padStart(2, "0");
     const escapedSlug = escapeHtml(t.slug);
     return `
-      <article class="card${t.status === "maintenance" ? " card-maintenance" : ""}" data-slug="${escapedSlug}">
-        <p class="card-head">${num} // <b>${escapeHtml(t.title.toUpperCase())}</b></p>
-        <div class="card-preview">${actualPreviewHtml(t, true)}</div>
+      <article class="card${t.status === "maintenance" ? " card-maintenance" : ""}" data-slug="${escapedSlug}" tabindex="0" role="button" aria-label="Preview ${escapeHtml(t.title)} theme">
+        <div class="card-head">
+          <span>${num} // <b>${escapeHtml(t.title.toUpperCase())}</b></span>
+          ${t.status === "maintenance" ? statusBadge(t) : ""}
+        </div>
+        <div class="card-preview">${actualPreviewHtml(t, true, null, 0.62, "grid")}</div>
         <div class="card-meta">
-          <span class="name">${escapeHtml(t.tagline)} ${t.status === "maintenance" ? statusBadge(t) : ""}</span>
+          <span class="name">${escapeHtml(t.tagline)}</span>
           <span class="cmd">sudo ./install.sh ${escapedSlug}</span>
         </div>
       </article>`;
   }).join("");
-  $$(".card", grid).forEach((card) =>
-    card.addEventListener("click", () => openModal(card.dataset.slug))
-  );
+  $$(".card", grid).forEach((card) => {
+    card.addEventListener("click", () => openModal(card.dataset.slug));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(card.dataset.slug);
+      }
+    });
+  });
 }
 
 const simulatorState = {
@@ -223,7 +247,7 @@ function mountSimulator() {
   if (!simulatorState.theme) return;
 
   const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
-  const html = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio);
+  const html = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio, "sim");
 
   previewContainer.innerHTML = `
     <div class="actual-preview-wrap simulator-wrap" id="sim-viewport" tabindex="0">
@@ -262,13 +286,26 @@ function mountSimulator() {
       exitFullscreenSimulator();
     });
   }
+
+  const screenContainer = $("#sim-screen-container", previewContainer);
+  if (screenContainer) {
+    screenContainer.addEventListener("click", (e) => {
+      const target = e.target.closest("[data-entry-index]");
+      if (!target || simulatorState.isBooted) return;
+      const nextIndex = Number.parseInt(target.dataset.entryIndex, 10);
+      if (Number.isNaN(nextIndex)) return;
+      stopSimulatorTimer();
+      simulatorState.selected = nextIndex;
+      updateSimulatorScreen();
+    });
+  }
 }
 
 function updateSimulatorScreen() {
   const screenContainer = document.getElementById("sim-screen-container");
   if (!screenContainer || !simulatorState.theme) return;
   const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
-  screenContainer.innerHTML = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio);
+  screenContainer.innerHTML = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio, "sim");
 }
 
 function updateSimulatorTimerTick() {
@@ -331,10 +368,10 @@ function updateFullscreenButtonState() {
   if (!btn) return;
   const isFs = isSimulatorFullscreen();
   if (isFs) {
-    btn.textContent = "✕ Exit Fullscreen (Esc / F)";
+    btn.textContent = "✕ Exit Fullscreen (F)";
     btn.classList.add("btn-active-fs");
   } else {
-    btn.textContent = "⛶ Test Drive Fullscreen (Press F)";
+    btn.textContent = "⛶ Fullscreen (F)";
     btn.classList.remove("btn-active-fs");
   }
 }
@@ -486,21 +523,75 @@ function wireModal() {
       else modal.removeAttribute("open");
     }
   });
+  modal.addEventListener("cancel", (e) => {
+    if (isSimulatorFullscreen()) {
+      e.preventDefault();
+      exitFullscreenSimulator();
+    }
+  });
   modal.addEventListener("close", () => {
     exitFullscreenSimulator();
     stopSimulatorTimer();
   });
   const driveBtn = $("#btn-fullscreen-drive");
   if (driveBtn) driveBtn.addEventListener("click", toggleFullscreenSimulator);
+  const copyBtn = $("#btn-copy-cmd");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const cmdText = $("[data-field=cmd]", modal)?.textContent || "";
+      if (!cmdText) return;
+      try {
+        await navigator.clipboard.writeText(cmdText);
+      } catch {
+        const tmp = document.createElement("textarea");
+        tmp.value = cmdText;
+        tmp.setAttribute("readonly", "");
+        tmp.style.position = "fixed";
+        tmp.style.opacity = "0";
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand("copy");
+        tmp.remove();
+      }
+      copyBtn.textContent = "✓ Copied";
+      setTimeout(() => { copyBtn.textContent = "Copy"; }, 1400);
+    });
+  }
   window.addEventListener("keydown", handleSimulatorKey);
   document.addEventListener("fullscreenchange", updateFullscreenButtonState);
-  document.addEventListener("webkitfullscreenchange", updateFullscreenButtonState);
+  document.addEventListener("webkitfullscreenchange", () => {
+    const el = document.getElementById("sim-viewport");
+    if (el && document.webkitFullscreenElement === el && !document.fullscreenElement) {
+      el.classList.add("is-fullscreen-sim");
+    } else if (el && !document.webkitFullscreenElement && !document.fullscreenElement) {
+      el.classList.remove("is-fullscreen-sim");
+    }
+    updateFullscreenButtonState();
+  });
   document.addEventListener("mozfullscreenchange", updateFullscreenButtonState);
   document.addEventListener("MSFullscreenChange", updateFullscreenButtonState);
 }
 
 function wireSearch() {
-  $("#search").addEventListener("input", (e) => { state.query = e.target.value; renderGrid(); });
+  const search = $("#search");
+  search.addEventListener("input", (e) => { state.query = e.target.value; renderGrid(); });
+  search.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && search.value) {
+      e.preventDefault();
+      search.value = "";
+      state.query = "";
+      renderGrid();
+    }
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+    const modal = $("#theme-modal");
+    if (modal && (modal.open || modal.hasAttribute("open"))) return;
+    const tag = e.target?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    e.preventDefault();
+    search.focus();
+  });
 }
 
 function updateCtaCount() {

@@ -18,6 +18,10 @@ async function loadThemes() {
     const themeRes = await fetch(`./${encodeURIComponent(theme.slug)}/theme.txt`, { cache: "no-cache" });
     if (!themeRes.ok) throw new Error(`${theme.slug}/theme.txt returned HTTP ${themeRes.status}`);
     theme.themeText = await themeRes.text();
+    if (theme.refind) {
+      const refRes = await fetch(`./${encodeURIComponent(theme.slug)}/refind/theme.conf`, { cache: "no-cache" });
+      if (refRes.ok) theme.refindText = await refRes.text();
+    }
     hydrateThemeConfig(theme);
   }));
 }
@@ -61,6 +65,10 @@ function hydrateThemeConfig(theme) {
   theme.progressBar = parseComponent(theme.themeText, "progress_bar");
   theme.labels = parseComponents(theme.themeText, "label");
   theme.images = parseComponents(theme.themeText, "image");
+  if (theme.refindText) {
+    const banner = theme.refindText.match(/^\s*banner\s+themes\/[^/\s]+\/([^\s#]+)/m);
+    if (banner) theme.refindBanner = banner[1];
+  }
 }
 
 function grubCoordinate(value, total, fallback = 0) {
@@ -238,16 +246,103 @@ const simulatorState = {
   selected: 0,
   timerSeconds: 10,
   timerInterval: null,
-  isBooted: false
+  isBooted: false,
+  mode: "grub"
 };
+
+function refindIconSvg(label, cx, cy) {
+  const lower = label.toLowerCase();
+  if (lower.includes("win")) {
+    return `<g transform="translate(${cx - 46},${cy - 46})">
+      <rect x="6" y="10" width="38" height="36" fill="#00adef" rx="2"/>
+      <rect x="48" y="6" width="38" height="40" fill="#00adef" rx="2"/>
+      <rect x="6" y="50" width="38" height="36" fill="#00adef" rx="2"/>
+      <rect x="48" y="50" width="38" height="40" fill="#00adef" rx="2"/>
+    </g>`;
+  }
+  if (lower.includes("fedora") || lower.includes("heatblast") || lower.includes("whiskey")) {
+    return `<g transform="translate(${cx},${cy})">
+      <circle r="44" fill="#3c6eb4"/>
+      <path d="M-8,20 a18,18 0 1,1 18,-18 v16 a18,18 0 1,1 -18,-18" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+    </g>`;
+  }
+  if (lower.includes("ubuntu") || lower.includes("vodka") || lower.includes("deb")) {
+    return `<g transform="translate(${cx},${cy})">
+      <circle r="44" fill="#e95420"/>
+      <circle r="22" fill="none" stroke="#ffffff" stroke-width="8"/>
+      <circle cx="0" cy="-31" r="7" fill="#ffffff"/>
+      <circle cx="27" cy="15" r="7" fill="#ffffff"/>
+      <circle cx="-27" cy="15" r="7" fill="#ffffff"/>
+    </g>`;
+  }
+  if (lower.includes("bios") || lower.includes("uefi") || lower.includes("ghost") || lower.includes("gin")) {
+    return `<g transform="translate(${cx},${cy})">
+      <rect x="-34" y="-34" width="68" height="68" rx="8" fill="#ffb000"/>
+      <rect x="-18" y="-18" width="36" height="36" rx="4" fill="#182030"/>
+      <circle r="8" fill="#ffb000"/>
+    </g>`;
+  }
+  return `<g transform="translate(${cx},${cy})">
+    <path d="M0,-46 L14,-16 L42,42 L18,32 L8,10 L-8,10 L-18,32 L-42,42 L-14,-16 Z" fill="#1793d1"/>
+  </g>`;
+}
+
+function refindPreviewHtml(theme, overrideSelected = 0, timerSeconds = 10) {
+  const entries = (theme.menu?.entries || ["Arch Linux", "Fedora", "Ubuntu", "Windows"]).slice(0, 5);
+  const selected = Math.max(0, Math.min(overrideSelected, entries.length - 1));
+  const spacing = 190;
+  const startX = 960 - ((entries.length - 1) * spacing) / 2;
+  const iconY = 490;
+
+  const tiles = entries.map((entry, idx) => {
+    const cx = startX + idx * spacing;
+    const isSel = idx === selected;
+    const selBox = isSel
+      ? `<rect x="${cx - 72}" y="${iconY - 72}" width="144" height="144" rx="16" fill="rgba(255,255,255,0.20)" stroke="rgba(255,255,255,0.72)" stroke-width="2.5"/>`
+      : "";
+    return `${selBox}${refindIconSvg(entry, cx, iconY)}<rect data-entry-index="${idx}" x="${cx - 72}" y="${iconY - 72}" width="144" height="144" rx="16" fill="transparent" style="cursor:pointer"/>`;
+  }).join("");
+
+  const toolColors = ["#ff4a4a", "#f5df3b", "#ff9d2e", "#4b7cff"];
+  const tools = toolColors.map((col, idx) => {
+    const tx = 960 + (idx - 1.5) * 66;
+    return `<circle cx="${tx}" cy="640" r="18" fill="${col}" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>`;
+  }).join("");
+
+  const isLight = (theme.tags || []).includes("light");
+  const textFill = isLight ? "#141414" : "#f5f8ff";
+  const textShadow = isLight ? "" : ' style="text-shadow:0 2px 6px rgba(0,0,0,0.9)"';
+  const entryLabel = entries[selected] || "Arch Linux";
+  const bannerRel = (theme.refindBanner || theme.desktopImage).split("/").map(encodeURIComponent).join("/");
+  const timerLine = timerSeconds > 0
+    ? `Automatic boot in ${Math.ceil(timerSeconds)} seconds`
+    : "Boot timer paused";
+
+  return `<div class="actual-screen">
+    <img class="actual-preview scale-crop" src="./${encodeURIComponent(theme.slug)}/${bannerRel}" alt="${escapeHtml(theme.title)} rEFInd horizontal dock preview" decoding="async">
+    <svg class="actual-menu" viewBox="0 0 1920 1080" aria-hidden="true">
+      ${tiles}
+      ${tools}
+      <text x="960" y="726" text-anchor="middle" fill="${textFill}" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="600"${textShadow}>Boot ${escapeHtml(entryLabel)} via rEFInd UEFI</text>
+      <text id="sim-refind-timer" x="960" y="762" text-anchor="middle" fill="${textFill}" font-family="Space Grotesk, sans-serif" font-size="20" opacity="0.88"${textShadow}>${escapeHtml(timerLine)}</text>
+    </svg>
+  </div>`;
+}
+
+function simulatorPreviewHtml() {
+  const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
+  if (simulatorState.mode === "refind" && simulatorState.theme?.refind) {
+    return refindPreviewHtml(simulatorState.theme, simulatorState.selected, simulatorState.timerSeconds);
+  }
+  return actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio, "sim");
+}
 
 function mountSimulator() {
   const modal = $("#theme-modal");
   const previewContainer = $("[data-field=preview]", modal);
   if (!simulatorState.theme) return;
 
-  const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
-  const html = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio, "sim");
+  const html = simulatorPreviewHtml();
 
   previewContainer.innerHTML = `
     <div class="actual-preview-wrap simulator-wrap" id="sim-viewport" tabindex="0">
@@ -304,13 +399,20 @@ function mountSimulator() {
 function updateSimulatorScreen() {
   const screenContainer = document.getElementById("sim-screen-container");
   if (!screenContainer || !simulatorState.theme) return;
-  const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
-  screenContainer.innerHTML = actualPreviewHtml(simulatorState.theme, false, simulatorState.selected, ratio, "sim");
+  screenContainer.innerHTML = simulatorPreviewHtml();
 }
 
 function updateSimulatorTimerTick() {
   const viewport = document.getElementById("sim-viewport");
   if (!viewport || !simulatorState.theme || simulatorState.isBooted) return;
+
+  if (simulatorState.mode === "refind") {
+    const label = viewport.querySelector("#sim-refind-timer");
+    if (label) {
+      label.textContent = `Automatic boot in ${Math.max(1, Math.ceil(simulatorState.timerSeconds))} seconds`;
+    }
+    return;
+  }
 
   const bar = viewport.querySelector(".sim-progress-bar-fill");
   if (bar) {
@@ -318,6 +420,42 @@ function updateSimulatorTimerTick() {
     const ratio = Math.max(0, Math.min(1, simulatorState.timerSeconds / 10));
     bar.setAttribute("width", String(Math.max(0, Math.min(maxWidth, maxWidth * ratio))));
   }
+}
+
+function setSimulatorMode(mode) {
+  const theme = simulatorState.theme;
+  if (!theme) return;
+  const resolved = mode === "refind" && theme.refind ? "refind" : "grub";
+  simulatorState.mode = resolved;
+
+  const modal = $("#theme-modal");
+  $$(".engine-btn", modal).forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.engine === resolved);
+  });
+
+  const cmdEl = $("[data-field=cmd]", modal);
+  const cfgTitleEl = $("[data-field=config-title]", modal);
+  const txtEl = $("[data-field=theme-txt]", modal);
+  const hintsEl = $("[data-field=hints]", modal);
+
+  if (resolved === "refind") {
+    if (cmdEl) cmdEl.textContent = `sudo ./install.sh -r ${theme.slug}`;
+    if (cfgTitleEl) cfgTitleEl.textContent = "refind/theme.conf";
+    if (txtEl) txtEl.textContent = theme.refindText || "(refind/theme.conf not found)";
+    if (hintsEl) hintsEl.innerHTML = "Use <b>←</b> <b>→</b> or click OS icon · <b>Enter</b> to boot · <b>Esc</b> to exit";
+  } else {
+    if (cmdEl) cmdEl.textContent = `sudo ./install.sh ${theme.slug}`;
+    if (cfgTitleEl) cfgTitleEl.textContent = "theme.txt";
+    if (txtEl) txtEl.textContent = theme.themeText || "(theme.txt not found)";
+    if (hintsEl) hintsEl.innerHTML = "Use <b>↑</b> <b>↓</b> or click entry · <b>Enter</b> to boot · <b>Esc</b> to exit";
+  }
+
+  simulatorState.isBooted = false;
+  simulatorState.timerSeconds = 10;
+  const overlay = $("#sim-boot-overlay", modal);
+  if (overlay) overlay.style.display = "none";
+  updateSimulatorScreen();
+  startSimulatorTimer();
 }
 
 function startSimulatorTimer() {
@@ -442,7 +580,10 @@ function handleSimulatorKey(e) {
   if (!modal || (!modal.open && !modal.hasAttribute("open"))) return;
   if (!simulatorState.theme) return;
 
-  const entriesCount = simulatorState.theme.menu.entries.length;
+  const entryCount = simulatorState.mode === "refind"
+    ? Math.min(5, (simulatorState.theme.menu.entries || []).length || 4)
+    : simulatorState.theme.menu.entries.length;
+  const entriesCount = Math.max(1, entryCount);
 
   if (e.key === "f" || e.key === "F") {
     if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
@@ -488,10 +629,14 @@ async function openModal(slug) {
   $("[data-field=cmd]", modal).textContent = `sudo ./install.sh ${theme.slug}`;
 
   const refindEl = $("#modal-refind-note", modal);
+  const switchEl = $("#engine-switch", modal);
+  if (switchEl) {
+    switchEl.style.display = theme.refind ? "inline-flex" : "none";
+  }
   if (refindEl) {
     if (theme.refind) {
       refindEl.style.display = "block";
-      refindEl.innerHTML = `💡 <b>Layout &amp; Navigation:</b> In standard GRUB2, menus operate vertically (<code>↑</code> / <code>↓</code>). For a native horizontal icon dock with left/right navigation (<code>←</code> / <code>→</code>), install the companion rEFInd theme: <code>sudo ./install.sh -r ${escapeHtml(theme.slug)}</code>`;
+      refindEl.innerHTML = `💡 <b>Dual-Engine Theme:</b> Preview <b>GRUB2 Vertical</b> or toggle <b>rEFInd Dock (←→)</b> above to see the native UEFI horizontal icon dock installed by <code>sudo ./install.sh -r ${escapeHtml(theme.slug)}</code>.`;
     } else {
       refindEl.style.display = "none";
       refindEl.innerHTML = "";
@@ -502,13 +647,12 @@ async function openModal(slug) {
   simulatorState.selected = theme.menu.selected || 0;
   simulatorState.timerSeconds = 10;
   simulatorState.isBooted = false;
+  simulatorState.mode = "grub";
 
   mountSimulator();
-  startSimulatorTimer();
+  setSimulatorMode("grub");
   updateFullscreenButtonState();
 
-  const txtEl = $("[data-field=theme-txt]", modal);
-  txtEl.textContent = theme.themeText || "(theme.txt not found)";
   if (typeof modal.showModal === "function") modal.showModal();
   else modal.setAttribute("open", "");
 }
@@ -535,6 +679,9 @@ function wireModal() {
   });
   const driveBtn = $("#btn-fullscreen-drive");
   if (driveBtn) driveBtn.addEventListener("click", toggleFullscreenSimulator);
+  $$(".engine-btn", modal).forEach((btn) => {
+    btn.addEventListener("click", () => setSimulatorMode(btn.dataset.engine));
+  });
   const copyBtn = $("#btn-copy-cmd");
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {

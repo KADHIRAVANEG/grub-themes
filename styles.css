@@ -308,6 +308,47 @@ code { font-family: var(--mono); font-size: 0.92em; }
   gap: 10px 14px;
 }
 
+.test-drive-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.engine-switch {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 6px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.engine-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.engine-btn:hover {
+  color: var(--text);
+}
+
+.engine-btn.active {
+  background: rgba(0, 240, 255, 0.16);
+  color: #86f6ff;
+  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.4);
+}
+
 .test-drive-hints {
   font-family: var(--mono);
   font-size: 11px;

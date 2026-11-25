@@ -687,7 +687,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "brutalist",
     "title": "Brutalist",
-    "tagline": "Neo-brutalist dossier — cream archival grid, hard offset shadows, crimson controls.",
+    "tagline": "Centered Swiss-Brutalist cream canvas, hard offset shadows, crimson controls.",
     "background": "./brutalist/background.png",
     "palette": [
       "#f6f2e9",

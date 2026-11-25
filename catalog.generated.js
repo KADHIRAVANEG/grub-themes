@@ -718,5 +718,40 @@ window.GRUB_THEME_CATALOG = [
     },
     "status": "working",
     "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F6F2E9\"\n\n+ boot_menu {\n  left = 14%\n  top = 34%\n  width = 72%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0A0A0A\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 68\n  item_padding = 8\n  item_spacing = 14\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 15%\n  top = 84%\n  width = 70%\n  height = 8\n  fg_color = \"#EF233C\"\n  bg_color = \"#E4DDD0\"\n  border_color = \"#0A0A0A\"\n  text_color = \"#0A0A0A\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 18\"\n}\n"
+  },
+  {
+    "slug": "wiz",
+    "title": "Wiz",
+    "tagline": "Bright cloud canvas inspired by Wiz — cobalt selectors, pink-blue line art, and coffee-sipping wizard illustration.",
+    "background": "./wiz/background.png",
+    "palette": [
+      "#f7f9ff",
+      "#0254ec",
+      "#f7c2ff",
+      "#0b132b"
+    ],
+    "layout": "wiz",
+    "layoutLabel": "Cloud graph",
+    "font": "Space Grotesk",
+    "tags": [
+      "wiz",
+      "cloud",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "wiz.boot // Secure Boot Everything",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F7F9FF\"\n\n+ boot_menu {\n  left = 7%\n  top = 34%\n  width = 48%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0B132B\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 10\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 6%\n  top = 81%\n  width = 50%\n  height = 8\n  fg_color = \"#0254EC\"\n  bg_color = \"#E2E9F8\"\n  border_color = \"#CBD8F5\"\n  text_color = \"#0B132B\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
   }
 ];

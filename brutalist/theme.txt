@@ -5,15 +5,15 @@ desktop-color: "#F6F2E9"
 
 + boot_menu {
   left = 5%
-  top = 31%
-  width = 54%
+  top = 37%
+  width = 56%
   height = 44%
   item_font = "Space Grotesk Regular 20"
   item_color = "#0A0A0A"
   selected_item_color = "#FFFFFF"
-  item_height = 64
+  item_height = 68
   item_padding = 24
-  item_spacing = 10
+  item_spacing = 12
   menu_pixmap_style = "box/frame_*.png"
   item_pixmap_style = "box/item_*.png"
   selected_item_pixmap_style = "box/sel_*.png"
@@ -23,13 +23,13 @@ desktop-color: "#F6F2E9"
 + progress_bar {
   id = "__timeout__"
   left = 5%
-  top = 86%
-  width = 54%
-  height = 20
+  top = 87%
+  width = 56%
+  height = 8
   fg_color = "#EF233C"
-  bg_color = "#FFFFFF"
+  bg_color = "#E4DDD0"
   border_color = "#0A0A0A"
   text_color = "#0A0A0A"
-  text = "@TIMEOUT_NOTIFICATION_SHORT@"
+  text = ""
   font = "IBM Plex Mono Regular 18"
 }

@@ -658,5 +658,39 @@
       "selected": 0
     },
     "status": "working"
+  },
+  {
+    "slug": "brutalist",
+    "title": "Brutalist",
+    "tagline": "Neo-brutalist dossier — cream archival grid, hard offset shadows, crimson controls.",
+    "background": "./brutalist/background.png",
+    "palette": [
+      "#f6f2e9",
+      "#0a0a0a",
+      "#ef233c",
+      "#f4d35e"
+    ],
+    "layout": "brutalist",
+    "layoutLabel": "Dossier grid",
+    "font": "Space Grotesk",
+    "tags": [
+      "brutalist",
+      "editorial",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "BOOT // SYSTEM",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working"
   }
 ]

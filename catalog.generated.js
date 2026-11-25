@@ -683,5 +683,40 @@ window.GRUB_THEME_CATALOG = [
     },
     "status": "working",
     "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#24112d\"\n\n+ image {\n left = 0\n top = 0\n file = \"overlay.png\"\n}\n\n+ label {\n top = 9%\n left = 5%\n width = 39%\n text = \"> AFTERLIFE_TERMINAL\"\n align = \"left\"\n color = \"#ead8df\"\n font = \"VT323 Regular 24\"\n}\n+ label {\n top = 15%\n left = 5%\n width = 39%\n text = \"SESSION: ROOT / STATUS: UNDEAD\"\n align = \"left\"\n color = \"#b5687d\"\n font = \"VT323 Regular 24\"\n}\n+ boot_menu {\n left = 5%\n top = 25%\n width = 39%\n height = 45%\n item_font = \"VT323 Regular 24\"\n item_color = \"#b98f9c\"\n selected_item_color = \"#ffffff\"\n item_height = 54\n item_padding = 18\n item_spacing = 12\n menu_pixmap_style = \"box/frame_*.png\"\n selected_item_pixmap_style = \"box/sel_*.png\"\n scrollbar = false\n}\n+ label {\n top = 75%\n left = 5%\n width = 39%\n text = \"$ press_enter --to-rise\"\n align = \"left\"\n color = \"#ead8df\"\n font = \"VT323 Regular 24\"\n}\n+ progress_bar {\n id = \"__timeout__\"\n left = 5%\n top = 88%\n width = 39%\n height = 5\n fg_color = \"#b5687d\"\n bg_color = \"#160b1c\"\n border_color = \"#ead8df\"\n text_color = \"#ead8df\"\n text = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n font = \"VT323 Regular 24\"\n}\n"
+  },
+  {
+    "slug": "brutalist",
+    "title": "Brutalist",
+    "tagline": "Neo-brutalist dossier — cream archival grid, hard offset shadows, crimson controls.",
+    "background": "./brutalist/background.png",
+    "palette": [
+      "#f6f2e9",
+      "#0a0a0a",
+      "#ef233c",
+      "#f4d35e"
+    ],
+    "layout": "brutalist",
+    "layoutLabel": "Dossier grid",
+    "font": "Space Grotesk",
+    "tags": [
+      "brutalist",
+      "editorial",
+      "light",
+      "minimal"
+    ],
+    "menu": {
+      "title": "BOOT // SYSTEM",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F6F2E9\"\n\n+ boot_menu {\n  left = 5%\n  top = 31%\n  width = 54%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0A0A0A\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 64\n  item_padding = 24\n  item_spacing = 10\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 5%\n  top = 86%\n  width = 54%\n  height = 20\n  fg_color = \"#EF233C\"\n  bg_color = \"#FFFFFF\"\n  border_color = \"#0A0A0A\"\n  text_color = \"#0A0A0A\"\n  text = \"@TIMEOUT_NOTIFICATION_SHORT@\"\n  font = \"IBM Plex Mono Regular 18\"\n}\n"
   }
 ];

@@ -687,7 +687,7 @@ window.GRUB_THEME_CATALOG = [
   {
     "slug": "brutalist",
     "title": "Brutalist",
-    "tagline": "Neo-brutalist dossier — cream archival grid, hard offset shadows, crimson controls.",
+    "tagline": "Centered Swiss-Brutalist cream canvas, hard offset shadows, crimson controls.",
     "background": "./brutalist/background.png",
     "palette": [
       "#f6f2e9",
@@ -717,6 +717,6 @@ window.GRUB_THEME_CATALOG = [
       "selected": 0
     },
     "status": "working",
-    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F6F2E9\"\n\n+ boot_menu {\n  left = 5%\n  top = 37%\n  width = 56%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0A0A0A\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 68\n  item_padding = 24\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 5%\n  top = 87%\n  width = 56%\n  height = 8\n  fg_color = \"#EF233C\"\n  bg_color = \"#E4DDD0\"\n  border_color = \"#0A0A0A\"\n  text_color = \"#0A0A0A\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 18\"\n}\n"
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F6F2E9\"\n\n+ boot_menu {\n  left = 14%\n  top = 34%\n  width = 72%\n  height = 44%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0A0A0A\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 68\n  item_padding = 8\n  item_spacing = 14\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 15%\n  top = 84%\n  width = 70%\n  height = 8\n  fg_color = \"#EF233C\"\n  bg_color = \"#E4DDD0\"\n  border_color = \"#0A0A0A\"\n  text_color = \"#0A0A0A\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 18\"\n}\n"
   }
 ];

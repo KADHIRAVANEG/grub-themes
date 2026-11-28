@@ -825,5 +825,181 @@ window.GRUB_THEME_CATALOG = [
     },
     "status": "working",
     "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#0E131B\"\n\n+ boot_menu {\n  left = 6%\n  top = 32%\n  width = 43%\n  height = 46%\n  item_font = \"IBM Plex Mono Regular 20\"\n  item_color = \"#D8E0EC\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 60\n  item_padding = 8\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 6%\n  top = 82%\n  width = 43%\n  height = 8\n  fg_color = \"#A855F7\"\n  bg_color = \"#1B2331\"\n  border_color = \"#2E3A4E\"\n  text_color = \"#D8E0EC\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "nothing",
+    "title": "Nothing",
+    "tagline": "OLED matte black Glyph console — dot-matrix heading, concentric LED rings, and red accent bar.",
+    "background": "./nothing/background.png",
+    "palette": [
+      "#09090b",
+      "#f4f4f5",
+      "#d71921",
+      "#27272e"
+    ],
+    "layout": "nothing",
+    "layoutLabel": "Glyph matrix",
+    "font": "Space Grotesk",
+    "tags": [
+      "nothing",
+      "dotmatrix",
+      "dark",
+      "minimal"
+    ],
+    "menu": {
+      "title": "NOTHING // GLYPH BOOT",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#09090B\"\n\n+ boot_menu {\n  left = 30%\n  top = 34%\n  width = 40%\n  height = 35%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#A1A1AA\"\n  selected_item_color = \"#FFFFFF\"\n  item_height = 54\n  item_padding = 16\n  item_spacing = 10\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 36%\n  top = 73%\n  width = 28%\n  height = 6\n  fg_color = \"#D71921\"\n  bg_color = \"#1C1C22\"\n  border_color = \"#2E2E38\"\n  text_color = \"#F4F4F5\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "synth",
+    "title": "OP-Boot Synth",
+    "tagline": "Anodized aluminum hardware chassis — rotary encoders, tape reels, recessed OLED screen, and 16-step keys.",
+    "background": "./synth/background.png",
+    "palette": [
+      "#e3e1dc",
+      "#141518",
+      "#ff5500",
+      "#00a8e8"
+    ],
+    "layout": "synth",
+    "layoutLabel": "Hardware deck",
+    "font": "IBM Plex Mono",
+    "tags": [
+      "synth",
+      "hardware",
+      "light",
+      "industrial"
+    ],
+    "menu": {
+      "title": "OP-BOOT // FIELD-01",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#E3E1DC\"\n\n+ boot_menu {\n  left = 18%\n  top = 22%\n  width = 64%\n  height = 33%\n  item_font = \"IBM Plex Mono Regular 20\"\n  item_color = \"#D4D4D8\"\n  selected_item_color = \"#141518\"\n  item_height = 52\n  item_padding = 14\n  item_spacing = 8\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 18%\n  top = 58%\n  width = 64%\n  height = 6\n  fg_color = \"#FF5500\"\n  bg_color = \"#26282E\"\n  border_color = \"#3F424B\"\n  text_color = \"#F4F4F5\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "amber",
+    "title": "Amber 3270",
+    "tagline": "Vintage P3 phosphor CRT mainframe — scanlines, double-line frame, oscilloscope trace, and inverted block.",
+    "background": "./amber/background.png",
+    "palette": [
+      "#0a0703",
+      "#ffb000",
+      "#cc8c00",
+      "#7a5200"
+    ],
+    "layout": "amber",
+    "layoutLabel": "CRT terminal",
+    "font": "Share Tech Mono",
+    "tags": [
+      "amber",
+      "crt",
+      "terminal",
+      "dark",
+      "retro"
+    ],
+    "menu": {
+      "title": "IBM-3270 // BOOT MONITOR",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#0A0703\"\n\n+ boot_menu {\n  left = 12%\n  top = 27%\n  width = 76%\n  height = 42%\n  item_font = \"Share Tech Mono Regular 20\"\n  item_color = \"#CC8C00\"\n  selected_item_color = \"#0A0703\"\n  item_height = 58\n  item_padding = 18\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 12%\n  top = 74%\n  width = 76%\n  height = 8\n  fg_color = \"#FFB000\"\n  bg_color = \"#1E1405\"\n  border_color = \"#FFB000\"\n  text_color = \"#FFB000\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "kyoto",
+    "title": "Kyoto",
+    "tagline": "Washi paper editorial — sumi-e bamboo scroll, vertical kanji calligraphy, and vermilion hanko seal.",
+    "background": "./kyoto/background.png",
+    "palette": [
+      "#f2ece0",
+      "#171614",
+      "#c73a26",
+      "#c9c0ad"
+    ],
+    "layout": "kyoto",
+    "layoutLabel": "Sumi-e scroll",
+    "font": "Cinzel",
+    "tags": [
+      "kyoto",
+      "japanese",
+      "light",
+      "editorial"
+    ],
+    "menu": {
+      "title": "KYOTO // SYSTEM ENTRY",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#F2ECE0\"\n\n+ boot_menu {\n  left = 54%\n  top = 34%\n  width = 39%\n  height = 44%\n  item_font = \"Cinzel Regular 20\"\n  item_color = \"#4A4740\"\n  selected_item_color = \"#F2ECE0\"\n  item_height = 58\n  item_padding = 18\n  item_spacing = 12\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 54%\n  top = 82%\n  width = 39%\n  height = 6\n  fg_color = \"#C73A26\"\n  bg_color = \"#DED6C5\"\n  border_color = \"#171614\"\n  text_color = \"#171614\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
+  },
+  {
+    "slug": "neobrutal",
+    "title": "Neo-Brutal",
+    "tagline": "Stacked OS window aesthetic — thick black borders, electric yellow titlebar, mint selector, and hard shadows.",
+    "background": "./neobrutal/background.png",
+    "palette": [
+      "#fff9ec",
+      "#0a0a0a",
+      "#ffe14d",
+      "#3ce6b1"
+    ],
+    "layout": "neobrutal",
+    "layoutLabel": "Window stack",
+    "font": "Space Grotesk",
+    "tags": [
+      "neobrutal",
+      "brutalist",
+      "light",
+      "pastel"
+    ],
+    "menu": {
+      "title": "SYSTEM_BOOT.EXE",
+      "timeout": "15s",
+      "entries": [
+        "Arch Linux",
+        "Advanced options",
+        "Ubuntu 24.04 LTS",
+        "Windows Boot Manager",
+        "UEFI Firmware"
+      ],
+      "selected": 0
+    },
+    "status": "working",
+    "themeText": "title-text: \"\"\ndesktop-image: \"background.png\"\ndesktop-image-scale-method: \"stretch\"\ndesktop-color: \"#FFF9EC\"\n\n+ boot_menu {\n  left = 44%\n  top = 39%\n  width = 48%\n  height = 40%\n  item_font = \"Space Grotesk Regular 20\"\n  item_color = \"#0A0A0A\"\n  selected_item_color = \"#0A0A0A\"\n  item_height = 58\n  item_padding = 14\n  item_spacing = 10\n  menu_pixmap_style = \"box/frame_*.png\"\n  item_pixmap_style = \"box/item_*.png\"\n  selected_item_pixmap_style = \"box/sel_*.png\"\n  scrollbar = false\n}\n\n+ progress_bar {\n  id = \"__timeout__\"\n  left = 44%\n  top = 82%\n  width = 48%\n  height = 10\n  fg_color = \"#FFE14D\"\n  bg_color = \"#FFFFFF\"\n  border_color = \"#0A0A0A\"\n  text_color = \"#0A0A0A\"\n  text = \"\"\n  font = \"IBM Plex Mono Regular 16\"\n}\n"
   }
 ];

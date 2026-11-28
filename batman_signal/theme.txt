@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "crop"
 desktop-color: "#000000"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 20%
  left = 8%
@@ -29,9 +22,9 @@ desktop-color: "#000000"
 }
 + boot_menu {
  left = 8%
- top = 40%
+ top = 38%
  width = 31%
- height = 31%
+ height = 36%
  item_font = "Archivo Black Regular 24"
  item_color = "#777777"
  selected_item_color = "#111111"
@@ -62,4 +55,10 @@ desktop-color: "#000000"
  text_color = "#eeeeee"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
  font = "Archivo Black Regular 24"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

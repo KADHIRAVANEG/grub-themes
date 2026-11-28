@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.png"
 desktop-image-scale-method: "stretch"
 desktop-color: "#24112d"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 9%
  left = 5%
@@ -16,7 +9,7 @@ desktop-color: "#24112d"
  text = "> AFTERLIFE_TERMINAL"
  align = "left"
  color = "#ead8df"
- font = "VT323 Regular 24"
+ font = "IBM Plex Mono Regular 24"
 }
 + label {
  top = 15%
@@ -25,14 +18,14 @@ desktop-color: "#24112d"
  text = "SESSION: ROOT / STATUS: UNDEAD"
  align = "left"
  color = "#b5687d"
- font = "VT323 Regular 24"
+ font = "IBM Plex Mono Regular 24"
 }
 + boot_menu {
  left = 5%
  top = 25%
  width = 39%
  height = 45%
- item_font = "VT323 Regular 24"
+ item_font = "IBM Plex Mono Regular 24"
  item_color = "#b98f9c"
  selected_item_color = "#ffffff"
  item_height = 54
@@ -49,7 +42,7 @@ desktop-color: "#24112d"
  text = "$ press_enter --to-rise"
  align = "left"
  color = "#ead8df"
- font = "VT323 Regular 24"
+ font = "IBM Plex Mono Regular 24"
 }
 + progress_bar {
  id = "__timeout__"
@@ -62,5 +55,11 @@ desktop-color: "#24112d"
  border_color = "#ead8df"
  text_color = "#ead8df"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
- font = "VT323 Regular 24"
+ font = "IBM Plex Mono Regular 24"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

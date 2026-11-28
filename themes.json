@@ -640,7 +640,7 @@
     ],
     "layout": "ben",
     "layoutLabel": "Afterlife terminal",
-    "font": "VT323",
+    "font": "IBM Plex Mono",
     "tags": [
       "illustration",
       "dark",

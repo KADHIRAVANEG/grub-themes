@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "crop"
 desktop-color: "#000000"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 8%
  left = 4%
@@ -63,4 +56,10 @@ desktop-color: "#000000"
  text_color = "#101018"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
  font = "Orbitron Regular 20"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

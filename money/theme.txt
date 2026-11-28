@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "crop"
 desktop-color: "#000000"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 28%
  left = 6%
@@ -29,15 +22,15 @@ desktop-color: "#000000"
 }
 + boot_menu {
  left = 6%
- top = 45%
+ top = 44%
  width = 35%
- height = 27%
+ height = 31%
  item_font = "Cinzel Regular 20"
- item_color = "#8c846e"
+ item_color = "#c4b998"
  selected_item_color = "#111111"
- item_height = 46
+ item_height = 44
  item_padding = 22
- item_spacing = 1
+ item_spacing = 6
  selected_item_pixmap_style = "box/sel_*.png"
  scrollbar = false
 }
@@ -53,4 +46,10 @@ desktop-color: "#000000"
  text_color = "#d8be74"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
  font = "Cinzel Regular 20"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

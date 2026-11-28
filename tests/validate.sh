@@ -41,6 +41,9 @@ while IFS= read -r theme_file; do
       if [[ ! -f "$theme_dir/$asset" ]]; then
         printf 'missing styled-box slice: %s -> %s\n' "$theme_file" "$asset" >&2
         errors=1
+      elif file "$theme_dir/$asset" | grep -qE '16-bit|1-bit colormap|grayscale|gray\+alpha'; then
+        printf 'unsupported GRUB PNG encoding in slice: %s -> %s\n' "$theme_file" "$asset" >&2
+        errors=1
       fi
     done
   done < <(sed -nE 's/^[[:space:]]*(menu_pixmap_style|item_pixmap_style|selected_item_pixmap_style)[[:space:]]*=[[:space:]]*"([^"]+)".*/\2/p' "$theme_file")
@@ -49,8 +52,18 @@ while IFS= read -r theme_file; do
     if [[ ! -f "$theme_dir/$image_file" ]]; then
       printf 'missing GRUB image component: %s -> %s\n' "$theme_file" "$image_file" >&2
       errors=1
+    elif file "$theme_dir/$image_file" | grep -qE '16-bit|1-bit colormap|grayscale|gray\+alpha'; then
+      printf 'unsupported GRUB PNG encoding in image: %s -> %s\n' "$theme_file" "$image_file" >&2
+      errors=1
     fi
   done < <(sed -nE 's/^[[:space:]]*file[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/p' "$theme_file")
+
+  if [[ "$background" == *.jpg || "$background" == *.jpeg ]]; then
+    if file "$theme_dir/$background" | grep -q ', progressive,'; then
+      printf 'progressive JPEG breaks GRUB2 decoder: %s -> %s\n' "$theme_file" "$background" >&2
+      errors=1
+    fi
+  fi
 
   while IFS= read -r font_name; do
     if ! find "$theme_dir/fonts" -type f -name '*.pf2' -exec strings {} \; 2>/dev/null | grep -Fxq "$font_name"; then

@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "crop"
 desktop-color: "#000000"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 12%
  left = 6%
@@ -29,15 +22,15 @@ desktop-color: "#000000"
 }
 + boot_menu {
  left = 6%
- top = 34%
+ top = 33%
  width = 41%
- height = 29%
+ height = 32%
  item_font = "Archivo Black Regular 24"
  item_color = "#8d8d8d"
  selected_item_color = "#ffffff"
- item_height = 48
+ item_height = 46
  item_padding = 20
- item_spacing = 3
+ item_spacing = 6
  selected_item_pixmap_style = "box/sel_*.png"
  scrollbar = false
 }
@@ -62,4 +55,10 @@ desktop-color: "#000000"
  text_color = "#ffffff"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
  font = "Archivo Black Regular 24"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

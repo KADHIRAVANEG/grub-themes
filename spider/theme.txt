@@ -2,13 +2,6 @@ title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "stretch"
 desktop-color: "#000000"
-
-+ image {
- left = 0
- top = 0
- file = "overlay.png"
-}
-
 + label {
  top = 13%
  left = 70%
@@ -53,4 +46,10 @@ desktop-color: "#000000"
  text_color = "#dce8ff"
  text = "@TIMEOUT_NOTIFICATION_SHORT@"
  font = "Archivo Black Regular 24"
+}
+
++ image {
+ left = 0
+ top = 0
+ file = "overlay.png"
 }

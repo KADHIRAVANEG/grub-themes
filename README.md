@@ -47,6 +47,11 @@ Each theme ships its original background image, bundled GRUB font, selection ass
 | 22 | `wiz`         | Cloud-white Wiz canvas, cobalt selector & wizard artwork    | ✅ |
 | 23 | `epaper`      | Matte monochrome EPD reader, inverted ink & ridge engraving | ✅ |
 | 24 | `blocks`      | Dark pixel grid over world map canvas & foreground blocks   | ✅ |
+| 25 | `nothing`     | Matte OLED black, DotGothic heading & Glyph LED matrix      | ✅ |
+| 26 | `synth`       | Anodized hardware synth deck, encoders & recessed OLED menu | ✅ |
+| 27 | `amber`       | Vintage CRT amber phosphor mainframe & oscilloscope trace   | ✅ |
+| 28 | `kyoto`       | Warm washi paper, sumi-e bamboo scroll & vermilion seal     | ✅ |
+| 29 | `neobrutal`   | Thick black borders, pastel window stack & hard shadows     | ✅ |
 
 ✅ = fully working (GRUB2 standard vertical) | 🔧 = maintenance (horizontal dock / rEFInd companion)
 

@@ -796,5 +796,95 @@
       "selected": 0
     },
     "status": "working"
+  },
+  {
+    "slug": "nothing",
+    "title": "Nothing",
+    "tagline": "OLED matte black Glyph console — dot-matrix heading, concentric LED rings, and red accent bar.",
+    "background": "./nothing/background.png",
+    "palette": ["#09090b", "#f4f4f5", "#d71921", "#27272e"],
+    "layout": "nothing",
+    "layoutLabel": "Glyph matrix",
+    "font": "Space Grotesk",
+    "tags": ["nothing", "dotmatrix", "dark", "minimal"],
+    "menu": {
+      "title": "NOTHING // GLYPH BOOT",
+      "timeout": "15s",
+      "entries": ["Arch Linux", "Advanced options", "Ubuntu 24.04 LTS", "Windows Boot Manager", "UEFI Firmware"],
+      "selected": 0
+    },
+    "status": "working"
+  },
+  {
+    "slug": "synth",
+    "title": "OP-Boot Synth",
+    "tagline": "Anodized aluminum hardware chassis — rotary encoders, tape reels, recessed OLED screen, and 16-step keys.",
+    "background": "./synth/background.png",
+    "palette": ["#e3e1dc", "#141518", "#ff5500", "#00a8e8"],
+    "layout": "synth",
+    "layoutLabel": "Hardware deck",
+    "font": "IBM Plex Mono",
+    "tags": ["synth", "hardware", "light", "industrial"],
+    "menu": {
+      "title": "OP-BOOT // FIELD-01",
+      "timeout": "15s",
+      "entries": ["Arch Linux", "Advanced options", "Ubuntu 24.04 LTS", "Windows Boot Manager", "UEFI Firmware"],
+      "selected": 0
+    },
+    "status": "working"
+  },
+  {
+    "slug": "amber",
+    "title": "Amber 3270",
+    "tagline": "Vintage P3 phosphor CRT mainframe — scanlines, double-line frame, oscilloscope trace, and inverted block.",
+    "background": "./amber/background.png",
+    "palette": ["#0a0703", "#ffb000", "#cc8c00", "#7a5200"],
+    "layout": "amber",
+    "layoutLabel": "CRT terminal",
+    "font": "Share Tech Mono",
+    "tags": ["amber", "crt", "terminal", "dark", "retro"],
+    "menu": {
+      "title": "IBM-3270 // BOOT MONITOR",
+      "timeout": "15s",
+      "entries": ["Arch Linux", "Advanced options", "Ubuntu 24.04 LTS", "Windows Boot Manager", "UEFI Firmware"],
+      "selected": 0
+    },
+    "status": "working"
+  },
+  {
+    "slug": "kyoto",
+    "title": "Kyoto",
+    "tagline": "Washi paper editorial — sumi-e bamboo scroll, vertical kanji calligraphy, and vermilion hanko seal.",
+    "background": "./kyoto/background.png",
+    "palette": ["#f2ece0", "#171614", "#c73a26", "#c9c0ad"],
+    "layout": "kyoto",
+    "layoutLabel": "Sumi-e scroll",
+    "font": "Cinzel",
+    "tags": ["kyoto", "japanese", "light", "editorial"],
+    "menu": {
+      "title": "KYOTO // SYSTEM ENTRY",
+      "timeout": "15s",
+      "entries": ["Arch Linux", "Advanced options", "Ubuntu 24.04 LTS", "Windows Boot Manager", "UEFI Firmware"],
+      "selected": 0
+    },
+    "status": "working"
+  },
+  {
+    "slug": "neobrutal",
+    "title": "Neo-Brutal",
+    "tagline": "Stacked OS window aesthetic — thick black borders, electric yellow titlebar, mint selector, and hard shadows.",
+    "background": "./neobrutal/background.png",
+    "palette": ["#fff9ec", "#0a0a0a", "#ffe14d", "#3ce6b1"],
+    "layout": "neobrutal",
+    "layoutLabel": "Window stack",
+    "font": "Space Grotesk",
+    "tags": ["neobrutal", "brutalist", "light", "pastel"],
+    "menu": {
+      "title": "SYSTEM_BOOT.EXE",
+      "timeout": "15s",
+      "entries": ["Arch Linux", "Advanced options", "Ubuntu 24.04 LTS", "Windows Boot Manager", "UEFI Firmware"],
+      "selected": 0
+    },
+    "status": "working"
   }
 ]
